@@ -399,8 +399,8 @@ GameObject:
   - component: {fileID: 891359564}
   - component: {fileID: 891359563}
   - component: {fileID: 891359562}
-  - component: {fileID: 891359561}
   - component: {fileID: 891359565}
+  - component: {fileID: 891359561}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -420,8 +420,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5c6b6718287654d944e603cba8795c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sitKey: 99
   moveSpeed: 3.5
+  sittingMoveSpeed: 2
   rotationSpeed: 8
+  sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
 --- !u!50 &891359562
 Rigidbody2D:
   serializedVersion: 4
@@ -638,6 +641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 891359561}
+  _noteScript: {fileID: 0}
 --- !u!4 &1772306849
 Transform:
   m_ObjectHideFlags: 0
