@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +33,7 @@ public class NoteScript : MonoBehaviour
             StartCoroutine(CloseNote());
         }
     }
-    void Update()
+    public void ScriptUpdate()
     {
         if (Input.GetKeyDown(buttonLetter) && button.GetComponent<Image>().enabled == true)//Відкриття нотатки
             StartCoroutine(OpenNote());
@@ -62,12 +61,12 @@ public class NoteScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         StopCoroutine(OpenNote());
     }
-    public void ShowButton()//Показ кнопки для нажаття
+    private void ShowButton()//Показ кнопки для нажаття
     {
         button.GetComponent<Image>().enabled = true;
         button.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
     }
-    public void CloseButton()//Закриття кнопки для нажаття
+    private void CloseButton()//Закриття кнопки для нажаття
     {
         button.GetComponent<Image>().enabled = false;
         button.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
