@@ -5,21 +5,31 @@ using UnityEngine.UI;
 
 public class NoteScript : MonoBehaviour
 {
-    [SerializeField] private string noteName; //Пошук яка нотатка відкриється, можно буде зробити лістом
+    [SerializeField] private GameObject noteName; //Нотатка, можно буде зробити лістом
     [SerializeField] private GameObject button; //Кнопка яку треба нажати для відкриття
     [SerializeField] private TextMeshProUGUI exitButton;//напис внизу нотатки для виходу
     [SerializeField] private KeyCode buttonLetter;
+
+    private Image note;
+    private TextMeshProUGUI noteText;
+    private Image buttonImage;
+    private TextMeshProUGUI buttonText;
+
 
     private void Start()
     {
         button.GetComponentInChildren<TextMeshProUGUI>().text = $"{buttonLetter}";
         exitButton.text = $"Натиснiть {buttonLetter}, щоб закрити";
+        note = noteName.GetComponent<Image>();
+        noteText = noteName.GetComponentInChildren<TextMeshProUGUI>();
+        buttonImage = button.GetComponent<Image>();
+        buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (GameObject.Find(noteName).GetComponent<Image>().enabled == false)//перевірка чи не показується нотатка
+            if (note.enabled == false)//перевірка чи не показується нотатка
             {
                 ShowButton();//показ кнопки для відкриття
             }
@@ -35,7 +45,7 @@ public class NoteScript : MonoBehaviour
     }
     public void ScriptUpdate()
     {
-        if (Input.GetKeyDown(buttonLetter) && button.GetComponent<Image>().enabled == true)//Відкриття нотатки
+        if (Input.GetKeyDown(buttonLetter) && buttonImage.enabled == true)//Відкриття нотатки
             StartCoroutine(OpenNote());
         else if (Input.GetKeyDown(buttonLetter))//Або її закриття
         {
@@ -45,8 +55,8 @@ public class NoteScript : MonoBehaviour
     }
     public IEnumerator CloseNote()//Закриття нотатки
     {
-        GameObject.Find(noteName).GetComponent<Image>().enabled = false;
-        GameObject.Find(noteName).GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        note.enabled = false;
+        noteText.enabled = false;
         exitButton.enabled = false;
         yield return null;
         StopCoroutine(CloseNote());
@@ -55,20 +65,20 @@ public class NoteScript : MonoBehaviour
     public IEnumerator OpenNote()//Відкриття нотатки
     {
         CloseButton();
-        GameObject.Find(noteName).GetComponent<Image>().enabled = true;
-        GameObject.Find(noteName).GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+        note.enabled = true;
+        noteText.enabled = true;
         exitButton.enabled = true;
         yield return new WaitForSeconds(0.1f);
         StopCoroutine(OpenNote());
     }
     private void ShowButton()//Показ кнопки для нажаття
     {
-        button.GetComponent<Image>().enabled = true;
-        button.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+        buttonImage.enabled = true;
+        buttonText.enabled = true;
     }
     private void CloseButton()//Закриття кнопки для нажаття
     {
-        button.GetComponent<Image>().enabled = false;
-        button.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        buttonImage.enabled = false;
+        buttonText.enabled = false;
     }
 }

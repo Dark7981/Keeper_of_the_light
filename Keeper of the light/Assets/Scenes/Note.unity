@@ -955,7 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea491c65b6644740ad935af641252a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteName: Note1
+  noteName: {fileID: 2000890437}
   button: {fileID: 1291538360}
   exitButton: {fileID: 1455979100}
   buttonLetter: 101
