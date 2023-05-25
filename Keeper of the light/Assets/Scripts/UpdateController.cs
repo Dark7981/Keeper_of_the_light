@@ -8,12 +8,21 @@ public class UpdateController : MonoBehaviour
 
     private void Update()
     {
-        _playerMovement.ScriptUpdate(); 
-        _noteScript.ScriptUpdate();
+        if (_playerMovement != null)
+        {
+            _playerMovement.ScriptUpdate();
+        }
+        if (_noteScript != null)
+        {
+            _playerMovement.ScriptUpdate();
+        }
     }
 
     private void FixedUpdate()
     {
-        _playerMovement.ScriptFixedUpdate();  
+        if (_playerMovement != null)
+        {
+            _playerMovement.ScriptFixedUpdate();
+        }
     }
 }
