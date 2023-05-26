@@ -46,11 +46,16 @@ public class NoteScript : MonoBehaviour
     }
     public void ScriptUpdate()
     {
-        if (Input.GetKeyDown(buttonLetter) && buttonImage.enabled == true) //³������� �������
+        if (Input.GetKeyDown(buttonLetter) && buttonImage.enabled == true)
+        {
             StartCoroutine(OpenNote());
+            Time.timeScale = 0;
+        } //³������� �������
+            
         else if (Input.GetKeyDown(buttonLetter))//��� �� ��������
         {
             StartCoroutine(CloseNote());
+            Time.timeScale = 1;
         }
 
     }
@@ -72,6 +77,7 @@ public class NoteScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         StopCoroutine(OpenNote());
         
+
     }
     private void ShowButton()//����� ������ ��� �������
     {
