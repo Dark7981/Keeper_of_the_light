@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DeadEnemy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/Controler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/RayPlayer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/colisionbomb.cs" root0="SKIP_HIGHLIGHTING" />
@@ -91,7 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685041074308</updated>
       <workItem from="1685041084434" duration="5597000" />
-      <workItem from="1685114422847" duration="12065000" />
+      <workItem from="1685114422847" duration="12612000" />
     </task>
     <servers />
   </component>
