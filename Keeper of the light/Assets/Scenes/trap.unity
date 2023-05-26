@@ -981,6 +981,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 746940432}
+  - component: {fileID: 746940433}
   m_Layer: 0
   m_Name: DeadScript
   m_TagString: Untagged
@@ -1003,6 +1004,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &746940433
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746940431}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 387ad0362abeb184883c943ec9303c8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1194151156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1164,7 @@ GameObject:
   - component: {fileID: 1399478218}
   - component: {fileID: 1399478220}
   - component: {fileID: 1399478219}
+  - component: {fileID: 1399478221}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1161,7 +1184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c619489c72345541b5021e2c161fa78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1399478212}
+  _spriteRenderer: {fileID: 1399478216}
   _playerMovement: {fileID: 1399478214}
   _updateController: {fileID: 1399478215}
   _animator: {fileID: 1399478218}
@@ -1309,7 +1332,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.37, y: 0.96875}
+  m_Size: {x: 1.44, y: 0.96875}
   m_EdgeRadius: 0
 --- !u!50 &1399478220
 Rigidbody2D:
@@ -1332,6 +1355,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!111 &1399478221
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399478212}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8accbda5d7c09a643a074fda4a0b3084, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8accbda5d7c09a643a074fda4a0b3084, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1670160898
 GameObject:
   m_ObjectHideFlags: 0

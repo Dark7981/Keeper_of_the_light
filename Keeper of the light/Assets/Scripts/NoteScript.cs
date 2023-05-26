@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class NoteScript : MonoBehaviour
 {
-    [SerializeField] private GameObject noteName; //Нотатка, можно буде зробити лістом
-    [SerializeField] private GameObject button; //Кнопка яку треба нажати для відкриття
-    [SerializeField] private TextMeshProUGUI exitButton;//напис внизу нотатки для виходу
+    [SerializeField] private GameObject noteName; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    [SerializeField] private GameObject button; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    [SerializeField] private TextMeshProUGUI exitButton;//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private KeyCode buttonLetter;
+    
 
     private Image note;
     private TextMeshProUGUI noteText;
@@ -19,7 +20,7 @@ public class NoteScript : MonoBehaviour
     private void Start()
     {
         button.GetComponentInChildren<TextMeshProUGUI>().text = $"{buttonLetter}";
-        exitButton.text = $"Натиснiть {buttonLetter}, щоб закрити";
+        exitButton.text = $"пїЅпїЅпїЅпїЅпїЅпїЅiпїЅпїЅ {buttonLetter}, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         note = noteName.GetComponent<Image>();
         noteText = noteName.GetComponentInChildren<TextMeshProUGUI>();
         buttonImage = button.GetComponent<Image>();
@@ -29,13 +30,13 @@ public class NoteScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (note.enabled == false)//перевірка чи не показується нотатка
+            if (note.enabled == false)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             {
-                ShowButton();//показ кнопки для відкриття
+                ShowButton();//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)//Перевірка чи не вийшов гравець за межі нотатки
+    private void OnTriggerExit2D(Collider2D collision)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -45,15 +46,15 @@ public class NoteScript : MonoBehaviour
     }
     public void ScriptUpdate()
     {
-        if (Input.GetKeyDown(buttonLetter) && buttonImage.enabled == true)//Відкриття нотатки
+        if (Input.GetKeyDown(buttonLetter) && buttonImage.enabled == true) //ВіпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             StartCoroutine(OpenNote());
-        else if (Input.GetKeyDown(buttonLetter))//Або її закриття
+        else if (Input.GetKeyDown(buttonLetter))//пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             StartCoroutine(CloseNote());
         }
 
     }
-    public IEnumerator CloseNote()//Закриття нотатки
+    public IEnumerator CloseNote()//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         note.enabled = false;
         noteText.enabled = false;
@@ -62,7 +63,7 @@ public class NoteScript : MonoBehaviour
         StopCoroutine(CloseNote());
 
     }
-    public IEnumerator OpenNote()//Відкриття нотатки
+    public IEnumerator OpenNote()//ВіпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         CloseButton();
         note.enabled = true;
@@ -70,13 +71,14 @@ public class NoteScript : MonoBehaviour
         exitButton.enabled = true;
         yield return new WaitForSeconds(0.1f);
         StopCoroutine(OpenNote());
+        
     }
-    private void ShowButton()//Показ кнопки для нажаття
+    private void ShowButton()//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         buttonImage.enabled = true;
         buttonText.enabled = true;
     }
-    private void CloseButton()//Закриття кнопки для нажаття
+    private void CloseButton()//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         buttonImage.enabled = false;
         buttonText.enabled = false;

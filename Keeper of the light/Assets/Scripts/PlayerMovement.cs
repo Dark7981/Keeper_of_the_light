@@ -9,15 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float sittingMoveSpeed = 2;
     [SerializeField] private float rotationSpeed = 10;
-    [SerializeField] private Sprite sittingSprite;//спрайт персонажу при сидінні
-    [SerializeField]private AudioClip[] footsteps;//список шагов
+    [SerializeField] private Sprite sittingSprite;//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    [SerializeField] private AudioClip[] footsteps;//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     private bool isMoving = false;
     private AudioSource playerAudio;
-    private Sprite standartSprite;  // спрайт який був на гравці по замовчуванням
+    private Sprite standartSprite;  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private float speed = 4;
     private bool isSiting = false;
-    private Vector2 moveDirection;      // напрям руху
+    private Vector2 moveDirection;      // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;
 
@@ -29,22 +29,22 @@ public class PlayerMovement : MonoBehaviour
 
         standartSprite = spriteRenderer.sprite;
 
-        if (sittingSprite == null) // цей код щоб під час ваших тестів не було помилок
+        if (sittingSprite == null) // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             sittingSprite = standartSprite;
         }
     }
 
-    public void ScriptUpdate()   // це метод який я буду використовувати в UpdateController 
+    public void ScriptUpdate()   // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ UpdateController 
     {
         Movement();
         Siting();
 
     }
 
-    private void Siting() // механіка присідання
+    private void Siting() // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
-        if (Input.GetKeyDown(sitKey) && isSiting == false) // перевірка чи хочеш сісти або піднятись
+        if (Input.GetKeyDown(sitKey) && isSiting == false) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             isSiting = true;
 
@@ -63,19 +63,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Movement() // відровідає за рух гравця
+    private void Movement() // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); // Напрям руху записується по осям
+        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 
-        if (moveDirection != Vector2.zero) //перевірка чи змінюється напрям руху
+        if (moveDirection != Vector2.zero) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         {
             isMoving = true;
 
-            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; // визначає кут до напрямку руху
+            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle); // перетворення кута в градусах, в кут в кватерніоні
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // плавний поворот до напрямку руху
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             
             StartCoroutine(Footstep());
         }else
@@ -99,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void ScriptFixedUpdate() // Це метод який я буду використовувати в UpdateController 
+    public void ScriptFixedUpdate() // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ UpdateController 
     {
-        rigidBody.MovePosition(rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  // Це метод який переміщує об'єкт в указану точку з заданою швидкістю
+        rigidBody.MovePosition(rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ'пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 }
