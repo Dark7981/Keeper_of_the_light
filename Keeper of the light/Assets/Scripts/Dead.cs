@@ -6,7 +6,7 @@ using UnityEngine;
 public class Dead : MonoBehaviour
 {
 
-  [SerializeField] private GameObject Player;
+  [SerializeField] private SpriteRenderer _spriteRenderer;
   [SerializeField] private PlayerMovement _playerMovement;
   [SerializeField] private UpdateController _updateController;
 
@@ -22,11 +22,12 @@ public class Dead : MonoBehaviour
 
   public void dead()
   {
+    _animator.GetComponent<Animator>().enabled = true;
     _updateController.enabled = false;
     _playerMovement.enabled = false;
-    Player.GetComponent<MeshRenderer>().material.color = Color.gray;
-    _animator.GetComponent<Animator>().enabled = true;
-    
+    _spriteRenderer.color = Color.red;
+
+
   }
 
    
