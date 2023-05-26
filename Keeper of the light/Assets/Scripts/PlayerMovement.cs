@@ -4,14 +4,16 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    [SerializeField] private SourceOfNoise _sourceOfNoise;
     [SerializeField] private KeyCode sitKey = KeyCode.C;
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float sittingMoveSpeed = 2;
     [SerializeField] private float rotationSpeed = 10;
     [SerializeField] private Sprite sittingSprite;//������ ��������� ��� �����
     [SerializeField] private AudioClip[] footsteps;//������ �����
-
+    public float distance;
+    private float distancesit;
+    private float mainDistance;
     private bool isMoving = false;
     private AudioSource playerAudio;
     private Sprite standartSprite;  // ������ ���� ��� �� ������ �� �������������
@@ -26,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidBody = GetComponent<Rigidbody2D>();
-
+        mainDistance = distance;
+        distancesit = distance / 2;
         standartSprite = spriteRenderer.sprite;
 
         if (sittingSprite == null) // ��� ��� ��� �� ��� ����� ����� �� ���� �������
@@ -47,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(sitKey) && isSiting == false) // �������� �� ����� ���� ��� ��������
         {
             isSiting = true;
-
+            mainDistance = distancesit;
             speed = sittingMoveSpeed;
             spriteRenderer.sprite = sittingSprite;
         
@@ -56,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKeyDown(sitKey) && isSiting == true)  
         {
             isSiting = false;
-
+            mainDistance = distance;
             speed = moveSpeed;
             
             spriteRenderer.sprite = standartSprite;
@@ -78,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // ������� ������� �� �������� ����
             
             StartCoroutine(Footstep());
+            _sourceOfNoise.MakeNoise(transform.position,mainDistance);
         }else
         {
             playerAudio.Stop();

@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Dead : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class Dead : MonoBehaviour
   [SerializeField] private SpriteRenderer _spriteRenderer;
   [SerializeField] private PlayerMovement _playerMovement;
   [SerializeField] private UpdateController _updateController;
+ 
 
   [SerializeField] private Animator _animator;
 
@@ -30,6 +30,7 @@ public class Dead : MonoBehaviour
 
   }
 
+  
    
   
   

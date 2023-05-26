@@ -1,12 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class TrapTriger : MonoBehaviour
 {
     
     [SerializeField] private Dead _dead;
+    [SerializeField] private DeadEnemy _deadEnemy;
 
   
 
@@ -15,6 +14,14 @@ public class TrapTriger : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             _dead.dead();
+        }
+
+        else if (col.CompareTag("Enemy"))
+        {
+            Debug.Log("ss");
+            
+            _deadEnemy.deadEnemy();
+            
         }
     }
 }

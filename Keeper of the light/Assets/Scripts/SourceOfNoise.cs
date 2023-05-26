@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class SourceOfNoise : MonoBehaviour
 {
-    public void MakeNoise(Vector3 sourcePos,float distance)         // Публічний метод який буде викликатися кожен раз коли щось іздає звук
+    public void MakeNoise(Vector3 sourcePos,float distance)         // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(sourcePos, distance);  // Створюється коло, все що попало в коло чує звук
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(sourcePos, distance);  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
         List<GameObject> listeners = new List<GameObject>();
-        for (int i = 0; i < colliders.Length; i++)  // Перевірка по тегу чи може об'єкт почути звук
+        for (int i = 0; i < colliders.Length; i++)  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         {
             if (colliders[i].CompareTag("Enemy"))
             {
@@ -15,13 +15,10 @@ public class SourceOfNoise : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < listeners.Count; i++)   // Виконується метод в скрипті ворога який трігерить активацію скрипта поведінки
+        for (int i = 0; i < listeners.Count; i++)   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             listeners[i].GetComponent<RegularEnemy>()._HeardSth(sourcePos);
         }
     }
-    public void Update()
-    {
-        MakeNoise(transform.position,50);
-    }
+    
 }
