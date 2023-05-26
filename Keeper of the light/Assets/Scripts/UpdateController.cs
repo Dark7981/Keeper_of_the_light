@@ -14,7 +14,7 @@ public class UpdateController : MonoBehaviour
         }
         if (_noteScript != null)
         {
-            _playerMovement.ScriptUpdate();
+            _noteScript.ScriptUpdate();
         }
     }
 
