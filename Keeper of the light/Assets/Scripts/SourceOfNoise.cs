@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SorceOfNoise : MonoBehaviour
+public class SourceOfNoise : MonoBehaviour
 {
     public void MakeNoise(Vector3 sourcePos,float distance)         // Публічний метод який буде викликатися кожен раз коли щось іздає звук
     {
@@ -19,5 +19,9 @@ public class SorceOfNoise : MonoBehaviour
         {
             listeners[i].GetComponent<RegularEnemy>()._HeardSth(sourcePos);
         }
+    }
+    public void Update()
+    {
+        MakeNoise(transform.position,50);
     }
 }

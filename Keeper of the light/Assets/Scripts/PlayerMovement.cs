@@ -1,5 +1,6 @@
-
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,8 +9,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float sittingMoveSpeed = 2;
     [SerializeField] private float rotationSpeed = 10;
-    [SerializeField] private Sprite sittingSprite;  //спрайт персонажу при сидінні
+    [SerializeField] private Sprite sittingSprite;//спрайт персонажу при сидінні
+    [SerializeField]private AudioClip[] footsteps;//список шагов
 
+    private bool isMoving = false;
+    private AudioSource playerAudio;
     private Sprite standartSprite;  // спрайт який був на гравці по замовчуванням
     private float speed = 4;
     private bool isSiting = false;
@@ -19,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidBody = GetComponent<Rigidbody2D>();
 
@@ -34,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
         Siting();
+
     }
 
     private void Siting() // механіка присідання
@@ -51,7 +57,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isSiting = false;
 
-            speed = moveSpeed; 
+            speed = moveSpeed;
+            
             spriteRenderer.sprite = standartSprite;
         }
     }
@@ -62,11 +69,33 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveDirection != Vector2.zero) //перевірка чи змінюється напрям руху
         {
+            isMoving = true;
+
             float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; // визначає кут до напрямку руху
 
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle); // перетворення кута в градусах, в кут в кватерніоні
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // плавний поворот до напрямку руху
+            
+            StartCoroutine(Footstep());
+        }else
+        {
+            playerAudio.Stop();
+        }
+    }
+    public IEnumerator Footstep()
+    {
+        yield return new WaitForSeconds(0.1f); 
+        MovementDetection();
+        yield return new WaitForSeconds(0.4f);
+        StopCoroutine(Footstep());
+    }
+    private void MovementDetection()
+    {
+        if (!playerAudio.isPlaying && isMoving)
+        {
+            int rnd = Random.Range(0, footsteps.Length);
+            playerAudio.PlayOneShot(footsteps[rnd]);
         }
     }
 
