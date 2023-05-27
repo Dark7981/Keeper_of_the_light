@@ -14,7 +14,7 @@ public class RegularEnemy : MonoBehaviour
     private void Start()
     {
         //transform.eulerAngles = new Vector3(90f, 0, 0);    // Так треба
-        agent.updateRotation = false;
+        //agent.updateRotation = false;
         agent.updateUpAxis= false;
         spriteRenderer.color = Color.white;                 // Поки спить ворог білий
         if (!isSleaping)
