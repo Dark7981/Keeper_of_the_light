@@ -1,6 +1,7 @@
 
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class DeadEnemy : MonoBehaviour
@@ -8,20 +9,28 @@ public class DeadEnemy : MonoBehaviour
    
    
   
-   [SerializeField] private GameObject deadenemy;
-   public bool isDead = false;
+    [SerializeField] private GameObject _deadenemy;
+   [SerializeField] private bool _isDead = false;
+
+   public bool IsDead
+   {
+      set => _isDead = value;
+      get => _isDead;
+      
+   } 
    
  
    public void deadEnemy()
    {
-  
-      isDead = true;
+      Debug.Log("asasasasasa");
+      _isDead = true;
+     
     
-      if (isDead)
+      if (_isDead)
       {
          Destroy(gameObject);
          Debug.Log("ssssss");
-         Instantiate(deadenemy, transform.position,quaternion.identity);
+         Instantiate(_deadenemy, transform.position,quaternion.identity);
       }
      
    }

@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d778a0779e918d489c1c22a347ec6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadenemy: {fileID: 9143429359542772723, guid: 4fc63c1b965affa4f9bd0bee8fbc2dd6, type: 3}
-  isDead: 0
+  _deadenemy: {fileID: 9143429359542772723, guid: 4fc63c1b965affa4f9bd0bee8fbc2dd6, type: 3}
+  _isDead: 0
 --- !u!95 &5400314034297596455
 Animator:
   serializedVersion: 5
