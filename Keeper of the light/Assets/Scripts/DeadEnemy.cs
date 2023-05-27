@@ -9,7 +9,7 @@ public class DeadEnemy : MonoBehaviour
    
   
    [SerializeField] private GameObject deadenemy;
-   [SerializeField] private bool isDead = false;
+   public bool isDead = false;
    
  
    public void deadEnemy()
