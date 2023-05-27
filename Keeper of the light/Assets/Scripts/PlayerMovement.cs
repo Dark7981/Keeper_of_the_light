@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
             StartCoroutine(FootstepSound());
 
-            _sourceOfNoise.MakeNoise(transform.position,soundRange);
+            _sourceOfNoise.MakeNoise(transform.position, range);
         }else
         {
             playerAudio.Stop();
