@@ -1,25 +1,27 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private SourceOfNoise _sourceOfNoise;
+    [Header("Data settings")]
     [SerializeField] private KeyCode sitKey = KeyCode.C;
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float sittingMoveSpeed = 2;
     [SerializeField] private float rotationSpeed = 10;
-    [SerializeField] private Sprite sittingSprite;//������ ��������� ��� �����
-    [SerializeField] private AudioClip[] footsteps;//������ �����
-    public float distance;
-    private float distancesit;
-    private float mainDistance;
-    private bool isMoving = false;
-    private AudioSource playerAudio;
-    private Sprite standartSprite;  // ������ ���� ��� �� ������ �� �������������
-    private float speed = 4;
+    [SerializeField] private float sittingSoundRange;
+    [SerializeField] private float soundRange;
+
+    [Header("Needed data")]
+    [SerializeField] private Sprite sittingSprite;
+    [SerializeField] private AudioClip[] footstepSounds;
+    [SerializeField] private SourceOfNoise _sourceOfNoise;
+
+    private float range;
+    private float speed;
     private bool isSiting = false;
-    private Vector2 moveDirection;      // ������ ����
+    private AudioSource playerAudio;
+    private Sprite standartSprite;  
+    private Vector2 moveDirection;      
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;
 
@@ -28,83 +30,84 @@ public class PlayerMovement : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidBody = GetComponent<Rigidbody2D>();
-        mainDistance = distance;
-        distancesit = distance / 2;
-        standartSprite = spriteRenderer.sprite;
 
-        if (sittingSprite == null) // ��� ��� ��� �� ��� ����� ����� �� ���� �������
+        range = soundRange;
+        speed = moveSpeed;
+
+        standartSprite = spriteRenderer.sprite; 
+
+        if (sittingSprite == null) 
         {
             sittingSprite = standartSprite;
         }
     }
 
-    public void ScriptUpdate()   // �� ����� ���� � ���� ��������������� � UpdateController 
+    public void ScriptUpdate()   
     {
         Movement();
         Siting();
 
     }
 
-    private void Siting() // ������� ���������
+    private void Siting() 
     {
-        if (Input.GetKeyDown(sitKey) && isSiting == false) // �������� �� ����� ���� ��� ��������
+        if (Input.GetKeyDown(sitKey) && isSiting == false) // Присів
         {
             isSiting = true;
-            mainDistance = distancesit;
-            speed = sittingMoveSpeed;
-            spriteRenderer.sprite = sittingSprite;
-        
 
+            soundRange = sittingSoundRange;
+            speed = sittingMoveSpeed;
+
+            spriteRenderer.sprite = sittingSprite;
         }
-        else if (Input.GetKeyDown(sitKey) && isSiting == true)  
+        else if (Input.GetKeyDown(sitKey) && isSiting == true) // Cтоїть
         {
             isSiting = false;
-            mainDistance = distance;
+
+            range = soundRange;
             speed = moveSpeed;
             
             spriteRenderer.sprite = standartSprite;
         }
     }
 
-    private void Movement() // ������� �� ��� ������
+    private void Movement() 
     {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); // ������ ���� ���������� �� ����
+        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
 
-        if (moveDirection != Vector2.zero) //�������� �� ��������� ������ ����
+        if (moveDirection != Vector2.zero) 
         {
-            isMoving = true;
+            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; 
 
-            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; // ������� ��� �� �������� ����
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle); 
 
-            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle); // ������������ ���� � ��������, � ��� � ���������
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); 
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // ������� ������� �� �������� ����
-            
-            StartCoroutine(Footstep());
-            _sourceOfNoise.MakeNoise(transform.position,mainDistance);
+            StartCoroutine(FootstepSound());
+
+            _sourceOfNoise.MakeNoise(transform.position,soundRange);
         }else
         {
             playerAudio.Stop();
         }
     }
-    public IEnumerator Footstep()
+    private IEnumerator FootstepSound()
     {
-        yield return new WaitForSeconds(0.1f); 
         MovementDetection();
         yield return new WaitForSeconds(0.4f);
-        StopCoroutine(Footstep());
+        StopCoroutine(FootstepSound());
     }
     private void MovementDetection()
     {
-        if (!playerAudio.isPlaying && isMoving)
+        if (!playerAudio.isPlaying)
         {
-            int rnd = Random.Range(0, footsteps.Length);
-            playerAudio.PlayOneShot(footsteps[rnd]);
+            int number = Random.Range(0, footstepSounds.Length);
+            playerAudio.PlayOneShot(footstepSounds[number]);
         }
     }
 
-    public void ScriptFixedUpdate() // �� ����� ���� � ���� ��������������� � UpdateController 
+    public void ScriptFixedUpdate() 
     {
-        rigidBody.MovePosition(rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  // �� ����� ���� ������� ��'��� � ������� ����� � ������� ��������
+        rigidBody.MovePosition(rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  
     }
 }

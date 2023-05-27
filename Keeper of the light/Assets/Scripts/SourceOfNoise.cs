@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class SourceOfNoise : MonoBehaviour
 {
-    public void MakeNoise(Vector3 sourcePos,float distance)         // �������� ����� ���� ���� ����������� ����� ��� ���� ���� ���� ����
+    public void MakeNoise(Vector3 sourcePos,float distance) 
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(sourcePos, distance);  // ����������� ����, ��� �� ������ � ���� �� ����
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(sourcePos, distance);  
         List<GameObject> listeners = new List<GameObject>();
-        for (int i = 0; i < colliders.Length; i++)  // �������� �� ���� �� ���� ��'��� ������ ����
+        for (int i = 0; i < colliders.Length; i++)  
         {
             if (colliders[i].CompareTag("Enemy"))
             {
@@ -15,7 +15,7 @@ public class SourceOfNoise : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < listeners.Count; i++)   // ���������� ����� � ������ ������ ���� �������� ��������� ������� ��������
+        for (int i = 0; i < listeners.Count; i++)  
         {
             listeners[i].GetComponent<RegularEnemy>()._HeardSth(sourcePos);
         }

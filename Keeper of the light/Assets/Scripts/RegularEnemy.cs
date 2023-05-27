@@ -11,6 +11,7 @@ public class RegularEnemy : MonoBehaviour
 
     [SerializeField] private float speed;
     [Range(1, 3)] private int status;
+
     private void Start()
     {
         //transform.eulerAngles = new Vector3(90f, 0, 0);    // Так треба
