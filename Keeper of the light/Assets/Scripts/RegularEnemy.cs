@@ -12,6 +12,8 @@ public class RegularEnemy : MonoBehaviour
     [SerializeField] private float speed;
     [Range(1, 3)] private int status;
 
+    [SerializeField] private GameObject deadEnemy;
+
     private void Start()
     {
         //transform.eulerAngles = new Vector3(90f, 0, 0);    // “ак треба
@@ -83,6 +85,13 @@ public class RegularEnemy : MonoBehaviour
         else
             StartCoroutine(HeardSth(targetPos));    // якщо це перший раз то ворог насторожуЇтьс€
     }
+
+    public void Dead()
+    {
+        Destroy(gameObject);
+        Instantiate(deadEnemy, transform.position, Quaternion.identity);
+    }
 }
+
 
 

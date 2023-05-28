@@ -3,25 +3,15 @@ using UnityEngine;
 
 public class TrapTriger : MonoBehaviour
 {
-    
-    [SerializeField] private Dead _dead;
-    [SerializeField] private DeadEnemy _deadEnemy;
-
-  
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            _dead.dead();
+            col.GetComponent<PlayerMovement>().Dead();
         }
-
         else if (col.CompareTag("Enemy"))
-        {
-            Debug.Log("ss");
-            
-            _deadEnemy.deadEnemy();
-            
+        {   
+            col.GetComponent<RegularEnemy>().Dead();   
         }
     }
 }

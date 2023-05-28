@@ -19,22 +19,24 @@ public class PlayerMovement : MonoBehaviour
     private float range;
     private float speed;
     private bool isSiting = false;
-    private AudioSource playerAudio;
+    private AudioSource _audioSource;
     private Sprite standartSprite;  
     private Vector2 moveDirection;      
-    private Rigidbody2D rigidBody;
-    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D _rigidBody;
+    private SpriteRenderer _spriteRenderer;
+    private PlayerMovement _playerMovement;
 
     private void Start()
     {
-        playerAudio = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rigidBody = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _playerMovement = GetComponent<PlayerMovement>();
 
         range = soundRange;
         speed = moveSpeed;
 
-        standartSprite = spriteRenderer.sprite; 
+        standartSprite = _spriteRenderer.sprite; 
 
         if (sittingSprite == null) 
         {
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
             soundRange = sittingSoundRange;
             speed = sittingMoveSpeed;
 
-            spriteRenderer.sprite = sittingSprite;
+            _spriteRenderer.sprite = sittingSprite;
         }
         else if (Input.GetKeyDown(sitKey) && isSiting == true) // Cтоїть
         {
@@ -67,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             range = soundRange;
             speed = moveSpeed;
             
-            spriteRenderer.sprite = standartSprite;
+            _spriteRenderer.sprite = standartSprite;
         }
     }
 
@@ -88,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             _sourceOfNoise.MakeNoise(transform.position, range);
         }else
         {
-            playerAudio.Stop();
+            _audioSource.Stop();
         }
     }
     private IEnumerator FootstepSound()
@@ -99,15 +101,22 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovementDetection()
     {
-        if (!playerAudio.isPlaying)
+        if (!_audioSource.isPlaying)
         {
             int number = Random.Range(0, footstepSounds.Length);
-            playerAudio.PlayOneShot(footstepSounds[number]);
+            _audioSource.PlayOneShot(footstepSounds[number]);
         }
     }
 
     public void ScriptFixedUpdate() 
     {
-        rigidBody.MovePosition(rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  
+        _rigidBody.MovePosition(_rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  
+    }
+
+    public void Dead()
+    {
+        Destroy(_playerMovement);
+        Debug.Log("1212");
+        _spriteRenderer.color = Color.red;
     }
 }
