@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class NoteScript : MonoBehaviour
@@ -15,10 +16,12 @@ public class NoteScript : MonoBehaviour
     private TextMeshProUGUI noteText;
     private Image buttonImage;
     private TextMeshProUGUI buttonText;
+    private ShadowCaster2D _shadowCaster2d;
 
 
     private void Start()
     {
+        _shadowCaster2d = GetComponent<ShadowCaster2D>();
         button.GetComponentInChildren<TextMeshProUGUI>().text = $"{buttonLetter}";
         exitButton.text = $"������i�� {buttonLetter}, ��� �������";
         note = noteName.GetComponent<Image>();
@@ -28,6 +31,7 @@ public class NoteScript : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+        _shadowCaster2d.enabled = false;
         if (collision.gameObject.CompareTag("Player"))
         {
             if (note.enabled == false)//�������� �� �� ���������� �������
@@ -38,6 +42,7 @@ public class NoteScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)//�������� �� �� ������ ������� �� ��� �������
     {
+        _shadowCaster2d.enabled = true;
         if (collision.gameObject.CompareTag("Player"))
         {
             CloseButton();
