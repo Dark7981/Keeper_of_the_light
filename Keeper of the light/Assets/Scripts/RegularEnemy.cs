@@ -68,7 +68,8 @@ public class RegularEnemy : MonoBehaviour
         status = 3;
         spriteRenderer.color = Color.red;                           // Ворог червоний поки заагрений
         agent.speed = speed * 1.5f;
-        agent.destination = (targetPos - transform.position) * 3;   // Ворог біжить по прямій в сторону джерела звуку
+        agent.destination = (targetPos - agent.gameObject.transform.position);
+        Debug.Log(targetPos);// Ворог біжить по прямій в сторону джерела звуку
         yield return new WaitForSeconds(5f);
         StartCoroutine(HeardSth(targetPos));
         yield break;
