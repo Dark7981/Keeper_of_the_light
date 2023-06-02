@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -11,7 +10,7 @@ public class LightScript : MonoBehaviour
     [SerializeField] private float minItensity;
     [SerializeField] private float minRadius;
 
-    private Light2D light;
+    private new Light2D light;
     private float timeLeft;
 
     public float maxItensity;
