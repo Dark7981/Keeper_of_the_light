@@ -1,15 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour
 {
-    [Header("Data settings")]
+    [Header("Keys")]
+    [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode sitKey = KeyCode.C;
+
+    [Header("parameters")]
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float sittingMoveSpeed = 2;
     [SerializeField] private float rotationSpeed = 10;
     [SerializeField] private float sittingSoundRange;
     [SerializeField] private float soundRange;
+    [SerializeField] private float jumpSoundRange;
 
     [Header("Needed data")]
     [SerializeField] private Sprite sittingSprite;
@@ -24,14 +28,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveDirection;      
     private Rigidbody2D _rigidBody;
     private SpriteRenderer _spriteRenderer;
-    private PlayerMovement _playerMovement;
+    private PlayerBehaviour _playerBehaviour;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
-        _playerMovement = GetComponent<PlayerMovement>();
+        _playerBehaviour = GetComponent<PlayerBehaviour>();
 
         range = soundRange;
         speed = moveSpeed;
@@ -48,7 +52,16 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
         Siting();
+        Jump();
 
+    }
+
+    private void Jump()
+    {
+        if (!isSiting && Input.GetKeyDown(jumpKey))
+        {
+            _sourceOfNoise.MakeNoise(transform.position, jumpSoundRange);
+        }
     }
 
     private void Siting() 
@@ -88,7 +101,8 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(FootstepSound());
 
             _sourceOfNoise.MakeNoise(transform.position, range);
-        }else
+        }
+        else
         {
             _audioSource.Stop();
         }
@@ -115,8 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dead()
     {
-        Destroy(_playerMovement);
-        Debug.Log("1212");
+        Destroy(_playerBehaviour);
         _spriteRenderer.color = Color.red;
     }
 }

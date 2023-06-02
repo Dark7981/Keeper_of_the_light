@@ -7,7 +7,7 @@ public class TrapTriger : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            col.GetComponent<PlayerMovement>().Dead();
+            col.GetComponent<PlayerBehaviour>().Dead();
         }
         else if (col.CompareTag("Enemy"))
         {   

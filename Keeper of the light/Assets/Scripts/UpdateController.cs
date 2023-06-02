@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class UpdateController : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private PlayerBehaviour _playerBehaviour;
     [SerializeField] private NoteScript _noteScript;
 
     private void Update()
     {
-        if (_playerMovement != null)
+        if (_playerBehaviour != null)
         {
-            _playerMovement.ScriptUpdate();
+            _playerBehaviour.ScriptUpdate();
         }
         if (_noteScript != null)
         {
@@ -20,9 +20,9 @@ public class UpdateController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_playerMovement != null)
+        if (_playerBehaviour != null)
         {
-            _playerMovement.ScriptFixedUpdate();
+            _playerBehaviour.ScriptFixedUpdate();
         }
     }
 }
