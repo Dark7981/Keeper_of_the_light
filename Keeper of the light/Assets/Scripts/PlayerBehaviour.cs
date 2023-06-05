@@ -20,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioClip[] footstepSounds;
     [SerializeField] private SourceOfNoise _sourceOfNoise;
 
+    private int numberOfFootstep;
     private float range;
     private float speed;
     private bool isSiting = false;
@@ -46,6 +47,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             sittingSprite = standartSprite;
         }
+        StartCoroutine(FootstepSound());
     }
 
     public void ScriptUpdate()   
@@ -94,11 +96,9 @@ public class PlayerBehaviour : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; 
 
-            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle); 
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); 
-
-            StartCoroutine(FootstepSound());
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             _sourceOfNoise.MakeNoise(transform.position, range);
         }
@@ -109,16 +109,25 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private IEnumerator FootstepSound()
     {
-        MovementDetection();
-        yield return new WaitForSeconds(0.4f);
-        StopCoroutine(FootstepSound());
+        while (true)
+        {
+            MovementDetection();
+            yield return new WaitForSeconds(0.3f);
+        }
+        
     }
     private void MovementDetection()
     {
         if (!_audioSource.isPlaying)
         {
-            int number = Random.Range(0, footstepSounds.Length);
-            _audioSource.PlayOneShot(footstepSounds[number]);
+            _audioSource.PlayOneShot(footstepSounds[numberOfFootstep]);
+            if (numberOfFootstep + 1 < footstepSounds.Length)
+            {
+                numberOfFootstep++;
+            }else
+            {
+                numberOfFootstep = 0;
+            }
         }
     }
 
