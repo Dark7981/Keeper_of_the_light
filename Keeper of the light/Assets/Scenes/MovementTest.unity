@@ -430,10 +430,11 @@ MonoBehaviour:
   sittingSoundRange: 0
   soundRange: 0
   jumpSoundRange: 0
-  sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   footstepSounds:
   - {fileID: 8300000, guid: 4e7d8a1282d8b144fa1bbb010469da4a, type: 3}
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
+  jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
+  sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   _sourceOfNoise: {fileID: 891359567}
 --- !u!50 &891359562
 Rigidbody2D:

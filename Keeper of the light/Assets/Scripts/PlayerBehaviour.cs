@@ -7,7 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode sitKey = KeyCode.C;
 
-    [Header("parameters")]
+    [Header("Parameters")]
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float sittingMoveSpeed = 2;
     [SerializeField] private float rotationSpeed = 10;
@@ -15,16 +15,19 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float soundRange;
     [SerializeField] private float jumpSoundRange;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip[] footstepSounds;
+    [SerializeField] private AudioClip jumpSound;
+
     [Header("Needed data")]
     [SerializeField] private Sprite sittingSprite;
-    [SerializeField] private AudioClip[] footstepSounds;
     [SerializeField] private SourceOfNoise _sourceOfNoise;
 
     private int numberOfFootstep;
     private float range;
     private float speed;
     private bool isSiting = false;
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
     private Sprite standartSprite;  
     private Vector2 moveDirection;      
     private Rigidbody2D _rigidBody;
@@ -33,7 +36,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerBehaviour = GetComponent<PlayerBehaviour>();
@@ -62,7 +64,10 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!isSiting && Input.GetKeyDown(jumpKey))
         {
+            Debug.Log("111");
+            _audioSource.PlayOneShot(jumpSound);
             _sourceOfNoise.MakeNoise(transform.position, jumpSoundRange);
+            Debug.Log("222");
         }
     }
 
