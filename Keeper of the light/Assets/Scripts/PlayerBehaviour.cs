@@ -34,13 +34,14 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody2D _rigidBody;
     private SpriteRenderer _spriteRenderer;
     private PlayerBehaviour _playerBehaviour;
+    private Animator playerAnimator;
 
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerBehaviour = GetComponent<PlayerBehaviour>();
-
+        playerAnimator = GetComponent<Animator>();
         range = soundRange;
         speed = moveSpeed;
 
@@ -107,10 +108,13 @@ public class PlayerBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             _sourceOfNoise.MakeNoise(transform.position, range);
+
+            playerAnimator.SetBool("isRunning", true);
         }
         else
         {
             _audioSource.Stop();
+            playerAnimator.SetBool("isRunning", false);
         }
     }
     private IEnumerator FootstepSound()
