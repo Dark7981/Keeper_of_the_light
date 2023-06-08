@@ -27,7 +27,8 @@ public class PlayerBehaviour : MonoBehaviour
     private float range;
     private float speed;
     private bool isSiting = false;
-    [SerializeField] private AudioSource _audioSource;
+    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _jumpSource;
     private Sprite standartSprite;  
     private Vector2 moveDirection;      
     private Rigidbody2D _rigidBody;
@@ -49,6 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             sittingSprite = standartSprite;
         }
+        _audioSource = gameObject.GetComponent<AudioSource>();
         StartCoroutine(FootstepSound());
     }
 
@@ -57,7 +59,6 @@ public class PlayerBehaviour : MonoBehaviour
         Movement();
         Siting();
         Jump();
-
     }
 
     private void Jump()
@@ -65,7 +66,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (!isSiting && Input.GetKeyDown(jumpKey))
         {
             Debug.Log("111");
-            _audioSource.PlayOneShot(jumpSound);
+            _jumpSource.PlayOneShot(jumpSound);
             _sourceOfNoise.MakeNoise(transform.position, jumpSoundRange);
             Debug.Log("222");
         }
