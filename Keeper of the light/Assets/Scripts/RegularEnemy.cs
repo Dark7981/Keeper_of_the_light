@@ -4,25 +4,27 @@ using UnityEngine.AI;
 
 public class RegularEnemy : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-
     [SerializeField] private bool isSleaping;
 
     [SerializeField] private float speed;
     [Range(1, 3)] private int status;
 
-    [SerializeField] private GameObject deadEnemy;
+    [SerializeField] private GameObject deadEnemySprite;
+
+    private NavMeshAgent agent;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        //transform.eulerAngles = new Vector3(90f, 0, 0);    // Так треба
-        //agent.updateRotation = false;
-        agent.updateUpAxis= false;
+        agent = GetComponent<NavMeshAgent>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        agent.updateUpAxis = false;
         spriteRenderer.color = Color.white;                 // Поки спить ворог білий
         if (!isSleaping)
             StartCoroutine(Wandering(3f));                  // Якщо не спить то починає бродити
     }
+
     private IEnumerator Wandering(float radius)                             // Ворог бродить по карті
     {
         status = 1;
@@ -68,8 +70,8 @@ public class RegularEnemy : MonoBehaviour
         status = 3;
         spriteRenderer.color = Color.red;                           // Ворог червоний поки заагрений
         agent.speed = speed * 1.5f;
-        agent.destination = (targetPos);
-        Debug.Log(targetPos - agent.gameObject.transform.position);// Ворог біжить по прямій в сторону джерела звуку
+        agent.destination = targetPos;
+
         yield return new WaitForSeconds(5f);
         StartCoroutine(HeardSth(targetPos));
         yield break;
@@ -90,7 +92,7 @@ public class RegularEnemy : MonoBehaviour
     public void Dead()
     {
         Destroy(gameObject);
-        Instantiate(deadEnemy, transform.position, Quaternion.identity);
+        Instantiate(deadEnemySprite, transform.position, Quaternion.identity);
     }
 }
 
