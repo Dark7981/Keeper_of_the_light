@@ -29,6 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool isSiting = false;
     private AudioSource _audioSource;
     [SerializeField] private AudioSource _jumpSource;
+    [SerializeField] private GameObject menuFolder;
     private Sprite standartSprite;  
     private Vector2 moveDirection;      
     private Rigidbody2D _rigidBody;
@@ -60,6 +61,7 @@ public class PlayerBehaviour : MonoBehaviour
         Movement();
         Siting();
         Jump();
+        MenuUpdate();
     }
 
     private void Jump()
@@ -140,7 +142,19 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
-
+    private void MenuUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == true)
+        {
+            Time.timeScale = 1;
+            menuFolder.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == false)
+        {
+            Time.timeScale = 0;
+            menuFolder.SetActive(true);
+        }
+    }
     public void ScriptFixedUpdate() 
     {
         _rigidBody.MovePosition(_rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  
