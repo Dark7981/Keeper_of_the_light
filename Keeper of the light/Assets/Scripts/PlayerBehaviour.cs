@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -157,14 +158,17 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == true)
         {
-            Time.timeScale = 1;
-            menuFolder.SetActive(false);
+            MenuScript(1, false);
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == false)
         {
-            Time.timeScale = 0;
-            menuFolder.SetActive(true);
+            MenuScript(0, true);
         }
+    }
+    public void MenuScript(int timeScale, bool menuActive)
+    {
+        Time.timeScale = timeScale;
+        menuFolder.SetActive(menuActive);
     }
     public void ScriptFixedUpdate() 
     {
@@ -173,8 +177,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Dead()
     {
-        Destroy(_playerBehaviour);
+        _playerBehaviour.enabled = false;
+        GameObject.Find("UpdateController").GetComponent<UpdateController>().enabled = false;
         _spriteRenderer.color = Color.red;
+        MenuScript(1, true);
+        gameObject.GetComponent<AudioSource>().enabled = false;
     }
     public void SpawnPoint()
     {

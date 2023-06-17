@@ -24,6 +24,10 @@ public class LevelController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void Respawn()
+    {
+        SceneManager.LoadScene(1);
+    }
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);

@@ -6,14 +6,12 @@ using UnityEngine.UI;
 
 public class NoteScript : MonoBehaviour
 {
-    [SerializeField] private GameObject noteName; //�������, ����� ���� ������� �����
+    [SerializeField] private Image noteName; //�������, ����� ���� ������� �����
     [SerializeField] private GameObject button; //������ ��� ����� ������ ��� ��������
     [SerializeField] private TextMeshProUGUI exitButton;//����� ����� ������� ��� ������
     [SerializeField] private KeyCode buttonLetter;
-    
-
-    private Image note;
-    private TextMeshProUGUI noteText;
+    [SerializeField] private TextMeshProUGUI noteText;
+    private UpdateController _updateController;
     private Image buttonImage;
     private TextMeshProUGUI buttonText;
     private ShadowCaster2D _shadowCaster2d;
@@ -21,20 +19,20 @@ public class NoteScript : MonoBehaviour
 
     private void Start()
     {
+        _updateController = GameObject.Find("UpdateController").GetComponent<UpdateController>();
         _shadowCaster2d = GetComponent<ShadowCaster2D>();
         button.GetComponentInChildren<TextMeshProUGUI>().text = $"{buttonLetter}";
         exitButton.text = $"������i�� {buttonLetter}, ��� �������";
-        note = noteName.GetComponent<Image>();
-        noteText = noteName.GetComponentInChildren<TextMeshProUGUI>();
         buttonImage = button.GetComponent<Image>();
         buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+        _updateController.noteScript = gameObject.GetComponent<NoteScript>()    ;
         _shadowCaster2d.enabled = false;
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (note.enabled == false)//�������� �� �� ���������� �������
+            if (noteName.IsActive() == false)//�������� �� �� ���������� �������
             {
                 ShowButton();//����� ������ ��� ��������
             }
@@ -66,7 +64,7 @@ public class NoteScript : MonoBehaviour
     }
     public IEnumerator CloseNote()//�������� �������
     {
-        note.enabled = false;
+        noteName.enabled = false;
         noteText.enabled = false;
         exitButton.enabled = false;
         yield return null;
@@ -76,7 +74,7 @@ public class NoteScript : MonoBehaviour
     public IEnumerator OpenNote()//³������� �������
     {
         CloseButton();
-        note.enabled = true;
+        noteName.enabled = true;
         noteText.enabled = true;
         exitButton.enabled = true;
         yield return new WaitForSeconds(0.1f);
