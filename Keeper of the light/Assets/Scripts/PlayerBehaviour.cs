@@ -45,11 +45,11 @@ public class PlayerBehaviour : MonoBehaviour
             SpawnPoint();
             SpawnPlayer();
         }
-        //else
-        //{
-        //    _spawnPosition = new Vector3(0, 3, -10);
-        //    SpawnPlayer();
-        //}
+        else if(!PlayerPrefs.HasKey("x")&&!PlayerPrefs.HasKey("y"))
+        {
+            _spawnPosition = new Vector3(0, 3, -10);
+            SpawnPlayer();
+        }
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerBehaviour = GetComponent<PlayerBehaviour>();
