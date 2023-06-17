@@ -37,8 +37,19 @@ public class PlayerBehaviour : MonoBehaviour
     private PlayerBehaviour _playerBehaviour;
     private Animator playerAnimator;
 
+    private Vector3 _spawnPosition;
     private void Start()
     {
+        if (_spawnPosition.x != PlayerPrefs.GetFloat("x") && _spawnPosition.y != PlayerPrefs.GetFloat("y"))
+        {
+            SpawnPoint();
+            SpawnPlayer();
+        }
+        //else
+        //{
+        //    _spawnPosition = new Vector3(0, 3, -10);
+        //    SpawnPlayer();
+        //}
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerBehaviour = GetComponent<PlayerBehaviour>();
@@ -164,5 +175,13 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Destroy(_playerBehaviour);
         _spriteRenderer.color = Color.red;
+    }
+    public void SpawnPoint()
+    {
+        _spawnPosition = new Vector3(PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"), -10);
+    }
+    public void SpawnPlayer()
+    {
+        gameObject.transform.position = _spawnPosition;
     }
 }
