@@ -46,7 +46,7 @@ public class NoteScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             CloseButton();
-            StartCoroutine(CloseNote());
+            StartCoroutine(CloseNote());    
         }
     }
     public void ScriptUpdate()
