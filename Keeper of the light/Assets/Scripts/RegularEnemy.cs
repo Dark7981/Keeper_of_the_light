@@ -1,18 +1,26 @@
+
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class RegularEnemy : MonoBehaviour
 {
     [SerializeField] private bool isSleaping;
+    [SerializeField] private bool patroling;
 
     [SerializeField] private float speed;
     [Range(1, 3)] private int status;
+
+    [SerializeField] private List<GameObject> patrolPoints;
 
     [SerializeField] private GameObject deadEnemySprite;
 
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
+    private List<Vector3> wayPoints = new();
+
+    private int index = 0;
 
     private void Start()
     {
@@ -21,8 +29,19 @@ public class RegularEnemy : MonoBehaviour
 
         agent.updateUpAxis = false;
         spriteRenderer.color = Color.white;                 // Поки спить ворог білий
+
+        GetPatrolPoints();
+
         if (!isSleaping)
             StartCoroutine(Wandering(3f));                  // Якщо не спить то починає бродити
+    }
+
+    private void GetPatrolPoints()
+    {
+        foreach (GameObject patrolPoint in patrolPoints)
+        {
+            wayPoints.Add(patrolPoint.transform.position);
+        }
     }
 
     private IEnumerator Wandering(float radius)                             // Ворог бродить по карті
@@ -32,9 +51,28 @@ public class RegularEnemy : MonoBehaviour
         agent.speed = speed / 3f;
         while (true)
         {
-            agent.destination = transform.position + RandomPos(radius);
-            yield return new WaitUntil(() => !agent.hasPath);
+            Debug.Log(index);
+            if (patroling)
+            {
+                agent.destination = wayPoints[index];
+
+                if ((index + 1) == wayPoints.Count)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index++;
+                }
+                
+            }
+            else
+            {
+                agent.destination = transform.position + RandomPos(radius);
+            }
+            yield return new WaitUntil(() => transform.position == agent.destination);
             yield return new WaitForSeconds(0.3f);
+            Debug.Log("1111");
         }
     }
 
@@ -71,6 +109,7 @@ public class RegularEnemy : MonoBehaviour
         spriteRenderer.color = Color.red;                           // Ворог червоний поки заагрений
         agent.speed = speed * 1.5f;
         agent.destination = targetPos;
+        Debug.Log("Agresive");
 
         yield return new WaitForSeconds(5f);
         StartCoroutine(HeardSth(targetPos));
