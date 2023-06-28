@@ -23,7 +23,8 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Needed data")]
     [SerializeField] private Sprite sittingSprite;
     [SerializeField] private SourceOfNoise _sourceOfNoise;
-
+    
+    [SerializeField] private CircleCollider2D _circleCollider;
     private int numberOfFootstep;
     private float range;
     private float speed;
@@ -91,6 +92,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(sitKey) && isSiting == false) // Присів
         {
+            _circleCollider.radius = 0.15f;
             isSiting = true;
 
             soundRange = sittingSoundRange;
@@ -100,6 +102,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (Input.GetKeyDown(sitKey) && isSiting == true) // Cтоїть
         {
+            _circleCollider.radius = 0.47f;
             isSiting = false;
 
             range = soundRange;
