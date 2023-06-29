@@ -66,6 +66,7 @@ public class TrapTriger : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 ActiveTrapSprite();
+
             }
         }
     }
@@ -73,7 +74,7 @@ public class TrapTriger : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = activeTrap;
         Activated = true;
-        _trapInventoryScript.ActiveButton.SetActive(false);
+        _trapInventoryScript.HideButton();
     }
     private void DisActiveTrapSprite()
     {
