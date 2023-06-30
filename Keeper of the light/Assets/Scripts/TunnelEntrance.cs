@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class Tunnel : MonoBehaviour
+public class TunnelEntrance : MonoBehaviour
 {
     [SerializeField] private Transform playerSpawn;
     [SerializeField] private Transform playerTransform;
