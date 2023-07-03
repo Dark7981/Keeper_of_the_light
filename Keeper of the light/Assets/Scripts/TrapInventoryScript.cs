@@ -1,54 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TrapInventoryScript : MonoBehaviour
 {
-    [SerializeField] private bool isHad;
+    [SerializeField] private KeyCode useKey = KeyCode.Q;
+
+    [Header("Needed data")]
     [SerializeField] private GameObject trapInventory;
     [SerializeField] private GameObject trapPrefab;
-    public GameObject PressButton;
-    public GameObject ActiveButton;
+    [SerializeField] private GameObject trapButtons;
 
-    private void Update()
+    private bool isHad;
+
+    public void ScriptUpdate()
     {
-        TrapUpdate();
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(useKey) && isHad)
         {
             SetATrap();
         }
     }
-    public void TrapUpdate()
-    {
-        if (isHad)
-            trapInventory.SetActive(true);
-        else
-            trapInventory.SetActive(false);
-    }
+
     public void TakeTrap()
     {
         isHad = true;
+
+        trapInventory.SetActive(true);
         HideButton();
     }
 
     public void ShowButton()
     {
-        PressButton.SetActive(true);
-        ActiveButton.SetActive(true);
+        trapButtons.SetActive(true);
     }
+
     public void HideButton()
     {
-        PressButton.SetActive(false);
-        ActiveButton.SetActive(false);
+        trapButtons.SetActive(false);
     }
+
     public void SetATrap()
     {
-        if (isHad)
-        {
-            Instantiate(trapPrefab, gameObject.transform.position, Quaternion.identity);
-            isHad = false;
-        }
+        Instantiate(trapPrefab, gameObject.transform.position, Quaternion.identity);
+        isHad = false;
+        trapInventory.SetActive(false);
+    }
 
+    public GameObject TrapButtons
+    {
+        get { return trapButtons; }
     }
 }
