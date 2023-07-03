@@ -12,6 +12,12 @@ public class TrapInventoryScript : MonoBehaviour
 
     private bool isHad;
 
+    private void Start()
+    {
+        UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
+        updateController.trapInventoryScript = GetComponent<TrapInventoryScript>();
+    }
+
     public void ScriptUpdate()
     {
         if (Input.GetKeyDown(useKey) && isHad)
