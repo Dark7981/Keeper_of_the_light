@@ -1,11 +1,11 @@
 
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UpdateController : MonoBehaviour
 {
-    [SerializeField] private PlayerBehaviour _playerBehaviour;
+    public PlayerBehaviour _playerBehaviour;
     public NoteScript noteScript;
+    public TrapInventoryScript trapInventoryScript;
 
     private void Update()
     {
@@ -16,6 +16,10 @@ public class UpdateController : MonoBehaviour
         if (noteScript != null)
         {
             noteScript.ScriptUpdate();
+        }
+        if (trapInventoryScript != null)
+        {
+            trapInventoryScript.ScriptUpdate();
         }
     }
 

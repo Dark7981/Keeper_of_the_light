@@ -19,6 +19,9 @@ public class NoteScript : MonoBehaviour
 
     private void Start()
     {
+        UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
+        updateController.noteScript = GetComponent<NoteScript>();
+
         _updateController = GameObject.Find("UpdateController").GetComponent<UpdateController>();
         _shadowCaster2d = GetComponent<ShadowCaster2D>();
         button.GetComponentInChildren<TextMeshProUGUI>().text = $"{buttonLetter}";

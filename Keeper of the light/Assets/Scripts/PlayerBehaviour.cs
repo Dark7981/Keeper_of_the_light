@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -42,6 +41,9 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 _spawnPosition;
     private void Start()
     {
+        UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
+        updateController._playerBehaviour = GetComponent<PlayerBehaviour>();
+
         if (_spawnPosition.x != PlayerPrefs.GetFloat("x") && _spawnPosition.y != PlayerPrefs.GetFloat("y"))
         {
             SpawnPoint();
