@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -11,14 +12,17 @@ public class NoteScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI exitButton;//����� ����� ������� ��� ������
     [SerializeField] private KeyCode buttonLetter;
     [SerializeField] private TextMeshProUGUI noteText;
+    [SerializeField] private List<Sprite> sprites;
     private UpdateController _updateController;
     private Image buttonImage;
     private TextMeshProUGUI buttonText;
     private ShadowCaster2D _shadowCaster2d;
+    
 
 
     private void Start()
     {
+        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0,sprites.Count)];
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController.noteScript = GetComponent<NoteScript>();
 

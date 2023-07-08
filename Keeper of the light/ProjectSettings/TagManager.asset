@@ -14,7 +14,7 @@ TagManager:
   - CameraConfiner
   - Water
   - UI
-  - 
+  - NoteLight
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Note
+    uniqueID: 628981279
     locked: 0
