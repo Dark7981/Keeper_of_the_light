@@ -11,34 +11,39 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float sittingMoveSpeed = 2;
     [SerializeField] private float rotationSpeed = 10;
-    [SerializeField] private float sittingSoundRange;
     [SerializeField] private float soundRange;
+    [SerializeField] private float sittingSoundRange;
     [SerializeField] private float jumpSoundRange;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip[] footstepSounds;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip sittingSound;
 
     [Header("Needed data")]
-    [SerializeField] private Sprite sittingSprite;
     [SerializeField] private SourceOfNoise _sourceOfNoise;
-    
-    [SerializeField] private CircleCollider2D _circleCollider;
+    [SerializeField] private GameObject menuFolder;
+
+    [Header("PrefabData")]
+    [SerializeField] private Sprite sittingSprite;
+    [SerializeField] private AudioSource jumpAudioSource;
+    [SerializeField] private AudioSource sitAudioSource;
+    [SerializeField] private AudioSource stepAudioSource;
+
+
     private int numberOfFootstep;
     private float range;
     private float speed;
     private bool isSiting = false;
-    private AudioSource _audioSource;
-    [SerializeField] private AudioSource _jumpSource;
-    [SerializeField] private GameObject menuFolder;
     private Sprite standartSprite;  
     private Vector2 moveDirection;      
     private Rigidbody2D _rigidBody;
     private SpriteRenderer _spriteRenderer;
     private PlayerBehaviour _playerBehaviour;
     private Animator playerAnimator;
-
     private Vector3 _spawnPosition;
+    private bool inJump = false;
+
     private void Start()
     {
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
@@ -67,7 +72,6 @@ public class PlayerBehaviour : MonoBehaviour
         {
             sittingSprite = standartSprite;
         }
-        _audioSource = gameObject.GetComponent<AudioSource>();
         StartCoroutine(FootstepSound());
     }
 
@@ -75,18 +79,23 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Movement();
         Siting();
-        Jump();
+        StartCoroutine(Jump());
         MenuUpdate();
     }
 
-    private void Jump()
+    private IEnumerator Jump()
     {
-        if (!isSiting && Input.GetKeyDown(jumpKey))
+        if (Input.GetKeyDown(jumpKey) && !inJump && !isSiting)
         {
-            Debug.Log("111");
-            _jumpSource.PlayOneShot(jumpSound);
+            inJump = true;
+            jumpAudioSource.PlayOneShot(jumpSound);
+            speed = moveSpeed / 1.5f;
+
+            yield return new WaitForSeconds(0.5f);
+
             _sourceOfNoise.MakeNoise(transform.position, jumpSoundRange);
-            Debug.Log("222");
+            inJump = false;
+            speed = moveSpeed;
         }
     }
 
@@ -94,17 +103,16 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(sitKey) && isSiting == false) // Присів
         {
-            _circleCollider.radius = 0.15f;
             isSiting = true;
+            sitAudioSource.PlayOneShot(sittingSound); 
 
-            soundRange = sittingSoundRange;
+            range = sittingSoundRange;
             speed = sittingMoveSpeed;
 
             _spriteRenderer.sprite = sittingSprite;
         }
         else if (Input.GetKeyDown(sitKey) && isSiting == true) // Cтоїть
         {
-            _circleCollider.radius = 0.47f;
             isSiting = false;
 
             range = soundRange;
@@ -132,7 +140,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
-            _audioSource.Stop();
+            stepAudioSource.Stop();
             playerAnimator.SetBool("isRunning", false);
         }
     }
@@ -147,9 +155,9 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void MovementDetection()
     {
-        if (!_audioSource.isPlaying)
+        if (!stepAudioSource.isPlaying)
         {
-            _audioSource.PlayOneShot(footstepSounds[numberOfFootstep]);
+            stepAudioSource.PlayOneShot(footstepSounds[numberOfFootstep]);
             if (numberOfFootstep + 1 < footstepSounds.Length)
             {
                 numberOfFootstep++;

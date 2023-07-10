@@ -436,6 +436,10 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   _sourceOfNoise: {fileID: 891359567}
+  "menuFolder\u0456": {fileID: 0}
+  _circleCollider: {fileID: 0}
+  _jumpSource: {fileID: 0}
+  menuFolder: {fileID: 0}
 --- !u!50 &891359562
 Rigidbody2D:
   serializedVersion: 4
@@ -732,7 +736,7 @@ GameObject:
   - component: {fileID: 1772306848}
   m_Layer: 0
   m_Name: UpdateController
-  m_TagString: Untagged
+  m_TagString: UpdateController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -750,7 +754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBehaviour: {fileID: 891359561}
-  _noteScript: {fileID: 0}
+  noteScript: {fileID: 0}
+  trapInventoryScript: {fileID: 0}
 --- !u!4 &1772306849
 Transform:
   m_ObjectHideFlags: 0
