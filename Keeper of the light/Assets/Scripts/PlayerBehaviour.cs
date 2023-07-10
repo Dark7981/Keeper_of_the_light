@@ -43,6 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Animator playerAnimator;
     private Vector3 _spawnPosition;
     private bool inJump = false;
+    private bool readyToSit = true;
 
     private void Start()
     {
@@ -78,7 +79,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void ScriptUpdate()   
     {
         Movement();
-        Siting();
+        StartCoroutine(Siting());
         StartCoroutine(Jump());
         MenuUpdate();
     }
@@ -99,26 +100,36 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void Siting() 
+    private IEnumerator Siting() 
     {
-        if (Input.GetKeyDown(sitKey) && isSiting == false) // Присів
+        if (Input.GetKeyDown(sitKey) && !isSiting && readyToSit) // Присів
         {
+            readyToSit = false;
             isSiting = true;
             sitAudioSource.PlayOneShot(sittingSound); 
 
             range = sittingSoundRange;
             speed = sittingMoveSpeed;
-
             _spriteRenderer.sprite = sittingSprite;
+
+            yield return new WaitForSeconds(0.25f);
+
+            readyToSit = true;
         }
-        else if (Input.GetKeyDown(sitKey) && isSiting == true) // Cтоїть
+        else if (Input.GetKeyDown(sitKey) && isSiting && readyToSit) // Cтоїть
         {
+            readyToSit = false;
             isSiting = false;
+            sitAudioSource.PlayOneShot(sittingSound);
 
             range = soundRange;
             speed = moveSpeed;
             
             _spriteRenderer.sprite = standartSprite;
+
+            yield return new WaitForSeconds(0.25f);
+
+            readyToSit = true; 
         }
     }
 
