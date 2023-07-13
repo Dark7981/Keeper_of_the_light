@@ -187,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 6494546157291126926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.88, y: -9.15, z: 0.038491927}
-  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3797617640720693753}
@@ -263,7 +263,7 @@ MonoBehaviour:
   button: {fileID: 0}
   exitButton: {fileID: 0}
   buttonLetter: 101
-  noteText: {fileID: 0}
+  noteTextMesh: {fileID: 0}
   sprites:
   - {fileID: 1306898900, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   - {fileID: 1129631311, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
@@ -272,6 +272,8 @@ MonoBehaviour:
   - {fileID: 1129490789, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   - {fileID: -1298128172, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   - {fileID: -1244404853, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
+  idPaneglif: 0
+  noteText: 
 --- !u!50 &6494546157291126925
 Rigidbody2D:
   serializedVersion: 4
