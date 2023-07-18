@@ -224,9 +224,9 @@ GameObject:
   - component: {fileID: 7843587289533732832}
   - component: {fileID: 7843587289533732834}
   - component: {fileID: 7843587289533732833}
-  - component: {fileID: 7843587289533732835}
+  - component: {fileID: 6390953761603841289}
   m_Layer: 5
-  m_Name: ItemPrefab
+  m_Name: BestiariyItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +239,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7843587289533732847}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7843587289533732835
+--- !u!114 &6390953761603841289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,10 +302,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7843587289533732847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb23d32d2ee802479f000f0001f6aed, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ee5a522889af404db9c4997339b3463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextNote: 
+  _nameObject: {fileID: 7843587290145876918}
+  _descriptionObject: {fileID: 7843587289071219072}
+  Image: {fileID: 7843587288806528025}
 --- !u!1 &7843587290145876916
 GameObject:
   m_ObjectHideFlags: 0
