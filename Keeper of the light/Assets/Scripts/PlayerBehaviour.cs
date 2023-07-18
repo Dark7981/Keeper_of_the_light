@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -22,7 +23,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Needed data")]
     [SerializeField] private SourceOfNoise _sourceOfNoise;
-    [SerializeField] private GameObject menuFolder;
 
     [Header("PrefabData")]
     [SerializeField] private Sprite sittingSprite;
@@ -44,6 +44,9 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 _spawnPosition;
     private bool inJump = false;
     private bool readyToSit = true;
+
+
+    public static Action menuOpened;
 
     private void Start()
     {
@@ -81,7 +84,6 @@ public class PlayerBehaviour : MonoBehaviour
         Movement();
         StartCoroutine(Siting());
         StartCoroutine(Jump());
-        MenuUpdate();
     }
 
     private IEnumerator Jump()
@@ -178,22 +180,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
-    private void MenuUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == true)
-        {
-            MenuScript(1, false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == false)
-        {
-            MenuScript(0, true);
-        }
-    }
-    public void MenuScript(int timeScale, bool menuActive)
-    {
-        Time.timeScale = timeScale;
-        menuFolder.SetActive(menuActive);
-    }
+    
     public void ScriptFixedUpdate() 
     {
         _rigidBody.MovePosition(_rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  
@@ -204,7 +191,7 @@ public class PlayerBehaviour : MonoBehaviour
         _playerBehaviour.enabled = false;
         GameObject.Find("UpdateController").GetComponent<UpdateController>().enabled = false;
         _spriteRenderer.color = Color.red;
-        MenuScript(1, true);
+        menuOpened.Invoke();
         gameObject.GetComponent<AudioSource>().enabled = false;
     }
     public void SpawnPoint()

@@ -16,6 +16,8 @@ public class RegularEnemy : MonoBehaviour
 
     [SerializeField] private GameObject deadEnemySprite;
 
+    [SerializeField] private Animator _animator;
+
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private List<Vector3> wayPoints = new();
@@ -26,14 +28,18 @@ public class RegularEnemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
+        _animator = GetComponentInChildren<Animator>();
         agent.updateUpAxis = false;
         spriteRenderer.color = Color.white;                 // ѕоки спить ворог б≥лий
 
         GetPatrolPoints();
 
-        if (!isSleaping)
-            StartCoroutine(Wandering(3f));                  // якщо не спить то починаЇ бродити
+        if (!isSleaping)// якщо не спить то починаЇ бродити
+        {
+            StartCoroutine(Wandering(3f));
+            _animator.SetBool("Run", true);
+        }
+                           
     }
 
     private void GetPatrolPoints()
@@ -72,7 +78,6 @@ public class RegularEnemy : MonoBehaviour
             }
             yield return new WaitUntil(() => transform.position == agent.destination);
             yield return new WaitForSeconds(0.3f);
-            Debug.Log("1111");
         }
     }
 

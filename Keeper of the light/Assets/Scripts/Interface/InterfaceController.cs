@@ -12,6 +12,7 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private Image _noteImageUI;
     [SerializeField] private TextMeshProUGUI _noteText;
     [SerializeField] private List<GameObject> Paneglifs;
+    [SerializeField] private GameObject menuFolder;
     private int numberOfItem;
     public int _numberOfItem
     {
@@ -38,19 +39,38 @@ public class InterfaceController : MonoBehaviour
         InterfaceItemScript.NotePressed += ShowNote;
         NoteScript.UnlockPaneglif += UnlockPaneglifUI;
         NoteScript.GetTextPaneglif += TextPaneglif;
+        PlayerBehaviour.menuOpened += HideInterface;
     }
     private void OnDisable()
     {
         InterfaceItemScript.NotePressed -= ShowNote;
         NoteScript.UnlockPaneglif -= UnlockPaneglifUI;
         NoteScript.GetTextPaneglif -= TextPaneglif;
+        PlayerBehaviour.menuOpened -= HideInterface;
     }
     private void Start()
     {
         _numberOfItem = 0;
-        InterfaceUpdater();
+        InterfaceUpdate();
     }
-    public void InterfaceUpdater()
+    private void MenuUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == true)
+        {
+            MenuScript(1, false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == false)
+        {
+            HideInterface();
+            MenuScript(0, true);
+        }
+    }
+    public void MenuScript(int timeScale, bool menuActive)
+    {
+        Time.timeScale = timeScale;
+        menuFolder.SetActive(menuActive);
+    }
+    public void InterfaceUpdate()
     {
         if (_numberOfItem == 0)
         {
@@ -73,16 +93,17 @@ public class InterfaceController : MonoBehaviour
         {
             OpenInterface();
         }
+        MenuUpdate();
     }
     public void BestiariyButton()
     {
         _numberOfItem = 0;
-        InterfaceUpdater();
+        InterfaceUpdate();
     }
     public void NoteButton()
     {
         _numberOfItem = 1;
-        InterfaceUpdater();
+        InterfaceUpdate();
     }
     public void ShowNote(string Text)
     {
@@ -99,12 +120,19 @@ public class InterfaceController : MonoBehaviour
     }
     public void OpenInterface()
     {
-        if (_interface.activeSelf == false)
+        if (_interface.activeSelf == false && menuFolder.activeSelf == false)
         {
             _interface.SetActive(true);
             _openInterface.Invoke();
         }
         else
+        {
+            HideInterface();
+        }
+    }
+    public void HideInterface()
+    {
+        if (_interface.activeSelf == true)
         {
             _closeInterface.Invoke();
             _interface.SetActive(false);
