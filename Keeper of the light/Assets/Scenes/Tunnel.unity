@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 459436068}
   m_Layer: 0
   m_Name: UpdateController
-  m_TagString: Untagged
+  m_TagString: UpdateController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2911,7 +2911,6 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSound: {fileID: 0}
   _sourceOfNoise: {fileID: 1646324632}
-  menuFolder: {fileID: 0}
   sittingSprite: {fileID: 21300000, guid: 76beef9fdae7b48468ddf07d0400a374, type: 3}
   jumpAudioSource: {fileID: 0}
   sitAudioSource: {fileID: 0}
@@ -3202,7 +3201,6 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSound: {fileID: 8300000, guid: f07132fe108980d4788bab89ec438f18, type: 3}
   _sourceOfNoise: {fileID: 732777263}
-  menuFolder: {fileID: 0}
   sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   jumpAudioSource: {fileID: 1689972107}
   sitAudioSource: {fileID: 1736472700}
