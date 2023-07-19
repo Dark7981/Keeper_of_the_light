@@ -1,9 +1,11 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DarknessSoundScript : MonoBehaviour
+public class SoundsDark : MonoBehaviour
 {
+   
     [SerializeField] private bool isPlay;
     [SerializeField] private List<AudioClip> clipList;
 
@@ -23,30 +25,30 @@ public class DarknessSoundScript : MonoBehaviour
         StartCoroutine(SoundEnvironment());
     }
 
-    private IEnumerator SoundCheck() // �������� ��� �������� ����� �����
+    private IEnumerator SoundCheck() 
     {
         while (true)
         { 
             Sounds();
             
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(5f);
         }
     }
-    private void Sounds() // ����� ������� ����� �����, ���� ��������
+    private void Sounds() 
     {
 
         if (!_audioSource.isPlaying && isPlay)
         {
             _lowPass.cutoffFrequency = Random.Range(3000, 5000);
             _highPass.cutoffFrequency = Random.Range(3000, 5000);
+            numberOfSound = Random.Range(0, 10);
             _audioSource.PlayOneShot(clipList[numberOfSound]);
-            if (numberOfSound + 1 < clipList.Count)
-                numberOfSound++;
-            else
-                numberOfSound = 0;
+            
+           
+            
         }
     }
-    private IEnumerator SoundEnvironment() //������� ����� �� ������ ���� �� ������
+    private IEnumerator SoundEnvironment()
     {
         while (isPlay)
         {

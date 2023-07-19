@@ -8,6 +8,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundsDark.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/Controler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/RayPlayer.cs" root0="SKIP_HIGHLIGHTING" />
@@ -96,6 +97,9 @@
       <workItem from="1687892186816" duration="564000" />
       <workItem from="1687978811633" duration="6791000" />
       <workItem from="1688155325152" duration="2166000" />
+      <workItem from="1689711247076" duration="5628000" />
+      <workItem from="1689786090096" duration="12000" />
+      <workItem from="1689788648096" duration="1204000" />
     </task>
     <servers />
   </component>
