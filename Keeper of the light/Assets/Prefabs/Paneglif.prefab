@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2958858375148454369}
-  - component: {fileID: 1613750160684535268}
   - component: {fileID: 5610890849467647468}
   - component: {fileID: 6067415742745724983}
   m_Layer: 0
@@ -34,24 +33,6 @@ Transform:
   m_Father: {fileID: 6494546157291126920}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1613750160684535268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4914758942018130642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8852cf53ecf59d841892410376e561e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightItensity: 1.5
-  timeLight: 20
-  minItensity: 0.5
-  minRadius: 3
-  maxItensity: 0
-  maxRadius: 0
 --- !u!114 &5610890849467647468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +254,7 @@ MonoBehaviour:
   - {fileID: -1298128172, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   - {fileID: -1244404853, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   idPaneglif: 0
+  isNewPaneglif: 0
   noteText: 
 --- !u!50 &6494546157291126925
 Rigidbody2D:
@@ -386,7 +368,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3797617640720693753}
-  - component: {fileID: 7457379798149376595}
   - component: {fileID: 8435096511695909631}
   - component: {fileID: 3545735241535862073}
   m_Layer: 0
@@ -411,24 +392,6 @@ Transform:
   m_Father: {fileID: 6494546157291126920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7457379798149376595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621694466043114116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8852cf53ecf59d841892410376e561e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightItensity: 1.5
-  timeLight: 20
-  minItensity: 0.5
-  minRadius: 3
-  maxItensity: 0
-  maxRadius: 0
 --- !u!114 &8435096511695909631
 MonoBehaviour:
   m_ObjectHideFlags: 0

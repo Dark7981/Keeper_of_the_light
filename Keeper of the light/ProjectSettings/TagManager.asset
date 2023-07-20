@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - PlayerLight
   - UpdateController
+  - NoteLight
   layers:
   - Default
   - TransparentFX

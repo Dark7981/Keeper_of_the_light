@@ -27,6 +27,7 @@ public class LevelController : MonoBehaviour
     public void Respawn()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
     public void BackToMenu()
     {

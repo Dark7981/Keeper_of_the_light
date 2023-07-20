@@ -50,6 +50,7 @@ public class InterfaceController : MonoBehaviour
     }
     private void Start()
     {
+        Time.timeScale = 1;
         _numberOfItem = 0;
         InterfaceUpdate();
     }
@@ -137,6 +138,7 @@ public class InterfaceController : MonoBehaviour
             _closeInterface.Invoke();
             _interface.SetActive(false);
         }
+        MenuScript(0, true);
     }
     public void UnlockPaneglifUI(bool isNew, int id)
     {
