@@ -1,16 +1,24 @@
-
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TrapInventoryScript : MonoBehaviour
 {
     [SerializeField] private KeyCode useKey = KeyCode.Q;
 
     [Header("Needed data")]
-    [SerializeField] private GameObject trapInventory;
+    [SerializeField] private List<GameObject> trapInventory;
     [SerializeField] private GameObject trapPrefab;
-    [SerializeField] private GameObject trapButtons;
+    [SerializeField] private List<GameObject> trapButtons;
+    
 
-    private bool isHad;
+    [SerializeField] private int _traps;
+    public int traps
+    {
+        get { return _traps; }
+        set { if (_traps + value >= 0 && _traps + value <= 3)
+                _traps += value;    
+            }
+    }
 
     private void Start()
     {
@@ -20,39 +28,34 @@ public class TrapInventoryScript : MonoBehaviour
 
     public void ScriptUpdate()
     {
-        if (Input.GetKeyDown(useKey) && isHad)
+        if (Input.GetKeyDown(useKey) && _traps > 0)
         {
             SetATrap();
         }
     }
 
-    public void TakeTrap()
+    public void TakeTrap(GameObject trapButton)
     {
-        isHad = true;
-
-        trapInventory.SetActive(true);
-        HideButton();
+        trapInventory[traps].SetActive(true);
+        traps = 1;
+        HideButton(trapButton);
     }
 
-    public void ShowButton()
+    public void ShowButton(GameObject trapButton)
     {
-        trapButtons.SetActive(true);
+        trapButton.SetActive(true);
     }
 
-    public void HideButton()
+    public void HideButton(GameObject trapButton)
     {
-        trapButtons.SetActive(false);
+        trapButton.SetActive(false);
     }
 
     public void SetATrap()
     {
-        Instantiate(trapPrefab, gameObject.transform.position, Quaternion.identity);
-        isHad = false;
-        trapInventory.SetActive(false);
-    }
-
-    public GameObject TrapButtons
-    {
-        get { return trapButtons; }
+        traps = -1;
+        var trap = Instantiate(trapPrefab, gameObject.transform.position, Quaternion.identity);
+        trap.GetComponent<TrapTriger>().trapButton = trapButtons[traps];
+        trapInventory[traps].SetActive(false);
     }
 }

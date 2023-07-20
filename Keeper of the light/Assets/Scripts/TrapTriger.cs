@@ -3,29 +3,33 @@ using UnityEngine;
 
 public class TrapTriger : MonoBehaviour
 {
-    [SerializeField] private bool Activated;
+    [SerializeField] private bool _activatedBool;
+    [SerializeField] private bool _destroyBool;
 
     [Header("Keys")]
     [SerializeField] private KeyCode takeKey = KeyCode.E;
     [SerializeField] private KeyCode activateKey = KeyCode.F;
 
     [Header("Needed data")]
-    [SerializeField] private Sprite activeTrap;
-    [SerializeField] private Sprite disactiveTrap;
+    [SerializeField] private Sprite _activeTrap;
+    [SerializeField] private Sprite _disactiveTrap;
+    [SerializeField] private Sprite _destroyTrap;
+    public GameObject trapButton;
 
     private TrapInventoryScript _trapInventoryScript;
-    private SpriteRenderer _springsRenderer;
+    private SpriteRenderer _spritesRenderer;
 
 
     private void Start()
     {
-        _springsRenderer = GetComponent<SpriteRenderer>();
+        _spritesRenderer = GetComponent<SpriteRenderer>();
         _trapInventoryScript = GameObject.FindGameObjectWithTag("Player").GetComponent<TrapInventoryScript>();
+        _spritesRenderer.sprite = _destroyBool ? _destroyTrap : _activatedBool ? _activeTrap : _disactiveTrap;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (Activated)
+        if (_activatedBool)
         {
             if (col.CompareTag("Player"))
             {
@@ -42,7 +46,8 @@ public class TrapTriger : MonoBehaviour
         {
             if (col.CompareTag("Player"))
             {
-                _trapInventoryScript.ShowButton();
+                if(_destroyBool == false)
+                    _trapInventoryScript.ShowButton(trapButton);
             }
         }
     }
@@ -51,7 +56,7 @@ public class TrapTriger : MonoBehaviour
     {
         if (_trapInventoryScript)
         {
-            _trapInventoryScript.HideButton();
+            _trapInventoryScript.HideButton(trapButton);
         }
     }
 
@@ -59,7 +64,7 @@ public class TrapTriger : MonoBehaviour
     {
         if (_trapInventoryScript)
         {
-            if (_trapInventoryScript.TrapButtons.active)
+            if (trapButton.active)
             {
                 TrapPicker();
             }
@@ -70,12 +75,12 @@ public class TrapTriger : MonoBehaviour
     
     private void TrapPicker()
     {
-        if (!Activated)
+        if (!_activatedBool && _destroyBool == false)
         {
             if (Input.GetKeyDown(takeKey))
             {
                 Destroy(gameObject, 0.1f);
-                _trapInventoryScript.TakeTrap();
+                _trapInventoryScript.TakeTrap(trapButton);
             }
             else if (Input.GetKeyDown(activateKey))
             {
@@ -85,15 +90,15 @@ public class TrapTriger : MonoBehaviour
     }
     private void ActiveTrapSprite()
     {
-        _springsRenderer.sprite = activeTrap;
-        Activated = true;
+        _spritesRenderer.sprite = _activeTrap;
+        _activatedBool = true;
 
-        _trapInventoryScript.HideButton();
+        _trapInventoryScript.HideButton(trapButton);
     }
 
     private void DisActiveTrapSprite()
     {
-        _springsRenderer.sprite = disactiveTrap;
-        Activated = false;
+        _spritesRenderer.sprite = _destroyTrap;
+        _activatedBool = false;
     }
 }
