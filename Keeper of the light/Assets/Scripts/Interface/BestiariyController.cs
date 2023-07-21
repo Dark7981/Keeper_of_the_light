@@ -21,7 +21,6 @@ public class BestiariyController : MonoBehaviour
     public void CreateItem(string name, string description, Sprite sprite)
     {
         bool exist = true;
-        Debug.Log("StartForeach");
         foreach (string bestiariyName in _bestiariyNameList)
         {
             if (bestiariyName == name)

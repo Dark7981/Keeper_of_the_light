@@ -25,6 +25,7 @@ public class RegularEnemy : MonoBehaviour
     private List<Vector3> wayPoints = new();
 
     private int maxIndex = 0;
+    private bool agressive = false;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class RegularEnemy : MonoBehaviour
         if (!isSleaping)// Якщо не спить то починає бродити
         {
             StartCoroutine(Wandering(3f));
+            StartCoroutine(EnemySounds());
             _animator.SetBool("Run", true);
         }
                            
@@ -56,12 +58,10 @@ public class RegularEnemy : MonoBehaviour
     private IEnumerator Wandering(float radius)                             // Ворог бродить по карті
     {
         status = 1;
-        StartCoroutine(EnemySounds());
         spriteRenderer.color = Color.gray;                                  // Ворог сірий поки бродить
         agent.speed = speed / 3f;
         while (true)
         {
-            Debug.Log(maxIndex);
             if (patroling)
             {
                 agent.destination = wayPoints[maxIndex];
@@ -85,7 +85,7 @@ public class RegularEnemy : MonoBehaviour
         }
     }
 
-    private IEnumerator Wandering(float radius, Vector3 aroundTheSpot)      // Ворог бродить навколо точки
+    private IEnumerator WanderingAroundTheSpot(float radius, Vector3 aroundTheSpot)      // Ворог бродить навколо точки
     {
         while (true)
         {
@@ -97,6 +97,7 @@ public class RegularEnemy : MonoBehaviour
 
     private IEnumerator HeardSth(Vector3 targetPos) // Ворог щось почув і йде туди
     {
+        agressive = true;
         status = 2;
         spriteRenderer.color = Color.yellow;        // Ворог жовтий коли щось почув
         StopCoroutine("Wandering");
@@ -104,7 +105,7 @@ public class RegularEnemy : MonoBehaviour
         agent.destination = targetPos;
         yield return new WaitForSeconds(2f);
 
-        StartCoroutine(Wandering(2f, targetPos));    // Ворог бродить навколо джерела звуку
+        StartCoroutine(WanderingAroundTheSpot(2f, targetPos));    // Ворог бродить навколо джерела звуку
         yield return new WaitForSeconds(8f);
 
         StopCoroutine("Wandering");
@@ -115,7 +116,6 @@ public class RegularEnemy : MonoBehaviour
     private IEnumerator Aggresive(Vector3 targetPos)                // Ворог заагрений
     {
         status = 3;
-        StartCoroutine(EnemyAgressiveSounds());
         spriteRenderer.color = Color.red;                           // Ворог червоний поки заагрений
         agent.speed = speed * 1.5f;
         agent.destination = targetPos;
@@ -131,7 +131,11 @@ public class RegularEnemy : MonoBehaviour
     }
     public void _HeardSth(Vector3 targetPos)        // Ворог щось почув 
     {
-        StopAllCoroutines();
+        StopCoroutine(HeardSth(targetPos));
+        StopCoroutine(Wandering(1));
+        StopCoroutine(WanderingAroundTheSpot(1, Vector3.zero));
+        StopCoroutine(Aggresive(targetPos));
+
         if (status >= 2)
             StartCoroutine(Aggresive(targetPos));   // Якщо це другий раз коли ворог щось чує то він стає агресивним
         else
@@ -140,30 +144,20 @@ public class RegularEnemy : MonoBehaviour
 
     private IEnumerator EnemySounds()
     {
-        _audioSource.Stop();
-        StopCoroutine(EnemyAgressiveSounds());
         AudioClip currentSuond = null;
-
+        
         while (true)
         {
-            Debug.Log("2222");
-            currentSuond = passiveSounds[UnityEngine.Random.Range(0, passiveSounds.Count)];
-            _audioSource.PlayOneShot(currentSuond);
-
-            yield return new WaitForSeconds(currentSuond.length);
-        }
-    }
-
-    private IEnumerator EnemyAgressiveSounds()
-    {
-        StopCoroutine(EnemySounds());
-        AudioClip currentSuond = null;
-
-        while (true)
-        {
-            Debug.Log("1111");
-            currentSuond = agressiveSounds[UnityEngine.Random.Range(0, agressiveSounds.Count)];
-            _audioSource.PlayOneShot(currentSuond);
+            if (!agressive)
+            {
+                currentSuond = passiveSounds[UnityEngine.Random.Range(0, passiveSounds.Count)];
+                _audioSource.PlayOneShot(currentSuond);
+            }
+            else
+            {
+                currentSuond = agressiveSounds[UnityEngine.Random.Range(0, agressiveSounds.Count)];
+                _audioSource.PlayOneShot(currentSuond);
+            }
 
             yield return new WaitForSeconds(currentSuond.length);
         }
