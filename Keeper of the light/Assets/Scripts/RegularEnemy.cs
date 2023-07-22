@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -42,7 +43,6 @@ public class RegularEnemy : MonoBehaviour
         {
             StartCoroutine(Wandering(3f));
             StartCoroutine(EnemySounds());
-            _animator.SetBool("Run", true);
         }
                            
     }
@@ -116,13 +116,13 @@ public class RegularEnemy : MonoBehaviour
     private IEnumerator Aggresive(Vector3 targetPos)                // Ворог заагрений
     {
         status = 3;
-        spriteRenderer.color = Color.red;                           // Ворог червоний поки заагрений
+        spriteRenderer.color = Color.red;
+        _animator.SetBool("Agressive",true);// Ворог червоний поки заагрений
         agent.speed = speed * 1.5f;
         agent.destination = targetPos;
-        Debug.Log("Agresive");
-
         yield return new WaitForSeconds(5f);
         StartCoroutine(HeardSth(targetPos));
+        _animator.SetBool("Agressive", false);
         yield break;
     }
     private Vector3 RandomPos(float a)      // Метод який повертає випадкову позицію в радіусі
@@ -131,10 +131,7 @@ public class RegularEnemy : MonoBehaviour
     }
     public void _HeardSth(Vector3 targetPos)        // Ворог щось почув 
     {
-        StopCoroutine(HeardSth(targetPos));
-        StopCoroutine(Wandering(1));
-        StopCoroutine(WanderingAroundTheSpot(1, Vector3.zero));
-        StopCoroutine(Aggresive(targetPos));
+        StopAllCoroutines();
 
         if (status >= 2)
             StartCoroutine(Aggresive(targetPos));   // Якщо це другий раз коли ворог щось чує то він стає агресивним
