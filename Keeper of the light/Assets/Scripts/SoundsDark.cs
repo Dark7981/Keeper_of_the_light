@@ -44,9 +44,6 @@ public class SoundsDark : MonoBehaviour
             _highPass.cutoffFrequency = Random.Range(3000, 5000);
             numberOfSound = Random.Range(0, 10);
             _audioSource.PlayOneShot(clipList[numberOfSound]);
-            
-           
-            
         }
     }
     private IEnumerator SoundEnvironment()

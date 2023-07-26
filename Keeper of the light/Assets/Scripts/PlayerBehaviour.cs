@@ -20,6 +20,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioClip[] footstepSounds;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip sittingSound;
+    [SerializeField] private SoundsDark _soundsDark;
+    [SerializeField] private GameObject soundsDarkObject;
+    [SerializeField] private AudioSource _audioSource;
 
     [Header("Needed data")]
     [SerializeField] private SourceOfNoise _sourceOfNoise;
@@ -50,6 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
+        _soundsDark = soundsDarkObject.GetComponent<SoundsDark>();
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController._playerBehaviour = GetComponent<PlayerBehaviour>();
 
@@ -150,12 +154,18 @@ public class PlayerBehaviour : MonoBehaviour
             _sourceOfNoise.MakeNoise(transform.position, range);
 
             playerAnimator.SetBool("isRunning", true);
+            _soundsDark.enabled = true;
+            _audioSource.enabled = true;
         }
         else
         {
+            _audioSource.enabled = false;
+            _soundsDark.enabled = false;
             stepAudioSource.Stop();
             playerAnimator.SetBool("isRunning", false);
         }
+
+        
     }
     private IEnumerator FootstepSound()
     {
