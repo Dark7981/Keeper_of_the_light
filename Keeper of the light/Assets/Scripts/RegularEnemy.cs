@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,21 +16,16 @@ public class RegularEnemy : MonoBehaviour
     [SerializeField] private GameObject deadEnemySprite;
     [SerializeField] private Animator _animator;
 
-    [SerializeField] private List<AudioClip> passiveSounds;
-    [SerializeField] private List<AudioClip> agressiveSounds;
-
     private NavMeshAgent agent;
-    private AudioSource _audioSource;
     private SpriteRenderer spriteRenderer;
     private List<Vector3> wayPoints = new();
 
     private int maxIndex = 0;
-    private bool agressive = false;
+    private bool isDead = false;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        _audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
         agent.updateUpAxis = false;
@@ -42,7 +36,6 @@ public class RegularEnemy : MonoBehaviour
         if (!isSleaping)// якщо не спить то починаЇ бродити
         {
             StartCoroutine(Wandering(3f));
-            StartCoroutine(EnemySounds());
         }
                            
     }
@@ -97,7 +90,6 @@ public class RegularEnemy : MonoBehaviour
 
     private IEnumerator HeardSth(Vector3 targetPos) // ¬орог щось почув ≥ йде туди
     {
-        agressive = true;
         status = 2;
         spriteRenderer.color = Color.yellow;        // ¬орог жовтий коли щось почув
         StopCoroutine("Wandering");
@@ -139,32 +131,26 @@ public class RegularEnemy : MonoBehaviour
             StartCoroutine(HeardSth(targetPos));    // якщо це перший раз то ворог насторожуЇтьс€
     }
 
-    private IEnumerator EnemySounds()
-    {
-        AudioClip currentSuond = null;
-        
-        while (true)
-        {
-            if (!agressive)
-            {
-                currentSuond = passiveSounds[UnityEngine.Random.Range(0, passiveSounds.Count)];
-                _audioSource.PlayOneShot(currentSuond);
-            }
-            else
-            {
-                currentSuond = agressiveSounds[UnityEngine.Random.Range(0, agressiveSounds.Count)];
-                _audioSource.PlayOneShot(currentSuond);
-            }
-
-            yield return new WaitForSeconds(currentSuond.length);
-        }
-    }
-
     public void Dead()
     {
+        isDead = true;
         Destroy(gameObject);
         Instantiate(deadEnemySprite, transform.position, Quaternion.identity);
     }
+
+    public int Status
+    {
+        get { return status; }
+    }
+    public bool IsSleeping
+    {
+        get { return isSleaping; }
+    }
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
+
 }
 
 
