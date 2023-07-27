@@ -3035,6 +3035,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSound: {fileID: 0}
+  _soundsDark: {fileID: 0}
+  soundsDarkObject: {fileID: 0}
+  _audioSource: {fileID: 0}
   _sourceOfNoise: {fileID: 1646324632}
   sittingSprite: {fileID: 21300000, guid: 76beef9fdae7b48468ddf07d0400a374, type: 3}
   jumpAudioSource: {fileID: 0}
@@ -3157,9 +3160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useKey: 113
-  trapInventory: {fileID: 0}
+  trapInventory:
+  - {fileID: 0}
   trapPrefab: {fileID: 0}
-  trapButtons: {fileID: 0}
+  trapButtons:
+  - {fileID: 0}
+  _traps: 0
 --- !u!1 &1675697256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,6 +3331,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSound: {fileID: 8300000, guid: f07132fe108980d4788bab89ec438f18, type: 3}
+  _soundsDark: {fileID: 1597111881}
+  soundsDarkObject: {fileID: 1597111880}
+  _audioSource: {fileID: 1597111885}
   _sourceOfNoise: {fileID: 732777263}
   sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   jumpAudioSource: {fileID: 1689972107}
@@ -3343,9 +3352,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useKey: 113
-  trapInventory: {fileID: 1326101897}
+  trapInventory:
+  - {fileID: 0}
   trapPrefab: {fileID: 4792975543743158576, guid: 086e0103ed8d2974c8f8cd2898bbc4b9, type: 3}
-  trapButtons: {fileID: 1291735802885166026, guid: a5c2960dc3b7abb42bd507c5c9015bf7, type: 3}
+  trapButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _traps: 0
 --- !u!61 &1675697261
 BoxCollider2D:
   m_ObjectHideFlags: 0
