@@ -112,6 +112,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             readyToSit = false;
             isSiting = true;
+            playerAnimator.SetBool("Crouch", isSiting);
             sitAudioSource.PlayOneShot(sittingSound); 
 
             range = sittingSoundRange;
@@ -126,6 +127,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             readyToSit = false;
             isSiting = false;
+            playerAnimator.SetBool("Crouch", isSiting);
             sitAudioSource.PlayOneShot(sittingSound);
 
             range = soundRange;
