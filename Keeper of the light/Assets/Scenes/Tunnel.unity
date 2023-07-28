@@ -1960,6 +1960,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2290087195001559001, guid: 536c4740499f0b24887111dc18233dd8, type: 3}
+      propertyPath: takeSprite
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7649777226094200866, guid: 536c4740499f0b24887111dc18233dd8, type: 3}
       propertyPath: m_Name
       value: RegularEnemy
@@ -2473,10 +2477,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ce4e1a2f1dafa304eb863b8ccaeead51, type: 3}
   - {fileID: 8300000, guid: 0bdad5fe24307ce429630238456c76d3, type: 3}
   - {fileID: 8300000, guid: 987e90aa72f56454e8fb4f48c2b74a81, type: 3}
-  - {fileID: 8300000, guid: 792e008efdbc3984eb86cce2864d7942, type: 3}
-  - {fileID: 8300000, guid: 51e4371b08481354aa5f4c3407351abe, type: 3}
-  - {fileID: 8300000, guid: 9fb9786801bb08c46a8f9ddc53861dc4, type: 3}
-  - {fileID: 8300000, guid: a859bf2360e93444fb6348e5565c3a49, type: 3}
 --- !u!170 &1597111882
 AudioDistortionFilter:
   m_ObjectHideFlags: 0
@@ -2533,13 +2533,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 149
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3035,7 +3035,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSound: {fileID: 0}
-  _soundsDark: {fileID: 0}
   soundsDarkObject: {fileID: 0}
   _audioSource: {fileID: 0}
   _sourceOfNoise: {fileID: 1646324632}
@@ -3331,7 +3330,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSound: {fileID: 8300000, guid: f07132fe108980d4788bab89ec438f18, type: 3}
-  _soundsDark: {fileID: 1597111881}
   soundsDarkObject: {fileID: 1597111880}
   _audioSource: {fileID: 1597111885}
   _sourceOfNoise: {fileID: 732777263}

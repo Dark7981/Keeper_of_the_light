@@ -9,8 +9,10 @@ public class SoundsDark : MonoBehaviour
    
     [SerializeField] private bool isPlay;
     [SerializeField] private List<AudioClip> clipList;
+    private bool soundPlaying = false;
 
 
+    private bool soundFinished = false;
     private float sound3d = -0.1f;
     private int numberOfSound;
     private AudioSource _audioSource;
@@ -32,9 +34,13 @@ public class SoundsDark : MonoBehaviour
         { 
             Sounds();
             
-            yield return new WaitForSeconds(5f);
+            Debug.Log("sound");
+            
+            yield return new WaitForSeconds(4f);
+            
         }
     }
+   
     private void Sounds() 
     {
 
@@ -42,7 +48,7 @@ public class SoundsDark : MonoBehaviour
         {
             _lowPass.cutoffFrequency = Random.Range(3000, 5000);
             _highPass.cutoffFrequency = Random.Range(3000, 5000);
-            numberOfSound = Random.Range(0, 10);
+            numberOfSound = Random.Range(0, clipList.Count);
             _audioSource.PlayOneShot(clipList[numberOfSound]);
         }
     }
