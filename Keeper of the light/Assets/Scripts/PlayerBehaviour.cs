@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -21,6 +22,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip sittingSound;
     [SerializeField] private AudioSource _audioSource;
+    private float _volume;
+    private float _volumePart;
 
     [Header("Needed data")]
     [SerializeField] private SourceOfNoise _sourceOfNoise;
@@ -51,7 +54,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
-        
+        _volume = _audioSource.volume;
+        _volumePart = 0.001f;
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController._playerBehaviour = GetComponent<PlayerBehaviour>();
 
@@ -83,7 +87,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void ScriptUpdate()   
     {
-        StartCoroutine(Movement());
+        Movement();
         StartCoroutine(Siting());
         StartCoroutine(Jump());
     }
@@ -141,12 +145,13 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private IEnumerator Movement() 
+    private void Movement() 
     {
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
 
         if (moveDirection != Vector2.zero) 
         {
+            _audioSource.mute = false;
             float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; 
 
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
@@ -156,20 +161,37 @@ public class PlayerBehaviour : MonoBehaviour
             _sourceOfNoise.MakeNoise(transform.position, range);
 
             playerAnimator.SetBool("isRunning", true);
+             StopCoroutine(MuteVolume());
+             _audioSource.volume = 0.15f;
 
-            _audioSource.enabled = true;
         }
         else
         {
 
-            
+           
             stepAudioSource.Stop();
             playerAnimator.SetBool("isRunning", false);
-            yield return new WaitForSeconds(3f);
-            _audioSource.enabled = false;
+            StartCoroutine(MuteVolume());
+            Debug.Log("volume1");
+          
+
+
+
         }
 
         
+    }
+
+    private IEnumerator MuteVolume()
+    {
+     
+       for (int i = 0; i < 8; i++)
+       {
+           _audioSource.volume -= _volumePart;
+           yield return new WaitForSeconds(4f);
+           Debug.Log("volume");
+           
+       }
     }
     private IEnumerator FootstepSound()
     {

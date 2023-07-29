@@ -9,10 +9,10 @@ public class SoundsDark : MonoBehaviour
    
     [SerializeField] private bool isPlay;
     [SerializeField] private List<AudioClip> clipList;
-    private bool soundPlaying = false;
+   
 
 
-    private bool soundFinished = false;
+  
     private float sound3d = -0.1f;
     private int numberOfSound;
     private AudioSource _audioSource;
