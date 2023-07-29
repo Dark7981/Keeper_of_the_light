@@ -20,7 +20,6 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioClip[] footstepSounds;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip sittingSound;
-    [SerializeField] private GameObject soundsDarkObject;
     [SerializeField] private AudioSource _audioSource;
 
     [Header("Needed data")]
