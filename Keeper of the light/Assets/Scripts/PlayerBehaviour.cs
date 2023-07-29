@@ -94,6 +94,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKeyDown(jumpKey) && !inJump && !isSiting)
         {
             inJump = true;
+            playerAnimator.SetBool("Jump", inJump);
             jumpAudioSource.PlayOneShot(jumpSound);
             speed = moveSpeed / 1.5f;
 
@@ -101,6 +102,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             _sourceOfNoise.MakeNoise(transform.position, jumpSoundRange);
             inJump = false;
+            playerAnimator.SetBool("Jump", inJump);
             speed = moveSpeed;
         }
     }
