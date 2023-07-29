@@ -37,7 +37,6 @@ public class SoundsDark : MonoBehaviour
             Debug.Log("sound");
             
             yield return new WaitForSeconds(4f);
-            
         }
     }
    
@@ -49,7 +48,9 @@ public class SoundsDark : MonoBehaviour
             _lowPass.cutoffFrequency = Random.Range(3000, 5000);
             _highPass.cutoffFrequency = Random.Range(3000, 5000);
             numberOfSound = Random.Range(0, clipList.Count);
+            _audioSource.enabled = true;
             _audioSource.PlayOneShot(clipList[numberOfSound]);
+            _audioSource.enabled = false;
         }
     }
     private IEnumerator SoundEnvironment()
