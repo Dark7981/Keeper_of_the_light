@@ -83,7 +83,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void ScriptUpdate()   
     {
-        StartCoroutine(Movement());
+       StartCoroutine( Movement());
         StartCoroutine(Siting());
         StartCoroutine(Jump());
     }
@@ -204,12 +204,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _playerBehaviour.enabled = false;
         GameObject.Find("UpdateController").GetComponent<UpdateController>().enabled = false;
-        playerAnimator.PlayInFixedTime("Death");
-        gameObject.GetComponent<AudioSource>().enabled = false;
-    }
-    public void menuOpenedInvoke()
-    {
+        _spriteRenderer.color = Color.red;
         menuOpened.Invoke();
+        gameObject.GetComponent<AudioSource>().enabled = false;
     }
     public void SpawnPoint()
     {

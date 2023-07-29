@@ -1306,7 +1306,7 @@ MonoBehaviour:
   patroling: 1
   speed: 2
   patrolPoints: []
-  deadEnemyPrefab: {fileID: 4404675258941926854, guid: a1ee999afa48c7842aa828bcd24638bc, type: 3}
+  deadEnemySprite: {fileID: 9143429359542772723, guid: 4fc63c1b965affa4f9bd0bee8fbc2dd6, type: 3}
   _animator: {fileID: 0}
 --- !u!70 &4558862652051174421
 CapsuleCollider2D:

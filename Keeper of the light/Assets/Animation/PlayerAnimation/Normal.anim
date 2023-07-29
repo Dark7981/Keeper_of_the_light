@@ -2531,7 +2531,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Body/TrapInventoryNumber2
+    path: Body/TrapInventory
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2541,7 +2541,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Body/TrapInventoryNumber2
+    path: Body/TrapInventory
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2551,7 +2551,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Body/TrapInventoryNumber2
+    path: Body/TrapInventory
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2561,7 +2561,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Body/TrapInventory
+    path: Body/TrapInventoryNumber2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2571,7 +2571,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Body/TrapInventory
+    path: Body/TrapInventoryNumber2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2581,7 +2581,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Body/TrapInventory
+    path: Body/TrapInventoryNumber2
     classID: 4
     script: {fileID: 0}
   - curve:

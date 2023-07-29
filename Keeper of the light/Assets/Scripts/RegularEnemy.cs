@@ -13,7 +13,7 @@ public class RegularEnemy : MonoBehaviour
     [SerializeField] private float speed;
     [Range(1, 3)] private int status = 1;
     [SerializeField] private List<GameObject> patrolPoints;
-    [SerializeField] private GameObject deadEnemyPrefab;
+    [SerializeField] private GameObject deadEnemySprite;
     [SerializeField] private Animator _animator;
 
     private NavMeshAgent agent;
@@ -50,7 +50,8 @@ public class RegularEnemy : MonoBehaviour
 
     private IEnumerator Wandering(float radius)                             // Ворог бродить по карті
     {
-        status = 1;                                
+        status = 1;
+        spriteRenderer.color = Color.gray;                                  // Ворог сірий поки бродить
         agent.speed = speed / 3f;
         while (true)
         {
@@ -90,6 +91,7 @@ public class RegularEnemy : MonoBehaviour
     private IEnumerator HeardSth(Vector3 targetPos) // Ворог щось почув і йде туди
     {
         status = 2;
+        spriteRenderer.color = Color.yellow;        // Ворог жовтий коли щось почув
         StopCoroutine("Wandering");
         agent.speed = speed / 3f * 2f;
         agent.destination = targetPos;
@@ -106,6 +108,7 @@ public class RegularEnemy : MonoBehaviour
     private IEnumerator Aggresive(Vector3 targetPos)                // Ворог заагрений
     {
         status = 3;
+        spriteRenderer.color = Color.red;
         _animator.SetBool("Agressive",true);// Ворог червоний поки заагрений
         agent.speed = speed * 1.5f;
         agent.destination = targetPos;
@@ -131,9 +134,8 @@ public class RegularEnemy : MonoBehaviour
     public void Dead()
     {
         isDead = true;
-        var DeadRegularEnemy = Instantiate(deadEnemyPrefab, transform.position, Quaternion.identity);
-        DeadRegularEnemy.transform.rotation = gameObject.transform.rotation;
         Destroy(gameObject);
+        Instantiate(deadEnemySprite, transform.position, Quaternion.identity);
     }
 
     public int Status

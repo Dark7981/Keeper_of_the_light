@@ -22,8 +22,6 @@ public class TrapTriger : MonoBehaviour
 
     private void Start()
     {
-        if (_destroyBool&&_activatedBool)
-            _activatedBool = false;
         _spritesRenderer = GetComponent<SpriteRenderer>();
         _trapInventoryScript = GameObject.FindGameObjectWithTag("Player").GetComponent<TrapInventoryScript>();
         _spritesRenderer.sprite = _destroyBool ? _destroyTrap : _activatedBool ? _activeTrap : _disactiveTrap;
@@ -37,13 +35,11 @@ public class TrapTriger : MonoBehaviour
             {
                 col.GetComponent<PlayerBehaviour>().Dead();
                 DisActiveTrapSprite();
-                _destroyBool = true;
             }
             else if (col.CompareTag("Enemy"))
             {
                 col.GetComponent<RegularEnemy>().Dead();
                 DisActiveTrapSprite();
-                _destroyBool = true;
             }
         }
         else

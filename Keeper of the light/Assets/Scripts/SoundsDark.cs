@@ -37,6 +37,7 @@ public class SoundsDark : MonoBehaviour
             Debug.Log("sound");
             
             yield return new WaitForSeconds(4f);
+            
         }
     }
    
