@@ -47,5 +47,11 @@ public class LightScript : MonoBehaviour
         timeLeft = 0;
         StartCoroutine(TimerLight());
     }
-    
+    public void DeadLight()
+    {
+        Debug.Log("StartDeadLight");
+        StopAllCoroutines();
+        gameObject.GetComponent<Animator>().SetBool("DeadLight",true);
+        Debug.Log("EndDeadLight");
+    }
 }

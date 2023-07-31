@@ -12,7 +12,7 @@ public class RegularEnemy : MonoBehaviour
 
     [SerializeField] private float speed;
     [Range(1, 3)] private int status = 1;
-    [SerializeField] private List<GameObject> patrolPoints;
+    [SerializeField] private List<GameObject> _patrolPoints;
     [SerializeField] private GameObject deadEnemyPrefab;
     [SerializeField] private Animator _animator;
 
@@ -42,7 +42,7 @@ public class RegularEnemy : MonoBehaviour
 
     private void GetPatrolPoints()
     {
-        foreach (GameObject patrolPoint in patrolPoints)
+        foreach (GameObject patrolPoint in _patrolPoints)
         {
             wayPoints.Add(patrolPoint.transform.position);
         }
@@ -128,10 +128,10 @@ public class RegularEnemy : MonoBehaviour
             StartCoroutine(HeardSth(targetPos));    // якщо це перший раз то ворог насторожуЇтьс€
     }
 
-    public void Dead()
+    public void Dead(Transform positionTrap)
     {
         isDead = true;
-        var DeadRegularEnemy = Instantiate(deadEnemyPrefab, transform.position, Quaternion.identity);
+        var DeadRegularEnemy = Instantiate(deadEnemyPrefab, positionTrap.position, Quaternion.identity);
         DeadRegularEnemy.transform.rotation = gameObject.transform.rotation;
         Destroy(gameObject);
     }
@@ -144,11 +144,14 @@ public class RegularEnemy : MonoBehaviour
     {
         get { return isSleaping; }
     }
+    public bool IsPatroling
+    {
+        get { return patroling; }
+    }
     public bool IsDead
     {
         get { return isDead; }
     }
-
 }
 
 

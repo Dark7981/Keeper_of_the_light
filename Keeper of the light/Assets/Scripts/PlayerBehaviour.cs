@@ -33,7 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioSource jumpAudioSource;
     [SerializeField] private AudioSource sitAudioSource;
     [SerializeField] private AudioSource stepAudioSource;
-
+    [SerializeField] private LightScript _ligth;
 
     private int numberOfFootstep;
     private float range;
@@ -172,11 +172,6 @@ public class PlayerBehaviour : MonoBehaviour
             stepAudioSource.Stop();
             playerAnimator.SetBool("isRunning", false);
             StartCoroutine(MuteVolume());
-            Debug.Log("volume1");
-          
-
-
-
         }
 
         
@@ -188,9 +183,7 @@ public class PlayerBehaviour : MonoBehaviour
        for (int i = 0; i < 8; i++)
        {
            _audioSource.volume -= _volumePart;
-           yield return new WaitForSeconds(4f);
-           Debug.Log("volume");
-           
+           yield return new WaitForSeconds(4f);        
        }
     }
     private IEnumerator FootstepSound()
@@ -222,12 +215,21 @@ public class PlayerBehaviour : MonoBehaviour
         _rigidBody.MovePosition(_rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  
     }
 
-    public void Dead()
+    public void Dead(Transform positionTrap, bool TeleportToKiller)
     {
+        LightDead();
         _playerBehaviour.enabled = false;
         GameObject.Find("UpdateController").GetComponent<UpdateController>().enabled = false;
+        if (TeleportToKiller)
+        {
+            transform.position = positionTrap.position;
+        }
         playerAnimator.PlayInFixedTime("Death");
         gameObject.GetComponent<AudioSource>().enabled = false;
+    }
+    public void LightDead()
+    {
+        _ligth.DeadLight();
     }
     public void menuOpenedInvoke()
     {

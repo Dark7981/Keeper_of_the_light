@@ -32,10 +32,7 @@ public class SoundsDark : MonoBehaviour
     {
         while (true)
         { 
-            Sounds();
-            
-            Debug.Log("sound");
-            
+            Sounds();         
             yield return new WaitForSeconds(4f);
         }
     }

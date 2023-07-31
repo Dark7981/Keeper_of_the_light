@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2958858375148454369}
   - component: {fileID: 5610890849467647468}
   - component: {fileID: 6067415742745724983}
+  - component: {fileID: 2073761324}
   m_Layer: 0
   m_Name: NoteLight (1)
-  m_TagString: Untagged
+  m_TagString: NoteLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.359
   m_Color: {r: 0.764151, g: 0.68906444, b: 0.43614277, a: 0.67058825}
-  m_Intensity: 1.5
+  m_Intensity: 0
   m_LightVolumeIntensity: 0.1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -123,8 +124,8 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 1
   m_Offset: {x: 0.09750596, y: -0.38}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,6 +139,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36022335, y: 0.6202395}
   m_EdgeRadius: 0
+--- !u!95 &2073761324
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4914758942018130642}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62db97311d951b34699faaf65012ea9b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6494546157291126926
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +276,7 @@ MonoBehaviour:
   - {fileID: -1298128172, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   - {fileID: -1244404853, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   idPaneglif: 0
-  isNewPaneglif: 0
+  isNewPaneglif: 1
   noteText: 
 --- !u!50 &6494546157291126925
 Rigidbody2D:
@@ -329,7 +351,7 @@ MonoBehaviour:
   - {x: 0.12463808, y: -0.14074516, z: 0}
   m_ShapePathHash: -1525290561
   m_Mesh: {fileID: 0}
-  m_InstanceId: 64060
+  m_InstanceId: -1800
   m_LocalBounds:
     m_Center: {x: -0.01581332, y: -0.26564342, z: 0}
     m_Extent: {x: 0.23461631, y: 0.15626623, z: 0}
@@ -370,9 +392,10 @@ GameObject:
   - component: {fileID: 3797617640720693753}
   - component: {fileID: 8435096511695909631}
   - component: {fileID: 3545735241535862073}
+  - component: {fileID: 832623562}
   m_Layer: 0
   m_Name: NoteLight
-  m_TagString: Untagged
+  m_TagString: NoteLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -409,7 +432,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.359
   m_Color: {r: 0.764151, g: 0.68906444, b: 0.43614277, a: 0.67058825}
-  m_Intensity: 1.5
+  m_Intensity: 0
   m_LightVolumeIntensity: 0.1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 1f7e7d25
@@ -482,8 +505,8 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 1
   m_Offset: {x: 0.09750596, y: -0.38}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -497,3 +520,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36022335, y: 0.6202395}
   m_EdgeRadius: 0
+--- !u!95 &832623562
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621694466043114116}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62db97311d951b34699faaf65012ea9b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -40,7 +40,6 @@ public class NoteScript : MonoBehaviour
     private void Start()
     {
         GetTextPaneglif.Invoke(idPaneglif);
-        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[UnityEngine.Random.Range(0, sprites.Count)];
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController.noteScript = GetComponent<NoteScript>();
         _updateController = GameObject.Find("UpdateController").GetComponent<UpdateController>();

@@ -1,38 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+
 
 public class AnimationEnemyController : MonoBehaviour
 {
     [SerializeField] private Transform _regularEnemy;
     private Animator _animator;
     private Vector2 OldPosition;
-    public float xRotation;
-    public Vector2 positionMagnetic;
+    private float xRotation;
+    private Vector2 positionMagnetic;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         StartCoroutine("CheckPosition");
     }
-    //public void CheckFirstPosition() // Для анімаці
-    //{
-       
-    //}
-    //public void CheckLastPosition()
-    //{
-        
-    //    if (Mathf.Abs(OldPosition[0] - _regularEnemy.position.x) <= 0.1f
-    //        && Mathf.Abs(OldPosition[1] - _regularEnemy.position.y) <= 0.1f ||
-    //        Mathf.Abs(xRotation - _regularEnemy.rotation.x) >= 0.1f || Mathf.Abs(xRotation - _regularEnemy.rotation.x) <= -0.1f)
-    //    {
-    //        _animator.SetBool("Run", false);
-    //    }
-    //    else
-    //        _animator.SetBool("Run", true);
-
-    //}
+    private void OnEnable()
+    {
+        EnemyKillZone.PlayerDead += KillPlayer;
+    }
+    private void OnDisable()
+    {
+        EnemyKillZone.PlayerDead -= KillPlayer;
+    }
+    private void KillPlayer()
+    {
+        _animator.PlayInFixedTime("RegularEnemyKill");
+    }
     private IEnumerator CheckPosition()
     {
         while (true)

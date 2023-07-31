@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class TrapTriger : MonoBehaviour
@@ -35,13 +34,13 @@ public class TrapTriger : MonoBehaviour
         {
             if (col.CompareTag("Player"))
             {
-                col.GetComponent<PlayerBehaviour>().Dead();
+                col.GetComponent<PlayerBehaviour>().Dead(transform,true);
                 DisActiveTrapSprite();
                 _destroyBool = true;
             }
             else if (col.CompareTag("Enemy"))
             {
-                col.GetComponent<RegularEnemy>().Dead();
+                col.GetComponent<RegularEnemy>().Dead(transform);
                 DisActiveTrapSprite();
                 _destroyBool = true;
             }
