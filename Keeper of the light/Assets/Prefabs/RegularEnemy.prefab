@@ -1206,8 +1206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _regularEnemy: {fileID: 7649777226094200876}
-  xRotation: 0
-  positionMagnetic: {x: 0, y: 0}
 --- !u!1 &7649777226094200866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1303,7 @@ MonoBehaviour:
   isSleaping: 0
   patroling: 1
   speed: 2
-  patrolPoints: []
+  _patrolPoints: []
   deadEnemyPrefab: {fileID: 4404675258941926854, guid: a1ee999afa48c7842aa828bcd24638bc, type: 3}
   _animator: {fileID: 0}
 --- !u!70 &4558862652051174421
@@ -1364,9 +1362,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 13
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1414,7 +1412,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.0027777778
       inSlope: 0
       outSlope: 0
       tangentMode: 0
