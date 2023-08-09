@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TunnelEntrance : MonoBehaviour
 {
     [SerializeField] private Transform playerSpawn;
     [SerializeField] private Transform playerTransform;
     private BoxCollider2D _boxCollider;
-    private bool inTriger = false;
+    public bool inTriger = false;
     private KeyCode _keyCode = KeyCode.E;
     [SerializeField] private Animator blackScreen;
     [SerializeField] private GameObject tunnel;
@@ -23,6 +24,7 @@ public class TunnelEntrance : MonoBehaviour
           
             inTriger = true;
             Debug.Log("d");
+            
         }
         
     }
@@ -39,8 +41,7 @@ public class TunnelEntrance : MonoBehaviour
     {
         Debug.Log("969696");
         blackScreen.SetTrigger("BlackScreen");
-        yield return new WaitForSeconds(1.10f);
-        tunnel.SetActive(true);
+        yield return new WaitForSeconds(1.50f);
         playerTransform.position = new Vector3(playerSpawn.position.x,
             playerSpawn.position.y,
             playerSpawn.position.z

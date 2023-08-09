@@ -38,8 +38,7 @@ public class TunnelExit : MonoBehaviour
     {
         Debug.Log("969696");
         blackScreen.SetTrigger("BlackScreen");
-        yield return new WaitForSeconds(1.10f);
-        tunnel.SetActive(false);
+        yield return new WaitForSeconds(1.50f);
         playerTransform.position = new Vector3(playerExit.position.x,
             playerExit.position.y,
             playerExit.position.z
