@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NavMesh.unity
     guid: 2e14bcbb8d63ff645ba2e3a964aed7d7
+  - enabled: 1
+    path: Assets/Scenes/Tunnel.unity
+    guid: 060333d79a049d34186a6d66ef5a3e73
   m_configObjects: {}
