@@ -167,8 +167,6 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
-
-           
             stepAudioSource.Stop();
             playerAnimator.SetBool("isRunning", false);
             StartCoroutine(MuteVolume());
