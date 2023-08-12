@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TrapTriger : MonoBehaviour
 {
+    [SerializeField] private AudioSource activateTrap;
+
     [SerializeField] private bool _activatedBool;
     [SerializeField] private bool _destroyBool;
 
@@ -88,6 +90,7 @@ public class TrapTriger : MonoBehaviour
             else if (Input.GetKeyDown(activateKey))
             {
                 ActiveTrapSprite();
+                activateTrap.Play();
             }
         }
     }
