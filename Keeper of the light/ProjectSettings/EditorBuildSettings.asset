@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartForest.unity
     guid: bd32ac46b5d69fc489cb434ea59c4022
+  - enabled: 1
+    path: Assets/Scenes/NavMesh.unity
+    guid: 2e14bcbb8d63ff645ba2e3a964aed7d7
   m_configObjects: {}
