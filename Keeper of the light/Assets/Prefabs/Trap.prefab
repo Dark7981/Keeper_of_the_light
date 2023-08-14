@@ -133,7 +133,7 @@ MonoBehaviour:
   _activeTrap: {fileID: 21300000, guid: 4c2f5c8f090a78048b8a5d0cb59aca2e, type: 3}
   _disactiveTrap: {fileID: 21300000, guid: b27366bab4c181045a2b3435cf2a9d07, type: 3}
   _destroyTrap: {fileID: 21300000, guid: c5af81bcec679ad4aba643ca7cac22bc, type: 3}
-  trapButton: {fileID: 0}
+  trapButton: {fileID: 1291735802885166026, guid: a5c2960dc3b7abb42bd507c5c9015bf7, type: 3}
 --- !u!82 &-4218783353384776174
 AudioSource:
   m_ObjectHideFlags: 0

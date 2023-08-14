@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ForestAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -972657653, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 264430580, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -472228046, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -1905178576, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 575552190, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 333153947, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 549286076, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -688992565, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 1397727345, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -249173794, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 1368851403, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 444485669, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -460593996, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -1776629019, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -1183827125, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 971024082, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -486590019, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -556999050, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 1663127144, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -2034903255, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 356904484, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: -1717662118, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 1545842397, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 820604582, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  - {fileID: 538419840, guid: 9d7c180091337ce44af61a9af3a9b6b3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - TileMap_19
+  - TileMap_18
+  - TileMap_15
+  - TileMap_14
+  - TileMap_17
+  - TileMap_16
+  - TileMap_11
+  - TileMap_10
+  - TileMap_13
+  - TileMap_12
+  - TileMap_8
+  - TileMap_9
+  - TileMap_6
+  - TileMap_7
+  - TileMap_4
+  - TileMap_5
+  - TileMap_2
+  - TileMap_3
+  - TileMap_0
+  - TileMap_1
+  - TileMap_24
+  - TileMap_20
+  - TileMap_21
+  - TileMap_22
+  - TileMap_23
+  m_RenderDataMap: {}
+  m_Tag: ForestAtlas
+  m_IsVariant: 0

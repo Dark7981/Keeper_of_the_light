@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CaveAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 724997739, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -301242795, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: 773260469, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -881686890, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -1024465499, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -1171108354, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -429297743, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: 1030242238, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -1680042732, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: 666004796, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: 2000506767, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: 1576579940, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -1845287049, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: 1776831959, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  - {fileID: -1054046556, guid: e8b99a4b9cfa5f64ba42b81feaa844ec, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Cave TileMap (1)_5
+  - Cave TileMap (1)_4
+  - Cave TileMap (1)_7
+  - Cave TileMap (1)_6
+  - Cave TileMap (1)_1
+  - Cave TileMap (1)_0
+  - Cave TileMap (1)_3
+  - Cave TileMap (1)_2
+  - Cave TileMap (1)_9
+  - Cave TileMap (1)_8
+  - Cave TileMap (1)_14
+  - Cave TileMap (1)_10
+  - Cave TileMap (1)_11
+  - Cave TileMap (1)_12
+  - Cave TileMap (1)_13
+  m_RenderDataMap: {}
+  m_Tag: CaveAtlas
+  m_IsVariant: 0
