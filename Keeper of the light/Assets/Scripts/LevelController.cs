@@ -21,16 +21,30 @@ public class LevelController : MonoBehaviour
     public void CaveTimelineLocation()
     {
         SceneManager.LoadScene(1);
+        if (PlayerPrefs.HasKey("_lastScene"))
+        {
+            PlayerPrefs.DeleteKey("_lastScene");
+        }
     }
     public void CaveLocation()
     {
         SceneManager.LoadScene(2);
+        PlayerPrefs.SetInt("_lastScene", 2);
     }
     public void ForestLocation()
     {
         SceneManager.LoadScene(3);
+        PlayerPrefs.SetInt("_lastScene", 3);
     }
 
+    public void Continue()
+    {
+        if (PlayerPrefs.HasKey("_lastScene"))
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("_lastScene"));
+        }
+        
+    }
     public void Respawn()
     {
         var sceneIndex = SceneManager.GetActiveScene().buildIndex;

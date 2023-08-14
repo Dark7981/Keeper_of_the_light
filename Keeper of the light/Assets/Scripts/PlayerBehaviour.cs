@@ -51,6 +51,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool inJump = false;
     private bool readyToSit = true;
 
+    public bool playerDead = false;
 
     public static Action menuOpened;
 
@@ -226,6 +227,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         playerAnimator.PlayInFixedTime("Death");
         gameObject.GetComponent<AudioSource>().enabled = false;
+        playerDead = true ;
     }
     public void LightDead()
     {

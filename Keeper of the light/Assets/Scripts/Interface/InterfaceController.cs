@@ -13,6 +13,8 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _noteText;
     [SerializeField] private List<GameObject> Paneglifs;
     [SerializeField] private GameObject menuFolder;
+    [SerializeField] private GameObject RespawnButton ;
+    private PlayerBehaviour playerBehaviour;
     private int numberOfItem;
     public int _numberOfItem
     {
@@ -50,6 +52,8 @@ public class InterfaceController : MonoBehaviour
     }
     private void Start()
     {
+        var player = GameObject.Find("Player");
+        playerBehaviour = player.GetComponent<PlayerBehaviour>();
         Time.timeScale = 1;
         _numberOfItem = 0;
         InterfaceUpdate();
@@ -137,6 +141,10 @@ public class InterfaceController : MonoBehaviour
         {
             _closeInterface.Invoke();
             _interface.SetActive(false);
+        }
+        if (playerBehaviour.playerDead)
+        {
+            RespawnButton.SetActive(true);
         }
         MenuScript(0, true);
     }
