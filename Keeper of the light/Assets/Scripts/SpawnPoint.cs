@@ -11,6 +11,7 @@ public class SpawnPoint : MonoBehaviour
             PlayerPrefs.SetFloat("x",gameObject.transform.position.x);
             PlayerPrefs.SetFloat("y",gameObject.transform.position.y);
             collision.GetComponent<PlayerBehaviour>().SpawnPoint();
+            Debug.Log("SpawnPointEnter");
         }
     }
 }

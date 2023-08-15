@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExitTrigger : MonoBehaviour
@@ -12,6 +10,8 @@ public class ExitTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            PlayerPrefs.DeleteKey("x");
+            PlayerPrefs.DeleteKey("y");
             if (Forest)
             {
                 controller.ForestLocation();

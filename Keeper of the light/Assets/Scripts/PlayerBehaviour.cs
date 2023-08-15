@@ -28,7 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Needed data")]
     [SerializeField] private SourceOfNoise _sourceOfNoise;
     [SerializeField] private Transform _startSpawnPoint;
-    [SerializeField] private bool _useStartSpawnPoint;
+    [SerializeField] private bool _useSpawnPoint;
 
     [Header("PrefabData")]
     [SerializeField] private Sprite sittingSprite;
@@ -62,16 +62,18 @@ public class PlayerBehaviour : MonoBehaviour
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController._playerBehaviour = GetComponent<PlayerBehaviour>();
 
-        if (_spawnPosition.x != PlayerPrefs.GetFloat("x") && _spawnPosition.y != PlayerPrefs.GetFloat("y") && _useStartSpawnPoint == false)
+        if (_spawnPosition.x != PlayerPrefs.GetFloat("x") && _spawnPosition.y != PlayerPrefs.GetFloat("y") && _useSpawnPoint == false)
         {
             SpawnPoint();
             SpawnPlayer();
         }
-        else if(!PlayerPrefs.HasKey("x")&&!PlayerPrefs.HasKey("y") || _useStartSpawnPoint)
+        //!PlayerPrefs.HasKey("x") && !PlayerPrefs.HasKey("y")
+        else
         {
             _spawnPosition = _startSpawnPoint.position;
             SpawnPlayer();
         }
+
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerBehaviour = GetComponent<PlayerBehaviour>();
