@@ -20,7 +20,7 @@ public class NoteScript : MonoBehaviour
     private UpdateController _updateController;
     private Image buttonImage;
     private TextMeshProUGUI buttonText;
-    private ShadowCaster2D _shadowCaster2d;
+    public ShadowCaster2D _shadowCaster2d;
     private bool isInterfaceOpen = true;
     public static Action<bool, int> UnlockPaneglif;
     public static Action<int> GetTextPaneglif;
@@ -43,7 +43,6 @@ public class NoteScript : MonoBehaviour
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController.noteScript = GetComponent<NoteScript>();
         _updateController = GameObject.Find("UpdateController").GetComponent<UpdateController>();
-        _shadowCaster2d = GetComponent<ShadowCaster2D>();
         button.GetComponentInChildren<TextMeshProUGUI>().text = $"{buttonLetter}";
         exitButton.text = $"{buttonLetter}";
         buttonImage = button.GetComponent<Image>();
