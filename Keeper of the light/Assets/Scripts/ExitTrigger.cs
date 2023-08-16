@@ -6,6 +6,7 @@ public class ExitTrigger : MonoBehaviour
     public bool Forest;
     public bool CaveTimeline;
     public bool Cave;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -15,7 +16,8 @@ public class ExitTrigger : MonoBehaviour
             if (Forest)
             {
                 controller.ForestLocation();
-            }else if (CaveTimeline)
+            }
+            else if (CaveTimeline)
             {
                 controller.CaveTimelineLocation();
             }
