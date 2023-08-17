@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class TrapTriger : MonoBehaviour
 {
-    [SerializeField] private AudioSource activateTrap;
+    [SerializeField] private AudioSource AudioActivateTrap;
+    [SerializeField] private AudioSource AudioDisactiveTrap;
 
     [SerializeField] private bool _activatedBool;
     [SerializeField] private bool _destroyBool;
@@ -90,7 +91,7 @@ public class TrapTriger : MonoBehaviour
             else if (Input.GetKeyDown(activateKey))
             {
                 ActiveTrapSprite();
-                activateTrap.Play();
+                AudioActivateTrap.Play();
             }
         }
     }
@@ -106,5 +107,7 @@ public class TrapTriger : MonoBehaviour
     {
         _spritesRenderer.sprite = _destroyTrap;
         _activatedBool = false;
+
+        AudioDisactiveTrap.Play();
     }
 }
