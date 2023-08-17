@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
+    public AudioSource _soundButton;
     //public static LevelController Instance { get; private set; }
 
     //private void Awake()
@@ -60,5 +61,9 @@ public class LevelController : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
+    public void SoundButton()
+    {
+        _soundButton.Play();
+    }
 }
