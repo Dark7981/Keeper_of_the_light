@@ -8,10 +8,12 @@ public class BestiariyController : MonoBehaviour
 {
     [SerializeField] private GameObject _bestiariyItemPrefab;
     [SerializeField] private Transform _bestiariyItemParent;
+   
     public List<string> _bestiariyNameList;
     private void OnEnable()
     {
         BestiariySetter.createBestiariyItem += CreateItem; 
+        
     }
     private void OnDisable()
     {

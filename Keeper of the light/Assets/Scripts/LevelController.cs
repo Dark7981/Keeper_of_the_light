@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,13 +20,29 @@ public class LevelController : MonoBehaviour
     //        Destroy(gameObject);
     //    }
     //}
+    
+
+    public void SoundButton()
+    {
+       
+        
+        Debug.Log("s");
+        _soundButton.Play();
+        
+        
+    }
+   
     public void CaveTimelineLocation()
     {
+      Invoke("CaveTimelineLocation",1f);
+      
         SceneManager.LoadScene(1);
         if (PlayerPrefs.HasKey("_lastScene"))
         {
             PlayerPrefs.DeleteKey("_lastScene");
+            
         }
+       
     }
     public void CaveLocation()
     {
@@ -40,30 +57,32 @@ public class LevelController : MonoBehaviour
 
     public void Continue()
     {
+       
         if (PlayerPrefs.HasKey("_lastScene"))
         {
             SceneManager.LoadScene(PlayerPrefs.GetInt("_lastScene"));
+            
         }
         
     }
     public void Respawn()
     {
+        
         var sceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1;
     }
     public void BackToMenu()
     {
+        
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
     public void Quit()
     {
+        Invoke("Quit", 1f);
         Application.Quit();
     }
 
-    public void SoundButton()
-    {
-        _soundButton.Play();
-    }
+    
 }

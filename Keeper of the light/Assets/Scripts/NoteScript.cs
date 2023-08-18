@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class NoteScript : MonoBehaviour
 {
+    [SerializeField] private AudioSource _noteSound;
     [SerializeField] private Image noteName; //�������, ����� ���� ������� �����
     [SerializeField] private GameObject button; //������ ��� ����� ������ ��� ��������
     [SerializeField] private TextMeshProUGUI exitButton;//����� ����� ������� ��� ������
@@ -39,6 +40,7 @@ public class NoteScript : MonoBehaviour
     }
     private void Start()
     {
+    
         GetTextPaneglif.Invoke(idPaneglif);
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController.noteScript = GetComponent<NoteScript>();
@@ -96,6 +98,8 @@ public class NoteScript : MonoBehaviour
     }
     public IEnumerator OpenNote()
     {
+        Invoke("OpenNote",0.15f);
+        _noteSound.Play();
         CloseButton();
         UnlockUI();
         noteName.enabled = true;

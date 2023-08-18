@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class InterfaceController : MonoBehaviour
 {
+    [SerializeField] private AudioSource _bestiariySound;
     [SerializeField] private GameObject _interface;
     [SerializeField] private GameObject _bestiariy;
     [SerializeField] private GameObject _note;
@@ -104,11 +105,13 @@ public class InterfaceController : MonoBehaviour
     {
         _numberOfItem = 0;
         InterfaceUpdate();
+        _bestiariySound.Play();
     }
     public void NoteButton()
     {
         _numberOfItem = 1;
         InterfaceUpdate();
+        _bestiariySound.Play();
     }
     public void ShowNote(string Text)
     {
