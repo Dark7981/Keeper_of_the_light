@@ -63,10 +63,16 @@ public class InterfaceController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == true)
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
             MenuScript(1, false);
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && menuFolder.activeSelf == false)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+           
             HideInterface();
             MenuScript(0, true);
         }
@@ -97,6 +103,8 @@ public class InterfaceController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             OpenInterface();
         }
         MenuUpdate();
@@ -128,25 +136,35 @@ public class InterfaceController : MonoBehaviour
     }
     public void OpenInterface()
     {
+       
         if (_interface.activeSelf == false && menuFolder.activeSelf == false)
         {
+          
+            
             _interface.SetActive(true);
             _openInterface.Invoke();
         }
         else
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             HideInterface();
         }
     }
     public void HideInterface()
     {
+       
         if (_interface.activeSelf == true)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             _closeInterface.Invoke();
             _interface.SetActive(false);
         }
         if (playerBehaviour.playerDead)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             RespawnButton.SetActive(true);
         }
         MenuScript(0, true);

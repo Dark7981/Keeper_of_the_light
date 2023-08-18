@@ -9,6 +9,8 @@ public class EndPanel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
             panel.SetActive(true);
         }

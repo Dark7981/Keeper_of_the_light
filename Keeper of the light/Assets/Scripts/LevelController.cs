@@ -87,6 +87,8 @@ public class LevelController : MonoBehaviour
         
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void Quit()
     {
