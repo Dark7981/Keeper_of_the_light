@@ -29,10 +29,9 @@ public class LevelController : MonoBehaviour
     {
        
         
-        Debug.Log("s");
-        Time.timeScale = 1;
+       
         _soundButton.PlayOneShot(_sound);
-        Time.timeScale = 0;
+        
         
         
         
