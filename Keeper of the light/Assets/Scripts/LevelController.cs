@@ -23,29 +23,19 @@ public class LevelController : MonoBehaviour
     //        Destroy(gameObject);
     //    }
     //}
-    
-
     public void SoundButton()
-    {
-       
-        
-       
+    { 
         _soundButton.PlayOneShot(_sound);
-        
-        
-        
-        
     }
    
     public void CaveTimelineLocation()
     {
-      Invoke("CaveTimelineLocation",1f);
-      
+        Invoke("CaveTimelineLocation",1f);
+        PlayerPrefs.SetInt("End", 0);
         SceneManager.LoadScene(1);
         if (PlayerPrefs.HasKey("_lastScene"))
         {
             PlayerPrefs.DeleteKey("_lastScene");
-            
         }
        
     }
@@ -53,6 +43,7 @@ public class LevelController : MonoBehaviour
     {
         SceneManager.LoadScene(2);
         PlayerPrefs.SetInt("_lastScene", 2);
+
     }
     public void ForestLocation()
     {
@@ -62,13 +53,11 @@ public class LevelController : MonoBehaviour
 
     public void Continue()
     {
-       
+        PlayerPrefs.SetInt("End", 0);
         if (PlayerPrefs.HasKey("_lastScene"))
         {
             SceneManager.LoadScene(PlayerPrefs.GetInt("_lastScene"));
-            
         }
-        
     }
 
     private IEnumerator SoundPlay()
@@ -78,7 +67,7 @@ public class LevelController : MonoBehaviour
     public void Respawn()
     {
         var sceneIndex = SceneManager.GetActiveScene().buildIndex;
-       StartCoroutine( SoundPlay());
+        StartCoroutine( SoundPlay());
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1;
     }
@@ -89,6 +78,7 @@ public class LevelController : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        PlayerPrefs.SetInt("End", 1);
     }
     public void Quit()
     {
