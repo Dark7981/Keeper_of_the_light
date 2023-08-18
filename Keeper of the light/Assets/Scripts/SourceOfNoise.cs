@@ -15,9 +15,16 @@ public class SourceOfNoise : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < listeners.Count; i++)  
+        for (int i = 0; i < listeners.Count; i++)
         {
-            listeners[i].GetComponent<RegularEnemy>()._HeardSth(sourcePos);
+            if (listeners[i].GetComponent<BossRegularEnemy>())
+            {
+                listeners[i].GetComponent<BossRegularEnemy>()._HeardSth(sourcePos);
+            }
+            else {listeners[i].GetComponent<RegularEnemy>()._HeardSth(sourcePos); } 
+
+
+
         }
     }
     

@@ -43,7 +43,10 @@ public class TrapTriger : MonoBehaviour
             }
             else if (col.CompareTag("Enemy"))
             {
-                col.GetComponent<RegularEnemy>().Dead(transform);
+                if (col.GetComponent<RegularEnemy>())
+                {
+                    col.GetComponent<RegularEnemy>().Dead(transform);
+                }
                 DisActiveTrapSprite();
                 _destroyBool = true;
             }

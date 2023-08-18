@@ -10,27 +10,40 @@ public class EnemySounds : MonoBehaviour
     [SerializeField] private List<AudioClip> agressiveStatusSounds;
 
     private RegularEnemy _regularEnemy;
+    private BossRegularEnemy _bossRegularEnemy;
     private AudioSource _audioSource;
 
     private void Start()
     {
-        _regularEnemy = GetComponent<RegularEnemy>();
+        if (GetComponent<RegularEnemy>())
+        {
+            _regularEnemy = GetComponent<RegularEnemy>();
+        }
+        else
+        {
+            _bossRegularEnemy = GetComponent<BossRegularEnemy>();
+        }
         _audioSource = GetComponent<AudioSource>();
 
         if ((passiveStatusSounds.Count != 0) && (agressiveStatusSounds.Count != 0))
         {
-            StartCoroutine(Sounds());
+            if (GetComponent<RegularEnemy>())
+            {
+                StartCoroutine(SoundsRegular());
+            }else
+            {
+                StartCoroutine(SoundBoss());
+            }
         }
     }
 
-    private IEnumerator Sounds()
+    private IEnumerator SoundsRegular()
     {
         yield return new WaitUntil(() => !_regularEnemy.IsSleeping);
 
         while (true)
         {
             AudioClip currentSound = null;
-
             if (_regularEnemy.Status == 1)
             {
                 PlaySound(passiveStatusSounds, out currentSound);
@@ -38,11 +51,30 @@ public class EnemySounds : MonoBehaviour
             else
             {
                 PlaySound(agressiveStatusSounds, out currentSound);
-            }
+                }
 
             yield return new WaitForSeconds(currentSound.length);
         }
     }
+    private IEnumerator SoundBoss()
+    {
+        yield return new WaitUntil(() => !_bossRegularEnemy.IsSleeping);
+
+        while (true)
+        {
+            AudioClip currentSound = null;
+            if (_bossRegularEnemy.Status == 1)
+            {
+                PlaySound(passiveStatusSounds, out currentSound);
+            }
+            else
+            {
+                PlaySound(agressiveStatusSounds, out currentSound);
+            }
+            yield return new WaitForSeconds(currentSound.length);
+        }
+    }
+
 
     private void PlaySound(List<AudioClip> sounds, out AudioClip clip)
     {
