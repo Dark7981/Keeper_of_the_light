@@ -6,16 +6,19 @@ using UnityEngine;
 
 public class SoundsDark : MonoBehaviour
 {
-   
+
     [SerializeField] private bool isPlay;
     [SerializeField] private List<AudioClip> clipList;
-   
+    [SerializeField] private AudioClip mainSound;
+    [SerializeField] private AudioClip mainAnotherSound;
 
 
   
     private float sound3d = -0.1f;
     private int numberOfSound;
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _mainSource;
+    [SerializeField] private AudioSource _mainSource2;
     private AudioHighPassFilter _highPass;
     private AudioLowPassFilter _lowPass;
 
@@ -26,6 +29,9 @@ public class SoundsDark : MonoBehaviour
         _lowPass= GetComponent<AudioLowPassFilter>();
         StartCoroutine(SoundCheck());
         StartCoroutine(SoundEnvironment());
+        StartCoroutine(StartMainSound());
+        StartCoroutine(StartAnotherMainSound());
+
     }
 
     private IEnumerator SoundCheck() 
@@ -59,5 +65,25 @@ public class SoundsDark : MonoBehaviour
                 sound3d = 0.1f;
             yield return new WaitForSeconds(1);
         }yield return null;    
+    }
+
+    private IEnumerator StartMainSound()
+    {
+        while (true)
+        {
+            _mainSource.PlayOneShot(mainSound);
+
+            yield return new WaitForSeconds(mainSound.length);
+        }
+    }
+
+    private IEnumerator StartAnotherMainSound()
+    {
+        while (true)
+        {
+            _mainSource2.PlayOneShot(mainAnotherSound);
+
+            yield return new WaitForSeconds(mainSound.length);
+        }
     }
 }

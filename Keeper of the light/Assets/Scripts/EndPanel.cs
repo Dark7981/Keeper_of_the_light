@@ -9,6 +9,7 @@ public class EndPanel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Time.timeScale = 0;
             panel.SetActive(true);
         }
     }
