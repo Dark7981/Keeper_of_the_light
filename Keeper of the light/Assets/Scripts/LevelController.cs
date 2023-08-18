@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
     public AudioSource _soundButton;
+
+    [SerializeField] private AudioClip _sound; 
     //public static LevelController Instance { get; private set; }
 
     //private void Awake()
@@ -27,7 +30,10 @@ public class LevelController : MonoBehaviour
        
         
         Debug.Log("s");
-        _soundButton.Play();
+        Time.timeScale = 1;
+        _soundButton.PlayOneShot(_sound);
+        Time.timeScale = 0;
+        
         
         
     }
@@ -65,10 +71,15 @@ public class LevelController : MonoBehaviour
         }
         
     }
+
+    private IEnumerator SoundPlay()
+    {
+        yield return new WaitForSeconds(_sound.length);
+    }
     public void Respawn()
     {
-        
         var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+       StartCoroutine( SoundPlay());
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1;
     }
