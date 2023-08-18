@@ -7,7 +7,7 @@ public class LevelController : MonoBehaviour
 {
     public AudioSource _soundButton;
 
-    [SerializeField] private AudioClip _sound; 
+    [SerializeField] private AudioClip _sound = null; 
     //public static LevelController Instance { get; private set; }
 
     //private void Awake()
