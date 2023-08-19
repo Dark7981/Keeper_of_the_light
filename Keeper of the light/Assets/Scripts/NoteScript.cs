@@ -17,6 +17,7 @@ public class NoteScript : MonoBehaviour
     [SerializeField] private List<Sprite> sprites;
     [SerializeField] private int idPaneglif;
     [SerializeField] private bool isNewPaneglif;
+    [SerializeField] private bool showInUIStart;
     public string noteText;
     private UpdateController _updateController;
     private Image buttonImage;
@@ -40,7 +41,15 @@ public class NoteScript : MonoBehaviour
     }
     private void Start()
     {
-    
+        if (PlayerPrefs.GetInt("Paneglif") >= idPaneglif)
+        {
+            if (showInUIStart)
+            {
+                UnlockPaneglif.Invoke(true, idPaneglif);
+            }
+        }
+        Debug.Log(PlayerPrefs.GetInt("Paneglif"));
+       
         GetTextPaneglif.Invoke(idPaneglif);
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController.noteScript = GetComponent<NoteScript>();
@@ -98,6 +107,7 @@ public class NoteScript : MonoBehaviour
     }
     public IEnumerator OpenNote()
     {
+        PlayerPrefs.SetInt("Paneglif", idPaneglif);
         Invoke("OpenNote",0.15f);
         _noteSound.Play();
         CloseButton();

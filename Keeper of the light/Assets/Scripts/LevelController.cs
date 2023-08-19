@@ -30,6 +30,7 @@ public class LevelController : MonoBehaviour
    
     public void CaveTimelineLocation()
     {
+        PlayerPrefs.DeleteKey("Paneglif");
         Invoke("CaveTimelineLocation",1f);
         PlayerPrefs.SetInt("End", 0);
         SceneManager.LoadScene(1);
