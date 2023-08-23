@@ -50,7 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 _spawnPosition;
     private bool inJump = false;
     private bool readyToSit = true;
-
+    public bool freezeMovement;
     public bool playerDead = false;
 
     public static Action menuOpened;
@@ -67,7 +67,6 @@ public class PlayerBehaviour : MonoBehaviour
             SpawnPoint();
             SpawnPlayer();
         }
-        //!PlayerPrefs.HasKey("x") && !PlayerPrefs.HasKey("y")
         else
         {
             _spawnPosition = _startSpawnPoint.position;
@@ -92,7 +91,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void ScriptUpdate()   
     {
-        Movement();
+        if (freezeMovement)
+        {
+            Movement();
+        }
         StartCoroutine(Siting());
         StartCoroutine(Jump());
     }
@@ -193,7 +195,10 @@ public class PlayerBehaviour : MonoBehaviour
     {
         while (true)
         {
-            MovementDetection();
+            if (freezeMovement)
+            {
+                MovementDetection();
+            }
             yield return new WaitForSeconds(0.3f);
         }
         
@@ -246,5 +251,9 @@ public class PlayerBehaviour : MonoBehaviour
     public void SpawnPlayer()
     {
         gameObject.transform.position = _spawnPosition;
+    }
+    public void FreezeMovement(bool freeze)
+    {
+        freezeMovement = freeze;
     }
 }

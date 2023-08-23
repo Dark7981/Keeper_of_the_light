@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 4792975543743158578}
   - component: {fileID: 4792975543743158579}
   - component: {fileID: -4407532485435818598}
+  - component: {fileID: 2879602268284354959}
   - component: {fileID: -1575567794611840914}
   m_Layer: 0
   m_Name: Trap
@@ -265,6 +266,8 @@ MonoBehaviour:
   _disactiveTrap: {fileID: 21300000, guid: b27366bab4c181045a2b3435cf2a9d07, type: 3}
   _destroyTrap: {fileID: 21300000, guid: c5af81bcec679ad4aba643ca7cac22bc, type: 3}
   trapButton: {fileID: 1291735802885166026, guid: a5c2960dc3b7abb42bd507c5c9015bf7, type: 3}
+  _subtitlesTrigger: {fileID: 0}
+  UseSubtitles: 0
 --- !u!82 &-4407532485435818598
 AudioSource:
   m_ObjectHideFlags: 0
@@ -361,6 +364,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2879602268284354959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4792975543743158576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87e443f33e153f44b57b729e2d8f2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textMesh: {fileID: 0}
+  _subtitlesText: []
 --- !u!82 &-1575567794611840914
 AudioSource:
   m_ObjectHideFlags: 0

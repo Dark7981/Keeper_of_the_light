@@ -18,6 +18,8 @@ public class TrapTriger : MonoBehaviour
     [SerializeField] private Sprite _destroyTrap;
     public GameObject trapButton;
 
+    public bool UseSubtitles;
+
     private TrapInventoryScript _trapInventoryScript;
     private SpriteRenderer _spritesRenderer;
 
@@ -90,6 +92,13 @@ public class TrapTriger : MonoBehaviour
             {
                 Destroy(gameObject, 0.1f);
                 _trapInventoryScript.TakeTrap(trapButton);
+                if (UseSubtitles)
+                {
+                    GetComponent<SubtitlesTrigger>().CustomInvoke();
+                    UseSubtitles = false;
+                } 
+
+                    
             }
             else if (Input.GetKeyDown(activateKey))
             {
