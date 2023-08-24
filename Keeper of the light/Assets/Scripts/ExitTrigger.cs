@@ -3,6 +3,7 @@ using UnityEngine;
 public class ExitTrigger : MonoBehaviour
 {
     [SerializeField] private LevelController controller;
+    public bool Instruction;
     public bool Forest;
     public bool CaveTimeline;
     public bool Cave;
@@ -13,6 +14,10 @@ public class ExitTrigger : MonoBehaviour
         {
             PlayerPrefs.DeleteKey("x");
             PlayerPrefs.DeleteKey("y");
+            if (Instruction)
+            {
+                controller.Instruction();
+            }
             if (Forest)
             {
                 controller.ForestLocation();

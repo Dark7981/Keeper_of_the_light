@@ -55,6 +55,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     public static Action menuOpened;
 
+    private void OnEnable()
+    {
+        SubtitlesController.FreezePlayer += FreezeMovement;
+    }
+    private void OnDisable()
+    {
+        SubtitlesController.FreezePlayer -= FreezeMovement;
+    }
+
     private void Start()
     {
         _volume = _audioSource.volume;
@@ -219,8 +228,10 @@ public class PlayerBehaviour : MonoBehaviour
     }
     
     public void ScriptFixedUpdate() 
-    {
-        _rigidBody.MovePosition(_rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);  
+    {   if (freezeMovement)
+        {
+            _rigidBody.MovePosition(_rigidBody.position + moveDirection * speed * Time.fixedDeltaTime);
+        }
     }
 
     public void Dead(Transform positionTrap, bool TeleportToKiller)

@@ -51,7 +51,10 @@ public class LevelController : MonoBehaviour
         SceneManager.LoadScene(3);
         PlayerPrefs.SetInt("_lastScene", 3);
     }
-
+    public void Instruction()
+    {
+        SceneManager.LoadScene(4);
+    }
     public void Continue()
     {
         PlayerPrefs.SetInt("End", 0);
