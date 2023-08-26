@@ -53,7 +53,7 @@ public class LevelController : MonoBehaviour
     }
     public void Instruction()
     {
-        SceneManager.LoadScene(4);
+         SceneManager.LoadScene(4);
     }
     public void Continue()
     {

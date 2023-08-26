@@ -18,7 +18,7 @@ public class ExitTrigger : MonoBehaviour
             {
                 controller.Instruction();
             }
-            if (Forest)
+            else if (Forest)
             {
                 controller.ForestLocation();
             }

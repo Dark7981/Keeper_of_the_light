@@ -50,7 +50,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 628981279
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 030858546509d3743bec08d29716a4c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139,7 +139,7 @@ MonoBehaviour:
   - {x: 0.18344688, y: 0.1499443, z: 0}
   m_ShapePathHash: 904673237
   m_Mesh: {fileID: 0}
-  m_InstanceId: -165020
+  m_InstanceId: 79232
   m_LocalBounds:
     m_Center: {x: 0.00007247925, y: -0.00020217896, z: 0}
     m_Extent: {x: 0.2501335, y: 0.18360901, z: 0}
@@ -455,6 +455,7 @@ MonoBehaviour:
   - {fileID: -1244404853, guid: a5851d91c100e4840ae6b3ad486a13a9, type: 3}
   idPaneglif: 1
   isNewPaneglif: 1
+  showInUIStart: 0
   noteText: 
   _shadowCaster2d: {fileID: 2922462332988506043}
 --- !u!50 &6494546157291126925

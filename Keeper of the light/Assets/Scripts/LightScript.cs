@@ -10,7 +10,7 @@ public class LightScript : MonoBehaviour
     [SerializeField] private float minItensity;
     [SerializeField] private float minRadius;
 
-    private new Light2D light;
+    private Light2D light;
     private float timeLeft;
 
     public float maxItensity;
