@@ -136,12 +136,11 @@ public class InterfaceController : MonoBehaviour
     }
     public void OpenInterface()
     {
-       
+
         if (_interface.activeSelf == false && menuFolder.activeSelf == false)
         {
-          
-            
             _interface.SetActive(true);
+            MenuScript(1,false);
             _openInterface.Invoke();
         }
         else
@@ -167,7 +166,7 @@ public class InterfaceController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             RespawnButton.SetActive(true);
         }
-        MenuScript(0, true);
+        MenuScript(1,false);
     }
     public void UnlockPaneglifUI(bool isNew, int id)
     {
