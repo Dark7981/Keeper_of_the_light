@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float soundRange;
     [SerializeField] private float sittingSoundRange;
     [SerializeField] private float jumpSoundRange;
+    public int doorKey;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip[] footstepSounds;
