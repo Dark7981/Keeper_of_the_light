@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [Header("Mechanics")]
+    [SerializeField] private bool sit = true;
+    [SerializeField] private bool jump = true;
+
     [Header("Keys")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode sitKey = KeyCode.C;
@@ -111,7 +114,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private IEnumerator Jump()
     {
-        if (Input.GetKeyDown(jumpKey) && !inJump && !isSiting)
+        if (Input.GetKeyDown(jumpKey) && !inJump && !isSiting && jump)
         {
             inJump = true;
             playerAnimator.SetBool("Jump", inJump);
@@ -129,7 +132,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private IEnumerator Siting() 
     {
-        if (Input.GetKeyDown(sitKey) && !isSiting && readyToSit) // Присів
+        if (Input.GetKeyDown(sitKey) && !isSiting && readyToSit && sit) // Присів
         {
             readyToSit = false;
             isSiting = true;
