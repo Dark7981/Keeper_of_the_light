@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -12,15 +10,20 @@ public class Door : MonoBehaviour
 
     private Animator _animator;
     private BoxCollider2D _collider;
+    private AudioSource _audioSource;
 
     public bool canPlayAnim;
+
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
 
     public static Action<int,int> doorText;
 
     private void Start()
     {
-       _animator = gameObject.GetComponent<Animator>();
-       _collider = gameObject.GetComponent<BoxCollider2D>();
+        _animator = gameObject.GetComponent<Animator>();
+        _collider = gameObject.GetComponent<BoxCollider2D>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,7 +51,9 @@ public class Door : MonoBehaviour
     {
         if (canPlayAnim)
         {
+            _audioSource.Stop();
             _animator.PlayInFixedTime("OpenDoor");
+            _audioSource.PlayOneShot(openSound);
             open = true;
         }
     }
@@ -56,7 +61,9 @@ public class Door : MonoBehaviour
     {
         if (canPlayAnim)
         {
+            _audioSource.Stop();
             _animator.PlayInFixedTime("CloseDoor");
+            _audioSource.PlayOneShot(closeSound);
             open = false;
         }
     }
