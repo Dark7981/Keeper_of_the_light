@@ -49,3 +49,6 @@ TagManager:
   - name: Note
     uniqueID: 628981279
     locked: 0
+  - name: MiniGameTrail
+    uniqueID: 1858186483
+    locked: 0

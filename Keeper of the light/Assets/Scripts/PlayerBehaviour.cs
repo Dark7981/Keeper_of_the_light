@@ -167,12 +167,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Movement() 
     {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
+        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if (moveDirection != Vector2.zero) 
+        if (moveDirection != Vector2.zero)
         {
             _audioSource.mute = false;
-            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg; 
+            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
 
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
 
@@ -181,8 +181,8 @@ public class PlayerBehaviour : MonoBehaviour
             _sourceOfNoise.MakeNoise(transform.position, range);
 
             playerAnimator.SetBool("isRunning", true);
-             StopCoroutine(MuteVolume());
-             _audioSource.volume = 0.15f;
+            StopCoroutine(MuteVolume());
+            _audioSource.volume = 0.15f;
 
         }
         else
@@ -191,8 +191,6 @@ public class PlayerBehaviour : MonoBehaviour
             playerAnimator.SetBool("isRunning", false);
             StartCoroutine(MuteVolume());
         }
-
-        
     }
 
     private IEnumerator MuteVolume()
@@ -270,5 +268,6 @@ public class PlayerBehaviour : MonoBehaviour
     public void FreezeMovement(bool freeze)
     {
         freezeMovement = freeze;
+        playerAnimator.SetBool("isRunning", false);
     }
 }
