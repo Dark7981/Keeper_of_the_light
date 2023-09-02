@@ -39,7 +39,7 @@ public class SubtitlesController : MonoBehaviour
             for (int i = 0; i < _subtitlesText.Count; i++)
             {
                 StartCoroutine(SubtitleShow(i));
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(5f);
             }
         }
         else
@@ -56,7 +56,7 @@ public class SubtitlesController : MonoBehaviour
     {
         _textMesh.enabled = true;
         _textMesh.text = _subtitlesText[subtitleNumber];
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         _textMesh.enabled = false;
         if (freezePerson)
         {
