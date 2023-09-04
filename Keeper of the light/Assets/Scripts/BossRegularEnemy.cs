@@ -13,7 +13,8 @@ public class BossRegularEnemy : MonoBehaviour
     [SerializeField] private float speed;
     [Range(1, 3)] private int status = 1;
     [SerializeField] private List<GameObject> _patrolPoints;
-    [SerializeField] private List<GameObject> _blocks;
+    [SerializeField] private List<GameObject> _keys;
+    [SerializeField] private GameObject _keyPrefab;
     [SerializeField] private GameObject deadEnemyPrefab;
     [SerializeField] private Animator _animator;
 
@@ -106,7 +107,7 @@ public class BossRegularEnemy : MonoBehaviour
 
     private IEnumerator Aggresive(Vector3 targetPos)                // Ворог заагрений
     {
-        StartCoroutine(Blockers());
+        StartCoroutine(KeysDropper());
         status = 3;
         _animator.SetBool("Agressive",true);// Ворог червоний поки заагрений
         agent.speed = speed * 1.5f;
@@ -150,14 +151,18 @@ public class BossRegularEnemy : MonoBehaviour
             }
         yield return null;
     }
-    private IEnumerator Blockers()
+    private IEnumerator KeysDropper()
     {
-        yield return new WaitForSeconds(30f);
-        _blocks[0].SetActive(false);
-        _blocks[1].SetActive(false);
-        yield return new WaitForSeconds(30f);
-        _blocks[2].SetActive(false);
-        StopCoroutine("Blockers");
+        if (_keys.Count != 0)
+        {
+            Debug.Log("CorutineStart");
+            yield return new WaitForSeconds(5f);
+            _keys[0].SetActive(false);
+            _keys.Remove(_keys[0]);
+            Instantiate(_keyPrefab, gameObject.transform.position, Quaternion.identity);
+            Debug.Log("Spawn");
+        }
+        StopCoroutine("KeysDropper");
     }
 
     public int Status
