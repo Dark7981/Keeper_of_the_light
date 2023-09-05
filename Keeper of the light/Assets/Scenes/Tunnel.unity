@@ -2420,6 +2420,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ce4e1a2f1dafa304eb863b8ccaeead51, type: 3}
   - {fileID: 8300000, guid: 0bdad5fe24307ce429630238456c76d3, type: 3}
   - {fileID: 8300000, guid: 987e90aa72f56454e8fb4f48c2b74a81, type: 3}
+  mainSound: {fileID: 0}
+  mainAnotherSound: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _mainSource: {fileID: 0}
+  _mainSource2: {fileID: 0}
 --- !u!170 &1597111882
 AudioDistortionFilter:
   m_ObjectHideFlags: 0
@@ -2966,6 +2971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5c6b6718287654d944e603cba8795c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sit: 1
+  jump: 1
   jumpKey: 32
   sitKey: 99
   moveSpeed: 4
@@ -2974,17 +2981,22 @@ MonoBehaviour:
   soundRange: 4
   sittingSoundRange: 2
   jumpSoundRange: 8
+  doorKey: 0
   footstepSounds:
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
   jumpSound: {fileID: 8300000, guid: 0c8a9799f76a8814dacce19853a5ab06, type: 3}
   sittingSound: {fileID: 0}
   _audioSource: {fileID: 0}
   _sourceOfNoise: {fileID: 1646324632}
+  _startSpawnPoint: {fileID: 0}
+  _useSpawnPoint: 0
   sittingSprite: {fileID: 21300000, guid: 76beef9fdae7b48468ddf07d0400a374, type: 3}
   jumpAudioSource: {fileID: 0}
   sitAudioSource: {fileID: 0}
   stepAudioSource: {fileID: 0}
   _ligth: {fileID: 0}
+  freezeMovement: 0
+  playerDead: 0
 --- !u!58 &1646324634
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3260,6 +3272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5c6b6718287654d944e603cba8795c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sit: 1
+  jump: 1
   jumpKey: 32
   sitKey: 99
   moveSpeed: 3.5
@@ -3268,6 +3282,7 @@ MonoBehaviour:
   soundRange: 3
   sittingSoundRange: 0.5
   jumpSoundRange: 10
+  doorKey: 0
   footstepSounds:
   - {fileID: 8300000, guid: 4e7d8a1282d8b144fa1bbb010469da4a, type: 3}
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
@@ -3275,11 +3290,15 @@ MonoBehaviour:
   sittingSound: {fileID: 8300000, guid: f07132fe108980d4788bab89ec438f18, type: 3}
   _audioSource: {fileID: 1597111885}
   _sourceOfNoise: {fileID: 732777263}
+  _startSpawnPoint: {fileID: 0}
+  _useSpawnPoint: 0
   sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   jumpAudioSource: {fileID: 1689972107}
   sitAudioSource: {fileID: 1736472700}
   stepAudioSource: {fileID: 23377874}
   _ligth: {fileID: 0}
+  freezeMovement: 0
+  playerDead: 0
 --- !u!114 &1675697260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4144,6 +4163,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1104329404}
     m_Modifications:
+    - target: {fileID: 5242852756463908401, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 257789c263da9ac41b62aba2c629b2ae, type: 3}
+    - target: {fileID: 5242852756463908401, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5242852756463908402, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
       propertyPath: m_Name
       value: ' EntranceTunnel'
@@ -4153,12 +4180,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.78
       objectReference: {fileID: 0}
     - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.16
+      value: 3.52
       objectReference: {fileID: 0}
     - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4191,6 +4230,10 @@ PrefabInstance:
     - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242852756463908403, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5242852756463908406, guid: 8fda9adb3beb40d418a17db83a56e3f4, type: 3}
       propertyPath: m_Enabled
