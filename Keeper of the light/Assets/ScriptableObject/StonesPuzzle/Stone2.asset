@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d35ab1761a09b74e859342c6d1d3db8, type: 3}
-  m_Name: Blood
+  m_Name: Stone2
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: a267fac7d560a38439c04dccc83ac257, type: 3}
+  icon: {fileID: 21300000, guid: 1fe5a9acad94a18459c6f3e3c981f004, type: 3}
   name: 
