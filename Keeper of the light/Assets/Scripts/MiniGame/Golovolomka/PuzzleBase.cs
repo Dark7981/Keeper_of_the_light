@@ -6,34 +6,51 @@ using UnityEngine;
 public class PuzzleBase : MonoBehaviour
 {
     [SerializeField] private List<PuzzleCell> _cells;
+    [SerializeField] private List<CellData> _cellsDataList;
     [SerializeField] private List<CellData> _correctSequence;
     [SerializeField] private List<CellData> _ñurrentSequence;
+
+    [SerializeField] private List<int> _puzzles;
+    private bool _isComplete = true;
 
 
     void Start()
     {
+        for (int i = 0; i < _cells.Count; i++)
+        {
+            _puzzles.Add(i);
+        }
         foreach (var cell in _cells) 
         {
-            cell.Init();
-            cell.cellActive += CheckCell;
+                int cellDataRandom = UnityEngine.Random.Range(0, _puzzles.Count);
+                Debug.Log($"{cellDataRandom} RandomCell");
+                var cellData = _cellsDataList[cellDataRandom];
+                _puzzles.RemoveAt(cellDataRandom);
+                cell.Init(cellData);
+                cell.cellActive += CheckCell;
         }
     }
 
-    private void CheckCell(CellData data)
+    private void CheckCell(CellData data, PuzzleCell cell)
     {
-        Debug.Log("CheckCell");
-        _ñurrentSequence.Add(data);
-        for (int i = 0; i< _ñurrentSequence.Count;i++)
+        if (_isComplete) 
         {
-            if (_ñurrentSequence[i] != _correctSequence[i])
+            Debug.Log("CheckCell");
+            _ñurrentSequence.Add(data);
+            for (int i = 0; i < _ñurrentSequence.Count; i++)
             {
-                PuzzleReset();
-                return;
-            }   
-        }
-        if (_ñurrentSequence.Count == _correctSequence.Count)
-        {
-            CompletePuzzle();
+                if (_ñurrentSequence[i] != _correctSequence[i])
+                {
+                    PuzzleReset();
+                    cell.ReactionChoise(false);
+                    return;
+                }
+            }
+            cell.ReactionChoise(true);
+            if (_ñurrentSequence.Count == _correctSequence.Count)
+            {
+                CompletePuzzle();
+            }
         }
     }
     private void PuzzleReset()
@@ -47,6 +64,7 @@ public class PuzzleBase : MonoBehaviour
     }
     private void CompletePuzzle()
     {
+        _isComplete = false;
         Debug.Log("Complete");
     }
 }
