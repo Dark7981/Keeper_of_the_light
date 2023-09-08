@@ -9,6 +9,7 @@ public class PuzzleBase : MonoBehaviour
     [SerializeField] private List<CellData> _cellsDataList;
     [SerializeField] private List<CellData> _correctSequence;
     [SerializeField] private List<CellData> _ñurrentSequence;
+    [SerializeField] private Door _exitDoor;
 
     [SerializeField] private List<int> _puzzles;
     private bool _isComplete = true;
@@ -65,6 +66,7 @@ public class PuzzleBase : MonoBehaviour
     private void CompletePuzzle()
     {
         _isComplete = false;
+        _exitDoor._locked = false;
         Debug.Log("Complete");
     }
 }
