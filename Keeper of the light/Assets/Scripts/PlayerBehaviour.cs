@@ -1,6 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
+using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -40,6 +45,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioSource sitAudioSource;
     [SerializeField] private AudioSource stepAudioSource;
     [SerializeField] private LightScript _ligth;
+    [SerializeField] private List<CellData> Runes;
 
     private int numberOfFootstep;
     private float range;
@@ -58,6 +64,8 @@ public class PlayerBehaviour : MonoBehaviour
     public bool playerDead = false;
 
     public static Action menuOpened;
+    public static Action<CellData> newRune;
+    public static Action sceneSwitch;
 
     private void OnEnable()
     {
@@ -70,6 +78,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
+        sceneSwitch.Invoke();
         _volume = _audioSource.volume;
         _volumePart = 0.001f;
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
@@ -269,5 +278,40 @@ public class PlayerBehaviour : MonoBehaviour
     {
         freezeMovement = freeze;
         playerAnimator.SetBool("isRunning", false);
+    }
+    public void SetRune(CellData Rune)
+    {
+        newRune.Invoke(Rune);
+    }
+    public List<CellData> GetRune()
+    {
+        return Runes;
+    }
+    public void InitRune(CellData Rune)
+    {
+        bool isNewRune = true;
+        foreach (var _runes in Runes)
+        {
+            if (_runes == Rune)
+            {
+                isNewRune = false;
+                return;
+            }
+        }
+        if (isNewRune)
+            Runes.Add(Rune);
+        else
+            Debug.Log("Isn`t new rune");
+    }
+    public bool CompareRune(CellData comparativeRune)
+    {
+        foreach (var rune in Runes)
+        {
+            if (rune == comparativeRune)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

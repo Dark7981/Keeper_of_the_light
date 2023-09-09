@@ -6,11 +6,13 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField] private GameObject button;
+    public GameObject _player;
     public bool _buttonActive;
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            _player = collision.gameObject;
             _buttonActive = true;
         }
     }
@@ -28,7 +30,10 @@ public class Interactable : MonoBehaviour
         {
             SwitchButtonVisible(true);
             if (Input.GetKeyDown(KeyCode.E))
+            {
                 Interact();
+            }
+               
         } 
     }
     private void Update()

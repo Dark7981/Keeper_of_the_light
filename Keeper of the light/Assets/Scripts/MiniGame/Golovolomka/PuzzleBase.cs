@@ -21,20 +21,20 @@ public class PuzzleBase : MonoBehaviour
         {
             _puzzles.Add(i);
         }
-        foreach (var cell in _cells) 
+        foreach (var cell in _cells)
         {
-                int cellDataRandom = UnityEngine.Random.Range(0, _puzzles.Count);
-                Debug.Log($"{cellDataRandom} RandomCell");
-                var cellData = _cellsDataList[cellDataRandom];
+            int cellDataRandom = UnityEngine.Random.Range(0, _puzzles.Count);
+            Debug.Log($"{cellDataRandom} RandomCell");
+            var cellData = _cellsDataList[_puzzles[cellDataRandom]];
                 _puzzles.RemoveAt(cellDataRandom);
                 cell.Init(cellData);
                 cell.cellActive += CheckCell;
         }
     }
 
-    private void CheckCell(CellData data, PuzzleCell cell)
+    private void CheckCell(CellData data, PuzzleCell cell, PlayerBehaviour _playerBehaviour)
     {
-        if (_isComplete) 
+        if (_isComplete && _playerBehaviour.CompareRune(data)) 
         {
             Debug.Log("CheckCell");
             _ñurrentSequence.Add(data);

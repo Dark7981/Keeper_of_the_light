@@ -10,7 +10,7 @@ public class PuzzleCell : Interactable
 
     private Animator _animator;
 
-    public Action<CellData,PuzzleCell> cellActive;
+    public Action<CellData,PuzzleCell,PlayerBehaviour> cellActive;
     
     public void Init(CellData _cellDataBase)
     {
@@ -21,7 +21,7 @@ public class PuzzleCell : Interactable
     public override void Interact()
     {
         Debug.Log("Interact");
-        cellActive?.Invoke(_cellData,gameObject.GetComponent<PuzzleCell>());
+        cellActive?.Invoke(_cellData,gameObject.GetComponent<PuzzleCell>(),_player.GetComponent<PlayerBehaviour>());
     }
     public void SetActive(bool state)
     {
