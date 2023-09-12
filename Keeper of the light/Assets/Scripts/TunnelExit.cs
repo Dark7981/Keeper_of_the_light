@@ -11,7 +11,7 @@ public class TunnelExit : MonoBehaviour
     private bool inTriger = false;
     private KeyCode _keyCode = KeyCode.E;
     [SerializeField] private Animator blackScreen;
-    [SerializeField] private GameObject tunnel;
+ 
 
     private void OnTriggerEnter2D(Collider2D other)
     {

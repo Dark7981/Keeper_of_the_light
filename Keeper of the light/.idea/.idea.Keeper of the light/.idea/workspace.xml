@@ -8,22 +8,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/3b/9fded0e0/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/7c/b4589e24/CursorLockMode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LockedCursor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundsDark.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (5)/Assets/scripts/applespawnew_tree1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/Controler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/RayPlayer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/colisionbomb.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/playercontroler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/secrettankdestanation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/spawnmins.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/spawnpoint.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/trigershot.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/upgrade.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../unity/projecct/New Unity Project (8)/Assets/scripts/wawe.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -51,7 +38,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2021.3.25f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\unity\Unity 2021.3.25f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;D:\cache\Keeper_of_the_light\Keeper of the light&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\cache\Keeper_of_the_light\Keeper of the light" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -59,7 +46,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2021.3.25f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\unity\Unity 2021.3.25f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\cache\Keeper_of_the_light\Keeper of the light&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\cache\Keeper_of_the_light\Keeper of the light" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -115,6 +102,7 @@
       <workItem from="1692216790400" duration="4209000" />
       <workItem from="1692302730113" duration="938000" />
       <workItem from="1692362121337" duration="14837000" />
+      <workItem from="1694286718025" duration="1535000" />
     </task>
     <servers />
   </component>

@@ -13,7 +13,7 @@ public class TunnelEntrance : MonoBehaviour
     public bool inTriger = false;
     private KeyCode _keyCode = KeyCode.E;
     [SerializeField] private Animator blackScreen;
-    [SerializeField] private GameObject tunnel;
+   
 
     private void OnTriggerEnter2D(Collider2D other)
     {
