@@ -11,6 +11,7 @@ public class TunnelExit : MonoBehaviour
     private bool inTriger = false;
     private KeyCode _keyCode = KeyCode.E;
     [SerializeField] private Animator blackScreen;
+    [SerializeField] private GameObject _press;
  
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +20,7 @@ public class TunnelExit : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-          
+            _press.SetActive(true);
             inTriger = true;
             Debug.Log("w");
         }
@@ -30,6 +31,7 @@ public class TunnelExit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+           
             inTriger = false;
         }    
     }
@@ -52,6 +54,7 @@ public class TunnelExit : MonoBehaviour
         
         if (Input.GetKeyDown(_keyCode) && inTriger)
         {
+            _press.SetActive(false);
             StartCoroutine(ChangePosition());
         }
     }
