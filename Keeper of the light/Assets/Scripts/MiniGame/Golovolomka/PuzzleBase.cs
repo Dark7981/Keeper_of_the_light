@@ -10,7 +10,7 @@ public class PuzzleBase : MonoBehaviour
     [SerializeField] private List<CellData> _correctSequence;
     [SerializeField] private List<CellData> _ñurrentSequence;
     [SerializeField] private Door _exitDoor;
-
+    [SerializeField] private bool needRune;
     [SerializeField] private List<int> _puzzles;
     private bool _isComplete = true;
 
@@ -34,7 +34,7 @@ public class PuzzleBase : MonoBehaviour
 
     private void CheckCell(CellData data, PuzzleCell cell, PlayerBehaviour _playerBehaviour)
     {
-        if (_isComplete && _playerBehaviour.CompareRune(data)) 
+        if (_isComplete && needRune == true ? _playerBehaviour.CompareRune(data) : _isComplete) 
         {
             Debug.Log("CheckCell");
             _ñurrentSequence.Add(data);
