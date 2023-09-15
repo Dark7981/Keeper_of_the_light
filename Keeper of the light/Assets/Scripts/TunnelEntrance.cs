@@ -26,7 +26,6 @@ public class TunnelEntrance : MonoBehaviour
           _press.SetActive(true);
             inTriger = true;
             Debug.Log("d");
-            
         }
         
     }
@@ -35,7 +34,7 @@ public class TunnelEntrance : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-           
+            _press.SetActive(true);
             inTriger = false;
         }    
     }

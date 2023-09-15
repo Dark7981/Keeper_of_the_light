@@ -35,11 +35,10 @@ public class RuneManager : MonoBehaviour
     // Метод инициализации менеджера
     private void InitializeManager()
     {
-        foreach (var rune in _playerRunes)
-        {
-            _player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
-            _player.InitRune(rune);
-        }
+            foreach (var rune in _playerRunes)
+            {
+                InitNewRune(rune);
+            }
     }
     private void InitNewRune(CellData rune)
     {

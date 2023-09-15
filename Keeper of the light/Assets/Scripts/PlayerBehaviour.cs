@@ -289,19 +289,22 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void InitRune(CellData Rune)
     {
-        bool isNewRune = true;
-        foreach (var _runes in Runes)
+        if(Rune != null)
         {
-            if (_runes == Rune)
+            bool isNewRune = true;
+            foreach (var _runes in Runes)
             {
-                isNewRune = false;
-                return;
+                if (_runes == Rune)
+                {
+                    isNewRune = false;
+                    return;
+                }
             }
+            if (isNewRune)
+                Runes.Add(Rune);
+            else
+                Debug.Log("Isn`t new rune");
         }
-        if (isNewRune)
-            Runes.Add(Rune);
-        else
-            Debug.Log("Isn`t new rune");
     }
     public bool CompareRune(CellData comparativeRune)
     {
