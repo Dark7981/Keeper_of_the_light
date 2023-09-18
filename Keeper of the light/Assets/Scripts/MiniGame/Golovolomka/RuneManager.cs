@@ -14,13 +14,13 @@ public class RuneManager : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
         PlayerBehaviour.newRune += SetRuneList;
-        PlayerBehaviour.sceneSwitch += InitializeManager;
+        _player.GetComponent<PlayerBehaviour>().sceneSwitch += InitializeManager;
         // “еперь, провер€ем существование экземпл€ра
-        if (instance == null)
-        { // Ёкземпл€р менеджера был найден
-            instance = this; // «адаем ссылку на экземпл€р объекта
-        }
-        else if (instance == this)
+        //if (instance == null)
+        //{ // Ёкземпл€р менеджера был найден
+        //    instance = this; // «адаем ссылку на экземпл€р объекта
+        //}
+        if (instance == this)
         { // Ёкземпл€р объекта уже существует на сцене
             Destroy(gameObject); // ”дал€ем объект
         }

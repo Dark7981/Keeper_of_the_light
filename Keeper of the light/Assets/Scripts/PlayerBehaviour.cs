@@ -65,7 +65,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public static Action menuOpened;
     public static Action<CellData> newRune;
-    public static Action sceneSwitch;
+    public Action sceneSwitch;
 
     private void OnEnable()
     {

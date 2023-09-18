@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Instruction.unity
     guid: 0d6ac744710fa6748b9db5986e89ae90
+  - enabled: 1
+    path: Assets/Scenes/First Scene.unity
+    guid: 9904d95f68c6a7e4bb0246777da962ec
+  - enabled: 1
+    path: Assets/Scenes/GolovolomkaScene.unity
+    guid: 7e0bc7c8c2e9f7c4fb63650eec53a205
   m_configObjects: {}

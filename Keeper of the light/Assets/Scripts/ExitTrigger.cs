@@ -7,6 +7,7 @@ public class ExitTrigger : MonoBehaviour
     public bool Forest;
     public bool CaveTimeline;
     public bool Cave;
+    public bool Lobby;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,6 +30,10 @@ public class ExitTrigger : MonoBehaviour
             else if (Cave)
             {
                 controller.CaveLocation();
+            }
+            else if (Lobby)
+            {
+                controller.LobbyLocation();
             }
             else
             {

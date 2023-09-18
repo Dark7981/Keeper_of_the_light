@@ -55,6 +55,10 @@ public class LevelController : MonoBehaviour
     {
          SceneManager.LoadScene(4);
     }
+    public void LobbyLocation()
+    {
+        SceneManager.LoadScene(6);
+    }
     public void Continue()
     {
         PlayerPrefs.SetInt("End", 0);
