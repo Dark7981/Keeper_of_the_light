@@ -1102,7 +1102,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2366838260944002046}
   - component: {fileID: 3189895519035653064}
-  - component: {fileID: 2290087195001559001}
   - component: {fileID: 4914050714126618603}
   - component: {fileID: 6235860140152954828}
   m_Layer: 0
@@ -1161,22 +1160,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2290087195001559001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2366838260944002047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b4951b432c06304d982c15a5fab009f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  descriptrion: Strashne Chudovisko
-  _name: Bloha
-  sprite: {fileID: 21300000, guid: 7551607d568264546beb8e23158dd6d9, type: 3}
-  takeSprite: 0
 --- !u!58 &4914050714126618603
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1482,6 +1465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6163400f6a070834991b4fa8c1ccea70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsBoss: 0
 --- !u!70 &7649777226253791181
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

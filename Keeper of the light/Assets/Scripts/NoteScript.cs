@@ -15,8 +15,6 @@ public class NoteScript : MonoBehaviour
     [SerializeField] private KeyCode buttonLetter;
     [SerializeField] private TextMeshProUGUI noteTextMesh;
     [SerializeField] private List<Sprite> sprites;
-    [SerializeField] private int idPaneglif;
-    [SerializeField] private bool isNewPaneglif;
     [SerializeField] private bool showInUIStart;
     public string noteText;
     private UpdateController _updateController;
@@ -24,33 +22,22 @@ public class NoteScript : MonoBehaviour
     private TextMeshProUGUI buttonText;
     public ShadowCaster2D _shadowCaster2d;
     private bool isInterfaceOpen = true;
-    public static Action<bool, int> UnlockPaneglif;
-    public static Action<int> GetTextPaneglif;
+
+    public Action<string> throwPaneglif;
 
     private void OnEnable()
     {
-        InterfaceController.NoteText += GetTextFromNote;
         InterfaceController._openInterface += CloseAllForInterface;
         InterfaceController._closeInterface += OpenAllForInterface;
     }
     private void OnDisable()
     {
-        InterfaceController.NoteText -= GetTextFromNote;
         InterfaceController._openInterface -= CloseAllForInterface;
         InterfaceController._closeInterface -= OpenAllForInterface;
     }
     private void Start()
     {
-        if (PlayerPrefs.GetInt("Paneglif") >= idPaneglif)
-        {
-            if (showInUIStart)
-            {
-                UnlockPaneglif.Invoke(true, idPaneglif);
-            }
-        }
         Debug.Log(PlayerPrefs.GetInt("Paneglif"));
-       
-        GetTextPaneglif.Invoke(idPaneglif);
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
         updateController.noteScript = GetComponent<NoteScript>();
         _updateController = GameObject.Find("UpdateController").GetComponent<UpdateController>();
@@ -107,17 +94,14 @@ public class NoteScript : MonoBehaviour
     }
     public IEnumerator OpenNote()
     {
-        PlayerPrefs.SetInt("Paneglif", idPaneglif);
         Invoke("OpenNote",0.15f);
         _noteSound.Play();
         CloseButton();
-        UnlockUI();
         noteName.enabled = true;
         noteTextMesh.text = noteText;
         noteTextMesh.enabled = true;
         exitButton.enabled = true;
-        UnlockPaneglif(isNewPaneglif, idPaneglif);
-        isNewPaneglif = false;
+        throwPaneglif?.Invoke(noteText);
         yield return new WaitForSeconds(0.1f);
         StopCoroutine(OpenNote());
     }
@@ -143,20 +127,5 @@ public class NoteScript : MonoBehaviour
     private void OpenAllForInterface()
     {
         isInterfaceOpen = true;
-    }
-    public void UnlockUI()
-    {
-        if (isNewPaneglif)
-        {
-            UnlockPaneglif.Invoke(isNewPaneglif, idPaneglif);
-            isNewPaneglif = false;
-        }  
-    }
-    public void GetTextFromNote(string Text, int id)
-    {
-        if (id == idPaneglif)
-        {
-            noteText = Text;
-        }
     }
 }

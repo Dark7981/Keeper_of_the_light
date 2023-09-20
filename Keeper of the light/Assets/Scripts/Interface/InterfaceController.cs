@@ -6,15 +6,16 @@ using System.Collections.Generic;
 
 public class InterfaceController : MonoBehaviour
 {
-    [SerializeField] private AudioSource _bestiariySound;
+    [SerializeField] private AudioSource _noteSound;
     [SerializeField] private GameObject _interface;
-    [SerializeField] private GameObject _bestiariy;
     [SerializeField] private GameObject _note;
     [SerializeField] private Image _noteImageUI;
     [SerializeField] private TextMeshProUGUI _noteText;
-    [SerializeField] private List<GameObject> Paneglifs;
     [SerializeField] private GameObject menuFolder;
-    [SerializeField] private GameObject RespawnButton ;
+    [SerializeField] private GameObject RespawnButton;
+    [SerializeField] private NoteManager _noteManager;
+    [SerializeField] private NoteUISpawner _noteUISpawner;
+    [SerializeField] private List<string> _notesList;
     private PlayerBehaviour playerBehaviour;
     private int numberOfItem;
     public int _numberOfItem
@@ -36,28 +37,29 @@ public class InterfaceController : MonoBehaviour
     public static Action<string, int> NoteText;
     public static Action _openInterface;
     public static Action _closeInterface;
+    [SerializeField] private List<NoteScript> _paneglifs;
 
     private void OnEnable()
     {
         InterfaceItemScript.NotePressed += ShowNote;
-        NoteScript.UnlockPaneglif += UnlockPaneglifUI;
-        NoteScript.GetTextPaneglif += TextPaneglif;
         PlayerBehaviour.menuOpened += HideInterface;
     }
     private void OnDisable()
     {
         InterfaceItemScript.NotePressed -= ShowNote;
-        NoteScript.UnlockPaneglif -= UnlockPaneglifUI;
-        NoteScript.GetTextPaneglif -= TextPaneglif;
         PlayerBehaviour.menuOpened -= HideInterface;
     }
     private void Start()
     {
+        foreach (var _panegfifsObject in _paneglifs) { _panegfifsObject.throwPaneglif += GetPaneglifSubscribe; }
         var player = GameObject.Find("Player");
         playerBehaviour = player.GetComponent<PlayerBehaviour>();
         Time.timeScale = 1;
         _numberOfItem = 0;
-        InterfaceUpdate();
+    }
+    private void GetPaneglifSubscribe(string text)
+    {
+        _noteUISpawner.SpawnNotesUI(text,true);
     }
     private void MenuUpdate()
     {
@@ -82,19 +84,6 @@ public class InterfaceController : MonoBehaviour
         Time.timeScale = timeScale;
         menuFolder.SetActive(menuActive);
     }
-    public void InterfaceUpdate()
-    {
-        if (_numberOfItem == 0)
-        {
-            _bestiariy.SetActive(true);
-            _note.SetActive(false);
-        }
-        else
-        {
-            _bestiariy.SetActive(false);
-            _note.SetActive(true);
-        }
-    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && _noteImageUI.enabled && _interface.activeSelf)
@@ -109,17 +98,10 @@ public class InterfaceController : MonoBehaviour
         }
         MenuUpdate();
     }
-    public void BestiariyButton()
-    {
-        _numberOfItem = 0;
-        InterfaceUpdate();
-        _bestiariySound.Play();
-    }
     public void NoteButton()
     {
         _numberOfItem = 1;
-        InterfaceUpdate();
-        _bestiariySound.Play();
+        _noteSound.Play();
     }
     public void ShowNote(string Text)
     {
@@ -141,7 +123,7 @@ public class InterfaceController : MonoBehaviour
         {
             _interface.SetActive(true);
             MenuScript(1,false);
-            _openInterface.Invoke();
+            //_openInterface.Invoke();
         }
         else
         {
@@ -157,7 +139,7 @@ public class InterfaceController : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            _closeInterface.Invoke();
+            //_closeInterface.Invoke();
             _interface.SetActive(false);
         }
         if (playerBehaviour.playerDead)
@@ -168,17 +150,14 @@ public class InterfaceController : MonoBehaviour
         }
         MenuScript(1,false);
     }
-    public void UnlockPaneglifUI(bool isNew, int id)
+    public void InitUINotes(List<string> _savedNotesList,GameObject Manager)
     {
-        if (isNew)
-        {
-            Paneglifs[id].SetActive(true);
-        }
+        _noteManager = Manager.GetComponent<NoteManager>();
+        _notesList = _savedNotesList;
+        foreach (var note in _notesList) { _noteUISpawner.SpawnNotesUI(note,false); }
     }
-    public void TextPaneglif(int id)
+    public void SetNote(string note)
     {
-        var paneglifScript = Paneglifs[id].GetComponent<InterfaceItemScript>();
-        paneglifScript.idPaneglif = id;
-        NoteText.Invoke(paneglifScript._textNote, id);
+        _noteManager.SetInNoteList(note);
     }
 }

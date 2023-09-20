@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public int _doorLocks;
+    public int runes;
     public bool _locked;
     public bool open;
 
@@ -18,6 +19,7 @@ public class Door : MonoBehaviour
     [SerializeField] private AudioClip closeSound;
 
     public static Action<int,int> doorText;
+    public static Action<int, int> runeText;
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class Door : MonoBehaviour
     }
     public void Open(PlayerBehaviour _player)
     {
-        if (_player.doorKey >= _doorLocks && _locked)
+        if (_player.doorKey >= _doorLocks && _player.runeKey >= runes && _locked)
         {
             _player.doorKey -= _doorLocks;
             PlayerPrefs.SetInt("Key", _player.doorKey);
@@ -45,6 +47,7 @@ public class Door : MonoBehaviour
         }else
         {
             doorText.Invoke(_player.doorKey,_doorLocks);
+            runeText.Invoke(_player.runeKey,runes);
         }
     }
     public void OpenDoor()

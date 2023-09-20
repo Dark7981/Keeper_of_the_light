@@ -7,7 +7,6 @@ public class InterfaceItemScript : MonoBehaviour
     private Button _buttonComponent;
     public static Action<string> NotePressed;
     public string _textNote;
-    public int idPaneglif;
     private void OnEnable()
     {
         InterfaceController.NoteBlock += NoteUnBlock;

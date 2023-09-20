@@ -25,6 +25,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float sittingSoundRange;
     [SerializeField] private float jumpSoundRange;
     public int doorKey;
+    public int runeKey;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip[] footstepSounds;
@@ -65,7 +66,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public static Action menuOpened;
     public static Action<CellData> newRune;
-    public Action sceneSwitch;
+    public static Action sceneSwitch;
 
     private void OnEnable()
     {
@@ -78,7 +79,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
-        sceneSwitch.Invoke();
+        if (GameObject.Find("NoteManager"))
+            GameObject.Find("NoteManager").GetComponent<NoteManager>().Init();
+        sceneSwitch?.Invoke();
         _volume = _audioSource.volume;
         _volumePart = 0.001f;
         UpdateController updateController = GameObject.FindGameObjectWithTag("UpdateController").GetComponent<UpdateController>();
@@ -282,6 +285,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void SetRune(CellData Rune)
     {
         newRune.Invoke(Rune);
+        runeKey+=1;
     }
     public List<CellData> GetRune()
     {
