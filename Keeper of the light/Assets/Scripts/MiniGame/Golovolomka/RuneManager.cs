@@ -7,28 +7,28 @@ using UnityEngine;
 public class RuneManager : MonoBehaviour
 {
     [SerializeField] private List<CellData> _playerRunes;
-    [SerializeField] private PlayerBehaviour _player;
+    public PlayerBehaviour _player;
     public static RuneManager instance = null; // Ёкземпл€р объекта
-
-    void Start()
+    public RuneManager _runeManager;
+    private void Awake()
     {
-        _player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
-        PlayerBehaviour.newRune += SetRuneList;
-        PlayerBehaviour.sceneSwitch += InitializeManager;
-        //“еперь, провер€ем существование экземпл€ра
         if (instance == null)
         { // Ёкземпл€р менеджера был найден
             instance = this; // «адаем ссылку на экземпл€р объекта
         }
-        else if (instance == this)
+        else if (instance != this)
         { // Ёкземпл€р объекта уже существует на сцене
             Destroy(gameObject); // ”дал€ем объект
         }
-
-        // “еперь нам нужно указать, чтобы объект не уничтожалс€
-        // при переходе на другую сцену игры
         DontDestroyOnLoad(gameObject);
-
+        instance._player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
+        PlayerBehaviour.newRune += SetRuneList;
+        PlayerBehaviour.sceneSwitch += InitializeManager;
+        _runeManager = instance;
+    }
+    void Start()
+    {
+        
         // » запускаем собственно инициализатор
     }
 
