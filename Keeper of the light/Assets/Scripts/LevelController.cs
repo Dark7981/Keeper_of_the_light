@@ -59,6 +59,18 @@ public class LevelController : MonoBehaviour
     {
         SceneManager.LoadScene(6);
     }
+    public void FirstLocation()
+    {
+        SceneManager.LoadScene(5);
+    }
+    public void SecondLocation()
+    {
+        SceneManager.LoadScene(7);
+    }
+    public void ThirdLocation()
+    {
+        SceneManager.LoadScene(8);
+    }
     public void Continue()
     {
         PlayerPrefs.SetInt("End", 0);
