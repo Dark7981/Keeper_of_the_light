@@ -10,6 +10,8 @@ public class RuneManager : MonoBehaviour
     public PlayerBehaviour _player;
     public static RuneManager instance = null; // Экземпляр объекта
     public RuneManager _runeManager;
+
+    public static Action<CellData> _runeUI;
     private void Awake()
     {
         if (instance == null)
@@ -26,23 +28,18 @@ public class RuneManager : MonoBehaviour
         PlayerBehaviour.sceneSwitch += InitializeManager;
         _runeManager = instance;
     }
-    void Start()
-    {
-        
-        // И запускаем собственно инициализатор
-    }
-
     // Метод инициализации менеджера
     private void InitializeManager()
     {
-            foreach (var rune in _playerRunes)
-            {
-                InitNewRune(rune);
-            }
+        foreach (var rune in _playerRunes)
+        {
+            InitNewRune(rune);
+        }
     }
     private void InitNewRune(CellData rune)
     {
-        _player.InitRune(rune);
+        instance._player.InitRune(rune);
+        _runeUI?.Invoke(rune);
     }
     private void SetRuneList(CellData rune)
     {

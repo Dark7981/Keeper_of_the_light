@@ -7,7 +7,8 @@ public class LevelController : MonoBehaviour
 {
     public AudioSource _soundButton;
 
-    [SerializeField] private AudioClip _sound = null; 
+    [SerializeField] private AudioClip _sound = null;
+    public RuneUIInit _runeUI;
     //public static LevelController Instance { get; private set; }
 
     //private void Awake()
@@ -90,6 +91,7 @@ public class LevelController : MonoBehaviour
         StartCoroutine( SoundPlay());
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1;
+        _runeUI.Describe();
     }
     public void BackToMenu()
     {
