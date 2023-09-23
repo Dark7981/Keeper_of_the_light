@@ -21,7 +21,7 @@ public class RuneManager : MonoBehaviour
             Destroy(gameObject); // ׃האכÿול מבתוךע
         }
         DontDestroyOnLoad(gameObject);
-        instance._player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
+        _player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
         PlayerBehaviour.newRune += SetRuneList;
         PlayerBehaviour.sceneSwitch += InitializeManager;
         _runeManager = instance;
