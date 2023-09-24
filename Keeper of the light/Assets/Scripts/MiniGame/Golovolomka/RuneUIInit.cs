@@ -7,14 +7,19 @@ public class RuneUIInit : MonoBehaviour
 {
     [SerializeField] private GameObject runeUIPrefab;
     [SerializeField] private List<CellData> runes;
+    [SerializeField] private RuneManager runeManager;
     private void Start()
     {
-        StartCoroutine("Subscribe");
+        runeManager = GameObject.FindWithTag("RuneManager").GetComponent<RuneManager>();
+        runeManager._runeUI += SpawnRune;
+        foreach (var _rune in runeManager.GetRunes())
+        {
+            SpawnRune(_rune);
+        }
     }
     public IEnumerator Subscribe()
     {
         yield return new WaitForSeconds(0.5f);
-        RuneManager._runeUI += SpawnRune;
         StopCoroutine("Subscribe");
     }
     public void SpawnRune(CellData runeData)
@@ -29,7 +34,7 @@ public class RuneUIInit : MonoBehaviour
     }
     public void Describe()
     {
-        RuneManager._runeUI -= SpawnRune;
+        runeManager._runeUI -= SpawnRune;;
     }
     //[SerializeField] private List<CellData> spawnedUIRune;
 

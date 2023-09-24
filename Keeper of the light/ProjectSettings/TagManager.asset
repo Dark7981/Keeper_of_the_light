@@ -9,6 +9,8 @@ TagManager:
   - UpdateController
   - NoteLight
   - EndPanel
+  - RuneUI
+  - RuneManager
   layers:
   - Default
   - TransparentFX

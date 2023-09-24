@@ -11,7 +11,7 @@ public class RuneManager : MonoBehaviour
     public static RuneManager instance = null; // Экземпляр объекта
     public RuneManager _runeManager;
 
-    public static Action<CellData> _runeUI;
+    public Action<CellData> _runeUI;
     private void Awake()
     {
         if (instance == null)
@@ -62,5 +62,9 @@ public class RuneManager : MonoBehaviour
         }
         else
             InitializeManager();
+    }
+    public List<CellData> GetRunes()
+    {
+        return _playerRunes;
     }
 }
