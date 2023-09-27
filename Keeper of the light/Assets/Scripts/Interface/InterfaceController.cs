@@ -59,7 +59,15 @@ public class InterfaceController : MonoBehaviour
     }
     private void GetPaneglifSubscribe(string text)
     {
-        _noteUISpawner.SpawnNotesUI(text,true);
+        foreach (var note in _notesList)
+        {   
+            if (note == text)
+            {
+                return;
+            }
+        }
+        _noteUISpawner.SpawnNotesUI(text, true);
+
     }
     private void MenuUpdate()
     {
@@ -77,6 +85,8 @@ public class InterfaceController : MonoBehaviour
            
             HideInterface();
             MenuScript(0, true);
+            if (_noteImageUI.enabled == true)
+                HideNote();
         }
     }
     public void MenuScript(int timeScale, bool menuActive)
@@ -114,13 +124,15 @@ public class InterfaceController : MonoBehaviour
         _noteImageUI.enabled = false;
         _noteText.text = string.Empty;
         _noteText.enabled = false;
-        NoteBlock.Invoke();
+        //NoteBlock.Invoke();
     }
     public void OpenInterface()
     {
 
         if (_interface.activeSelf == false && menuFolder.activeSelf == false)
         {
+            if (_noteImageUI.enabled == true)
+                HideNote();
             _interface.SetActive(true);
             MenuScript(1,false);
             //_openInterface.Invoke();
@@ -130,6 +142,8 @@ public class InterfaceController : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             HideInterface();
+            if (_noteImageUI.enabled == true)
+                HideNote();
         }
     }
     public void HideInterface()

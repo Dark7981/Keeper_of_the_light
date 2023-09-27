@@ -24,13 +24,13 @@ public class RuneUIInit : MonoBehaviour
     }
     public void SpawnRune(CellData runeData)
     {
-        Debug.Log("spawnRune");
-        Debug.Log(runeData);
-        Debug.Log(gameObject);
-        var correctRune = Instantiate(runeUIPrefab, transform);
-        correctRune.GetComponent<Image>().sprite = runeData.icon;
-        correctRune.name = runeData.name;
-        runes.Add(runeData);
+        if (gameObject != null)
+        {
+            var correctRune = Instantiate(runeUIPrefab, transform);
+            correctRune.GetComponent<Image>().sprite = runeData.icon;
+            correctRune.name = runeData.name;
+            runes.Add(runeData);
+        }
     }
     public void Describe()
     {

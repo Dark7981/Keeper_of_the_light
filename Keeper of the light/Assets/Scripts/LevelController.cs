@@ -39,12 +39,13 @@ public class LevelController : MonoBehaviour
         {
             PlayerPrefs.DeleteKey("_lastScene");
         }
-       
+        _runeUI.Describe();
     }
     public void CaveLocation()
     {
         SceneManager.LoadScene(2);
         PlayerPrefs.SetInt("_lastScene", 2);
+        _runeUI.Describe();
 
     }
     public void ForestLocation()
@@ -55,22 +56,27 @@ public class LevelController : MonoBehaviour
     public void Instruction()
     {
          SceneManager.LoadScene(4);
+        _runeUI.Describe();
     }
     public void LobbyLocation()
     {
         SceneManager.LoadScene(6);
+        _runeUI.Describe();
     }
     public void FirstLocation()
     {
         SceneManager.LoadScene(5);
+        _runeUI.Describe();
     }
     public void SecondLocation()
     {
         SceneManager.LoadScene(7);
+        _runeUI.Describe();
     }
     public void ThirdLocation()
     {
         SceneManager.LoadScene(8);
+        _runeUI.Describe();
     }
     public void Continue()
     {
@@ -84,6 +90,7 @@ public class LevelController : MonoBehaviour
     private IEnumerator SoundPlay()
     {
         yield return new WaitForSeconds(_sound.length);
+
     }
     public void Respawn()
     {
@@ -101,11 +108,13 @@ public class LevelController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         PlayerPrefs.SetInt("End", 1);
+        _runeUI.Describe();
     }
     public void Quit()
     {
         Invoke("Quit", 1f);
         Application.Quit();
+        _runeUI.Describe();
     }
 
     

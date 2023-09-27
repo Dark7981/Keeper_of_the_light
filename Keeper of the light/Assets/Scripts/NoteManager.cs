@@ -15,7 +15,7 @@ public class NoteManager : MonoBehaviour
         { // Ёкземпл€р менеджера был найден
             instance = this; // «адаем ссылку на экземпл€р объекта
         }
-        else if (instance == this)
+        else if (instance != this)
         { // Ёкземпл€р объекта уже существует на сцене
             Destroy(gameObject); // ”дал€ем объект
         }
