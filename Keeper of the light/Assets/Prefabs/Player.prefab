@@ -1462,6 +1462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5c6b6718287654d944e603cba8795c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sit: 1
+  jump: 1
   jumpKey: 32
   sitKey: 99
   moveSpeed: 3.5
@@ -1470,6 +1472,8 @@ MonoBehaviour:
   soundRange: 5
   sittingSoundRange: 0.5
   jumpSoundRange: 10
+  doorKey: 0
+  runeKey: 0
   footstepSounds:
   - {fileID: 8300000, guid: 4e7d8a1282d8b144fa1bbb010469da4a, type: 3}
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
@@ -1477,11 +1481,17 @@ MonoBehaviour:
   sittingSound: {fileID: 8300000, guid: 09abaa0cff781d4499a0828c31246aec, type: 3}
   _audioSource: {fileID: 0}
   _sourceOfNoise: {fileID: 6309249694534529788}
+  _trapInventoryScript: {fileID: 6309249694258950971}
+  _startSpawnPoint: {fileID: 0}
+  _useSpawnPoint: 0
   sittingSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   jumpAudioSource: {fileID: 6309249693622035390}
   sitAudioSource: {fileID: 6309249694240143821}
   stepAudioSource: {fileID: 6309249694256061756}
   _ligth: {fileID: 6309249693365708877}
+  Runes: []
+  freezeMovement: 0
+  playerDead: 0
 --- !u!82 &6309249694258950915
 AudioSource:
   m_ObjectHideFlags: 0

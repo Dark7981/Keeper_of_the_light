@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Mechanics")]
     [SerializeField] private bool sit = true;
     [SerializeField] private bool jump = true;
+    [SerializeField] private bool trapSit = true;
 
     [Header("Keys")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
@@ -37,6 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Needed data")]
     [SerializeField] private SourceOfNoise _sourceOfNoise;
+    [SerializeField] private TrapInventoryScript _trapInventoryScript;
     [SerializeField] private Transform _startSpawnPoint;
     [SerializeField] private bool _useSpawnPoint;
 
@@ -122,6 +124,15 @@ public class PlayerBehaviour : MonoBehaviour
         }
         StartCoroutine(Siting());
         StartCoroutine(Jump());
+        if (_trapInventoryScript.traps > 1 && trapSit)
+        {
+            sit = false;
+        }
+        else if(_trapInventoryScript.traps < 1)
+        {
+            sit = true;
+            trapSit = true;
+        }
     }
 
     private IEnumerator Jump()
@@ -141,7 +152,6 @@ public class PlayerBehaviour : MonoBehaviour
             speed = moveSpeed;
         }
     }
-
     private IEnumerator Siting() 
     {
         if (Input.GetKeyDown(sitKey) && !isSiting && readyToSit && sit) // Присів
@@ -174,6 +184,18 @@ public class PlayerBehaviour : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
             readyToSit = true; 
+        }else if (sit == false)
+        {
+            readyToSit = false;
+            isSiting = false;
+            playerAnimator.SetBool("Crouch", isSiting);
+
+            range = soundRange;
+            speed = moveSpeed;
+
+            _spriteRenderer.sprite = standartSprite;
+            trapSit = false;
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
