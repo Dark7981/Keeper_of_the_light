@@ -1464,6 +1464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sit: 1
   jump: 1
+  trapSit: 1
   jumpKey: 32
   sitKey: 99
   moveSpeed: 3.5
@@ -1479,7 +1480,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a3d6c2ed8a726946ba93c1cc6af8870, type: 3}
   jumpSound: {fileID: 8300000, guid: 6503a27c4a8a88343b15522499b0831e, type: 3}
   sittingSound: {fileID: 8300000, guid: 09abaa0cff781d4499a0828c31246aec, type: 3}
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 6309249694258950915}
   _sourceOfNoise: {fileID: 6309249694534529788}
   _trapInventoryScript: {fileID: 6309249694258950971}
   _startSpawnPoint: {fileID: 0}
